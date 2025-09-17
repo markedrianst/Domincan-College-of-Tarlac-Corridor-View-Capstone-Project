@@ -28,15 +28,81 @@ const panoramaData = [
     },
     {
         id: 'classroom101',
-        name: 'Classroom 101',
-        description: 'General purpose classroom with capacity for 30 students',
+        name: 'A',
+        description: 'a',
         imageUrl: 'images/sd1st2.jpg',
         category: 'classroom',
-        connections: ['hallway1'],
+        connections: ['hallway1', 'classroom102'],
         arrowPositions: {
-            'hallway1': { phi: Math.PI / 2, theta: Math.PI } // Back
+        'classroom102': { phi: Math.PI / 2, theta: Math.PI * 2,direction:'up' }, // Right
+            'hallway1': { phi: Math.PI / 2, theta: Math.PI * 0.85,direction: 'up' }, // Back
         }
     },
+
+    {
+        id: 'classroom102',
+        name: 'b',
+        description: 'b',
+        imageUrl: 'images/SDFirstfloor(3).jpg',
+        category: 'classroom',
+        connections: ['classroom101', 'classroom103'],
+        arrowPositions: { 
+           'classroom103': { phi: Math.PI / 2, theta: Math.PI * 2,direction:'up' }, // Right
+            'classroom101': { phi: Math.PI / 2, theta: Math.PI * 0.85,direction: 'up' }, // Back
+        
+        }
+    },
+    {
+        id: 'classroom103',
+        name: 'c',
+        description: 'c',
+        imageUrl: 'images/SDFirstfloor(4).jpg',
+        category: 'classroom',
+        connections: ['classroom102', 'classroom104'],
+        arrowPositions: {
+            'classroom104': { phi: Math.PI / 2, theta: Math.PI * 2,direction:'up' }, // Right
+            'classroom102': { phi: Math.PI / 2, theta: Math.PI * 0.85,direction: 'up' }//Right
+        }
+    },
+
+        {
+        id: 'classroom104',
+        name: 'd',
+        description: 'd',
+        imageUrl: 'images/SDFirstfloor(5).jpg',
+        category: 'classroom',
+        connections: ['classroom103', 'classroom105'],
+        arrowPositions: {
+            'classroom105': { phi: Math.PI / 2, theta: Math.PI * 2,direction:'up' }, // Right
+            'classroom103': { phi: Math.PI / 2, theta: Math.PI * 0.85,direction: 'up' }//Right
+        }
+    },
+        {
+        id: 'classroom105',
+        name: 'e',
+        description: 'e',
+        imageUrl: 'images/SDFirstfloor(6).jpg',
+        category: 'classroom',
+        connections: ['classroom104','classroom106'],
+        arrowPositions: {
+            'classroom106': { phi: Math.PI / 2, theta: Math.PI * 2,direction:'up' }, // Right
+            'classroom104': { phi: Math.PI / 2, theta: Math.PI * 0.85,direction: 'up' }//Right
+        }
+    },
+       {
+        id: 'classroom106',
+        name: 'nakdn',
+        description: 'dmand',
+        imageUrl: 'images/SDFirstfloor(7).jpg',
+        category: 'classroom',
+        connections: [ 'classroom105'],
+        arrowPositions: {
+            'classroom105': { phi: Math.PI / 2, theta: Math.PI * 0.85,direction:'up' }// Right        }
+    }
+},
+
+
+    //SD 2ND FLOOR
     {
         id: 'stairs',
         name: 'Staircase',
