@@ -6,7 +6,7 @@ const panoramaData = [
         id: 'entrance',
         name: 'Main Entrance',
         description: 'The main entrance to the campus building',
-        imageUrl: 'images/GateEntrance.jpg',
+        imageUrl: 'images/GateEntrancee.jpg',
         category: 'entrance',
         connections: ['hallway1'],
         arrowPositions: {
@@ -17,7 +17,7 @@ const panoramaData = [
         id: 'hallway1',
         name: 'Access in SD and SCS bldg.',
         description: 'Connects entrance to classrooms', 
-        imageUrl: 'images/SDFirstfloor(1).jpg',
+        imageUrl: 'images/sd1st1.jpg',
         category: 'hallway',
         connections: ['classroom101', 'entrance', 'stairs'],
         arrowPositions: {
@@ -30,7 +30,7 @@ const panoramaData = [
         id: 'classroom101',
         name: 'Classroom 101',
         description: 'General purpose classroom with capacity for 30 students',
-        imageUrl: 'images/SDFirstfloor(2).jpg',
+        imageUrl: 'images/sd1st2.jpg',
         category: 'classroom',
         connections: ['hallway1'],
         arrowPositions: {
