@@ -164,7 +164,7 @@ main {
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     #location-info {
         bottom: 10px;
         left: 10px;
