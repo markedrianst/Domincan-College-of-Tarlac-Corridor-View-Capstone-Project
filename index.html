@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Indoor Street View</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search locations...">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </header>
+        
+        <main>
+            <div id="panorama-container"></div>
+            <div id="location-info">
+                <h2 id="location-name">Loading...</h2>
+                <p id="location-description"></p>
+            </div>
+        </main>
+        
+        <div class="loading-screen" id="loading-screen">
+            <div class="spinner"></div>
+            <p>Loading panorama...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/panorama-viewer.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/transitions.js"></script>
+    <script src="js/mobile.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
