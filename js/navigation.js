@@ -2,150 +2,95 @@ class NavigationManager {
   constructor() {
     this.panoramaContainer = document.getElementById('panorama-container');
     this.arrows = [];
+    this.arrowPool = []; // Reuse DOM arrows
     this.currentPanoramaId = null;
   }
-  
+
   updateConnections(panoramaId) {
     this.currentPanoramaId = panoramaId;
-    this.clearArrows();
     const connected = getConnectedPanoramas(panoramaId);
-    const total = connected.length;
+    this.clearArrows();
     connected.forEach((conn, index) => {
-      this.createArrow(conn, index, total);
+      this.createArrow(conn, index, connected.length);
     });
-    if (window.panoramaViewer) {
-      this.updateArrowPositions(window.panoramaViewer.camera);
-    }
   }
-  
+
   clearArrows() {
-    this.arrows.forEach(arrow => {
-      if (arrow.element && arrow.element.parentNode) {
-        arrow.element.parentNode.removeChild(arrow.element);
-      }
-    });
+    this.arrows.forEach(arrow => arrow.element.style.display = 'none');
     this.arrows = [];
   }
-  
+
   createArrow(connectedPanorama, index, total) {
-    const arrow = document.createElement('div');
-    arrow.className = 'nav-arrow';
-    
-    // Determine icon / direction
-    let iconClass = null;
-    let manualDirection = null;
+    let arrow;
+    if (this.arrowPool.length > 0) {
+      arrow = this.arrowPool.pop();
+    } else {
+      arrow = document.createElement('div');
+      arrow.className = 'nav-arrow';
+      this.panoramaContainer.appendChild(arrow);
+    }
+
     const pano = getPanoramaById(this.currentPanoramaId);
-    
+    let iconClass = 'fa-arrow-right';
     if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
       const manual = pano.arrowPositions[connectedPanorama.id];
-      if (manual.directionIcon) {
-        iconClass = manual.directionIcon;
-      } else if (manual.direction) {
-        // map simple direction strings to icons
+      if (manual.direction) {
         switch(manual.direction) {
           case 'up': iconClass = 'fa-arrow-up'; break;
           case 'down': iconClass = 'fa-arrow-down'; break;
           case 'left': iconClass = 'fa-arrow-left'; break;
-          case 'right': iconClass = 'fa-arrow-right'; break;
           case 'forward': iconClass = 'fa-door-open'; break;
-          default: iconClass = null;
         }
       }
     }
-    
-    // If no manual icon given, use default logic
-    if (!iconClass) {
-      if (connectedPanorama.id === 'stairs') {
-        iconClass = 'fa-arrow-up';
-      } else {
-        const directions = ['fa-arrow-up', 'fa-arrow-right', 'fa-arrow-down', 'fa-arrow-left'];
-        const directionIndex = Math.floor((index / total) * directions.length);
-        iconClass = directions[ directionIndex ];
-      }
-    }
-    
-    arrow.innerHTML = `<i class="fas ${iconClass}"></i>`;
-    arrow.title = `Go to ${connectedPanorama.name}`;
-    arrow.style.position = 'absolute';
-    
-    // Manual or auto spherical position
-    let theta, phi;
-    if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
-      const manual = pano.arrowPositions[connectedPanorama.id];
-      theta = (manual.theta != null) ? manual.theta : (index / total) * 2 * Math.PI;
-      phi   = (manual.phi   != null) ? manual.phi   : Math.PI / 2;
-    } else {
-      theta = (index / total) * 2 * Math.PI;
-      phi = Math.PI / 2;
-    }
-    
-    const position = { phi, theta };
-    
-    const arrowData = {
-      element: arrow,
-      targetId: connectedPanorama.id,
-      position: position
-    };
-    
-    this.arrows.push(arrowData);
-    
-    arrow.addEventListener('click', () => {
-      this.navigateTo(connectedPanorama.id);
-    });
-    arrow.addEventListener('mouseenter', () => {
-      arrow.style.transform = 'scale(1.2)';
-    });
-    arrow.addEventListener('mouseleave', () => {
-      arrow.style.transform = 'scale(1)';
-    });
-    
-    this.panoramaContainer.appendChild(arrow);
+
+arrow.innerHTML = `
+  <div class="arrow-content">
+    <i class="fas ${iconClass}"></i>
+    <span class="arrow-label">${connectedPanorama.name}</span>
+  </div>
+`;
+    arrow.style.display = 'flex';
+
+    arrow.onclick = () => this.navigateTo(connectedPanorama.id);
+
+    const position = pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]
+      ? { phi: pano.arrowPositions[connectedPanorama.id].phi, theta: pano.arrowPositions[connectedPanorama.id].theta }
+      : { phi: Math.PI/2, theta: (index / total) * 2 * Math.PI };
+
+    this.arrows.push({ element: arrow, targetId: connectedPanorama.id, position });
   }
-  
+
   updateArrowPositions(camera) {
-    if (!camera) return;
     const w = this.panoramaContainer.clientWidth;
     const h = this.panoramaContainer.clientHeight;
     const cameraDir = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
-    
+
     this.arrows.forEach(arrow => {
       const { phi, theta } = arrow.position;
       const x3 = Math.sin(phi) * Math.cos(theta);
       const y3 = Math.cos(phi);
       const z3 = Math.sin(phi) * Math.sin(theta);
       const arrowVec = new THREE.Vector3(x3, y3, z3);
-      
-      const screenPos = this.projectToScreen(arrowVec, camera, w, h);
-      const dot = arrowVec.dot(cameraDir);
-      
-      if (dot < 0) {
+      const vec = arrowVec.clone().project(camera);
+      const x = (vec.x * 0.5 + 0.5) * w;
+      const y = (-vec.y * 0.5 + 0.5) * h;
+
+      if (arrowVec.dot(cameraDir) < 0) {
+        arrow.element.style.left = `${x - arrow.element.offsetWidth/2}px`;
+        arrow.element.style.top = `${y - arrow.element.offsetHeight/2}px`;
         arrow.element.style.display = 'flex';
-        // optionally adjust anchor
-        const arrowWidth = arrow.element.offsetWidth;
-        const arrowHeight = arrow.element.offsetHeight;
-        arrow.element.style.left = `${screenPos.x - arrowWidth/2}px`;
-        arrow.element.style.top = `${screenPos.y - arrowHeight/2}px`;
       } else {
         arrow.element.style.display = 'none';
       }
     });
   }
-  
-  projectToScreen(vector, camera, width, height) {
-    const vec = vector.clone();
-    vec.project(camera);
-    const x = (vec.x * 0.5 + 0.5) * width;
-    const y = (-vec.y * 0.5 + 0.5) * height;
-    return { x, y };
-  }
-  
+
   navigateTo(panoramaId) {
-    if (window.panoramaViewer) {
-      if (window.transitionManager) {
-        window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
-      } else {
-        window.panoramaViewer.loadPanorama(panoramaId);
-      }
+    if (window.transitionManager) {
+      window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
+    } else {
+      window.panoramaViewer.loadPanorama(panoramaId);
     }
   }
 }

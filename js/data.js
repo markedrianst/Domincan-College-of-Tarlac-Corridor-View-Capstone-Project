@@ -7,7 +7,7 @@ const panoramaData = [
         name: 'Main Entrance',
         description: 'Domimicam College of Tarlac Main Entrance',
         imageUrl: 'images/GateEntrancee.jpg',
-        category: 'entrance',
+        category: ['entrance'],
         connections: ['hallway1'],
         arrowPositions: {
             'hallway1': { phi: Math.PI / 2, theta: Math.PI * 1.75,direction: 'forward' } // Forward
@@ -18,7 +18,7 @@ const panoramaData = [
         name: 'Access in SD and SCS bldg.',
         description: 'Connects entrance to classrooms', 
         imageUrl: 'images/sd1st1.jpg',
-        category: 'hallway',
+        category: ['SD bldg.', 'SCS bldg.'],
         connections: ['classroom101', 'entrance', 'stairs'],
         arrowPositions: {
             'classroom101': { phi: Math.PI / 2, theta: Math.PI * 2 }, // Right
