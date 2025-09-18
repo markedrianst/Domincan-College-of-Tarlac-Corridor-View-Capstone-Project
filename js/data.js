@@ -1,6 +1,4 @@
-/**
- * Data structure for panorama locations and their connections
- */
+
 const panoramaData = [
     {
         id: 'entrance',
