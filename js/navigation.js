@@ -50,9 +50,10 @@ class NavigationManager {
     arrow.innerHTML = `
       <div class="arrow-content">
         <img src="${iconClass}" alt="Arrow" class="arrow-icon" />
-          <div class="arrow-label">${connectedPanorama.name}</div>
+        <div class="arrow-label">${connectedPanorama.name}</div>   
         </div>
     `;
+    
   
 
     arrow.style.display = 'flex';
