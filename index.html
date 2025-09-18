@@ -9,12 +9,14 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search locations...">
-                <div id="search-results" class="search-results"></div>
-            </div>
-        </header>
+  <header>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search locations...">
+        <div id="category-bar" class="category-bar"></div>
+        <div id="search-results" class="search-results"></div>
+    </div>
+</header>
+
         
         <main>
             <div id="panorama-container"></div>
@@ -24,10 +26,10 @@
             </div>
         </main>
         
-        <div class="" id="loading-screen">
-            <div class=""></div>
-            <p></p>
-        </div>
+    <div id="loading-screen" class="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading panorama...</p>
+</div>
     </div>
 
     <!-- Scripts -->
