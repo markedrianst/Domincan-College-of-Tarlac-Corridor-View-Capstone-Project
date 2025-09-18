@@ -1,3 +1,6 @@
+// ========================
+// NavigationManager.js
+// ========================
 class NavigationManager {
   constructor() {
     this.panoramaContainer = document.getElementById('panorama-container');
@@ -31,27 +34,31 @@ class NavigationManager {
     }
 
     const pano = getPanoramaById(this.currentPanoramaId);
-    let iconClass = 'fa-arrow-right';
+    let iconClass = 'images/Arrows/Arrow-right.png'; // Default icon
     if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
       const manual = pano.arrowPositions[connectedPanorama.id];
       if (manual.direction) {
         switch(manual.direction) {
-          case 'up': iconClass = 'fa-arrow-up'; break;
-          case 'down': iconClass = 'fa-arrow-down'; break;
-          case 'left': iconClass = 'fa-arrow-left'; break;
-          case 'forward': iconClass = 'fa-door-open'; break;
+          case 'up': iconClass = 'images/Arrows/Arrow-up.png'; break;
+          case 'down': iconClass = 'images/Arrows/Arrow-down.png'; break;
+          case 'left': iconClass = 'images/Arrows/left.png'; break;
+          case 'right': iconClass = 'images/Arrows/Arrow-right.png'; break; // fixed spelling
         }
       }
     }
 
-arrow.innerHTML = `
-  <div class="arrow-content">
-    <i class="fas ${iconClass}"></i>
-    <span class="arrow-label">${connectedPanorama.name}</span>
-  </div>
-`;
+    arrow.innerHTML = `
+      <div class="arrow-content">
+        <img src="${iconClass}" alt="Arrow" class="arrow-icon" />
+        <div class="arrow-label">${connectedPanorama.name}</div>   
+        </div>
+    `;
+    
+  
+
     arrow.style.display = 'flex';
 
+    // 🔗 Use transition manager if available
     arrow.onclick = () => this.navigateTo(connectedPanorama.id);
 
     const position = pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]

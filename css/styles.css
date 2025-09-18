@@ -157,8 +157,9 @@ main {
 .nav-arrow {
     position: absolute;
     width: 40px;
+   
     height: 40px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -181,20 +182,30 @@ main {
 
 .arrow-content {
   display: flex;
+  
   flex-direction: column;
   align-items: center;
 }
 
 .arrow-label {
-  font-size: 12px;
-  margin-top: 4px;
-  color: #333;
-  background: rgba(255,255,255,0.8);
-  padding: 2px 6px;
-  border-radius: 4px;
-  white-space: nowrap;
+    position: absolute;
+    top: 100%;        /* place it just below the arrow */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 6px;  /* spacing from the circle */
+    font-size: 12px;
+    color: #333;
+    background: rgba(255,255,255,0.9);
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none; /* label won't block clicks */
 }
-
+.arrow-icon {
+  width: 50px;   /* control width */
+  height: 50px;  /* control height */
+  object-fit: contain;
+}
 
 /* Loading Screen */
 /* Loading Screen */
