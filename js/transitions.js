@@ -1,47 +1,82 @@
-/**
- * Transition Manager Module
- * Handles smooth transitions between panoramas
- */
-
 class TransitionManager {
-    constructor() {
-        this.transitionElement = document.createElement('div');
-        this.transitionElement.className = 'transition-overlay';
-        this.transitionElement.style.position = 'fixed';
-        this.transitionElement.style.top = '0';
-        this.transitionElement.style.left = '0';
-        this.transitionElement.style.width = '100%';
-        this.transitionElement.style.height = '100%';
-        this.transitionElement.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-        this.transitionElement.style.transition = 'background-color 0.5s ease-in-out';
-        this.transitionElement.style.pointerEvents = 'none';
-        this.transitionElement.style.zIndex = '50';
-        
-        document.body.appendChild(this.transitionElement);
+  constructor() {
+    this.transitionElement = document.createElement('div');
+    this.transitionElement.className = 'transition-overlay';
+    Object.assign(this.transitionElement.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      opacity: '0',
+      transform: 'scale(1)',
+      transition: 'opacity 0.6s ease-in-out, transform 0.8s ease-in-out',
+      pointerEvents: 'none',
+      zIndex: '9999',
+      willChange: 'transform, opacity'
+    });
+
+    document.body.appendChild(this.transitionElement);
+  }
+
+  resolveImageUrl(panoId) {
+    if (window.panoramas && Array.isArray(window.panoramas)) {
+      const pano = window.panoramas.find(p => p.id === panoId);
+      return pano ? pano.imageUrl : null;
     }
-    
-    /**
-     * Start a transition between two panoramas
-     * @param {string} fromId - The ID of the current panorama
-     * @param {string} toId - The ID of the target panorama
-     */
-    startTransition(fromId, toId) {
-        // Fade out
-        this.transitionElement.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-        
-        // Wait for fade out to complete, then load new panorama
-        setTimeout(() => {
-            if (window.panoramaViewer) {
-                window.panoramaViewer.loadPanorama(toId);
-                
-                // Wait a bit for the panorama to load, then fade back in
-                setTimeout(() => {
-                    this.transitionElement.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-                }, 500);
-            }
-        }, 500);
+    return null;
+  }
+
+  startTransition(fromId, toId) {
+    const currentImg = this.resolveImageUrl(fromId);
+    const nextImg = this.resolveImageUrl(toId);
+
+    if (!currentImg || !nextImg) {
+      // If either image is missing, just load directly
+      if (window.panoramaViewer) {
+        window.panoramaViewer.loadPanorama(toId);
+      }
+      return;
     }
+
+    // Phase 1: show CURRENT pano snapshot
+    this.transitionElement.style.backgroundImage = `url(${currentImg})`;
+    this.transitionElement.style.opacity = '1';
+    this.transitionElement.style.transform = 'scale(1)';
+    void this.transitionElement.offsetWidth;
+
+    // Animate zoom OUT + fade
+    this.transitionElement.style.transform = 'scale(2)';
+    this.transitionElement.style.opacity = '0';
+
+    setTimeout(() => {
+      // Load NEXT pano underneath
+      if (window.panoramaViewer) {
+        window.panoramaViewer.loadPanorama(toId);
+      }
+
+      // Phase 2: show NEXT pano snapshot (start zoomed in)
+      this.transitionElement.style.transition = 'none';
+      this.transitionElement.style.backgroundImage = `url(${nextImg})`;
+      this.transitionElement.style.transform = 'scale(1.5)';
+      this.transitionElement.style.opacity = '0';
+      void this.transitionElement.offsetWidth;
+
+      // Animate zoom IN + fade
+      this.transitionElement.style.transition =
+        'opacity 0.6s ease-in-out, transform 0.8s ease-in-out';
+      this.transitionElement.style.opacity = '1';
+      this.transitionElement.style.transform = 'scale(1)';
+
+      // Finally fade away overlay
+      setTimeout(() => {
+        this.transitionElement.style.opacity = '0';
+      }, 800);
+    }, 800);
+  }
 }
 
-// Export the transition manager for use in other modules
-window.transitionManager = null;
+window.transitionManager = new TransitionManager();
