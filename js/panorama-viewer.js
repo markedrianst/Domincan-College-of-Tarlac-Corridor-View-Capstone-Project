@@ -141,8 +141,8 @@ class PanoramaViewer {
         if (!this.isUserInteracting) return;
         const x = event.clientX || (event.touches && event.touches[0].clientX);
         const y = event.clientY || (event.touches && event.touches[0].clientY);
-        this.lon = (this.startX - x) * 0.1 + this.startLon;
-        this.lat = (y - this.startY) * 0.1 + this.startLat;
+        this.lon = (this.startX - x) * 1 + this.startLon;
+        this.lat = (y - this.startY) * 1 + this.startLat;
         this.lat = Math.max(-85, Math.min(85, this.lat));
     }
 
