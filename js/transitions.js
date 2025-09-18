@@ -27,7 +27,7 @@ class TransitionManager {
      */
     startTransition(fromId, toId) {
         // Fade out
-        this.transitionElement.style.backgroundColor = 'rgba(0, 0, 0, 1)';
+        this.transitionElement.style.backgroundColor = 'rgba(0, 0, 0, 0)';
         
         // Wait for fade out to complete, then load new panorama
         setTimeout(() => {

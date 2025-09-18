@@ -10,6 +10,12 @@ class PanoramaViewer {
         this.isLoading = false;
         this.loadingScreen = document.getElementById('loading-screen');
         
+        // Zoom properties
+        this.zoomLevel = 1.0;
+        this.minZoom = 0.5;
+        this.maxZoom = 2.5;
+        this.zoomSpeed = 0.1;
+        
         // Three.js components
         this.camera = null;
         this.scene = null;
@@ -55,8 +61,93 @@ class PanoramaViewer {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.container.appendChild(this.renderer.domElement);
         
+        // Add zoom controls to UI
+        this.addZoomControls();
+        
         // Start animation loop
         this.animate();
+    }
+    
+    // Zoom method to control camera field of view
+    zoom(delta) {
+        // Update zoom level based on input delta
+        this.zoomLevel += delta * this.zoomSpeed;
+        
+        // Clamp zoom level to min/max values
+        this.zoomLevel = Math.max(this.minZoom, Math.min(this.maxZoom, this.zoomLevel));
+        
+        // Apply zoom by adjusting camera FOV (lower FOV = more zoom)
+        this.camera.fov = 75 / this.zoomLevel;
+        this.camera.updateProjectionMatrix();
+    }
+    
+    // Add zoom buttons to the UI
+    addZoomControls() {
+        // Create zoom controls container
+        const zoomControls = document.createElement('div');
+        zoomControls.className = 'zoom-controls';
+        zoomControls.style.position = 'absolute';
+        zoomControls.style.bottom = '20px';
+        zoomControls.style.right = '20px';
+        zoomControls.style.zIndex = '100';
+        
+        // Create zoom in button
+        const zoomInBtn = document.createElement('button');
+        zoomInBtn.innerHTML = '+';
+        zoomInBtn.style.width = '40px';
+        zoomInBtn.style.height = '40px';
+        zoomInBtn.style.fontSize = '20px';
+        zoomInBtn.style.margin = '5px';
+        zoomInBtn.style.cursor = 'pointer';
+        zoomInBtn.style.borderRadius = '50%';
+        zoomInBtn.style.border = '2px solid #fff';
+        zoomInBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        zoomInBtn.style.color = '#fff';
+        zoomInBtn.addEventListener('click', () => this.zoom(1));
+        
+        // Create zoom out button
+        const zoomOutBtn = document.createElement('button');
+        zoomOutBtn.innerHTML = '-';
+        zoomOutBtn.style.width = '40px';
+        zoomOutBtn.style.height = '40px';
+        zoomOutBtn.style.fontSize = '20px';
+        zoomOutBtn.style.margin = '5px';
+        zoomOutBtn.style.cursor = 'pointer';
+        zoomOutBtn.style.borderRadius = '50%';
+        zoomOutBtn.style.border = '2px solid #fff';
+        zoomOutBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        zoomOutBtn.style.color = '#fff';
+        zoomOutBtn.addEventListener('click', () => this.zoom(-1));
+        
+        // Create reset zoom button
+        const resetZoomBtn = document.createElement('button');
+        resetZoomBtn.innerHTML = 'R';
+        resetZoomBtn.title = 'Reset Zoom';
+        resetZoomBtn.style.width = '40px';
+        resetZoomBtn.style.height = '40px';
+        resetZoomBtn.style.fontSize = '16px';
+        resetZoomBtn.style.margin = '5px';
+        resetZoomBtn.style.cursor = 'pointer';
+        resetZoomBtn.style.borderRadius = '50%';
+        resetZoomBtn.style.border = '2px solid #fff';
+        resetZoomBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        resetZoomBtn.style.color = '#fff';
+        resetZoomBtn.addEventListener('click', () => this.resetZoom());
+        
+        // Add buttons to controls container
+        zoomControls.appendChild(zoomInBtn);
+        zoomControls.appendChild(resetZoomBtn);
+        zoomControls.appendChild(zoomOutBtn);
+        
+        // Add controls to container
+        this.container.appendChild(zoomControls);
+    }
+    
+    // Reset zoom to default level
+    resetZoom() {
+        this.zoomLevel = 1.0;
+        this.camera.fov = 75;
+        this.camera.updateProjectionMatrix();
     }
     
     /**
@@ -74,8 +165,19 @@ class PanoramaViewer {
         this.container.addEventListener('touchmove', this.onPointerMove.bind(this));
         this.container.addEventListener('touchend', this.onPointerUp.bind(this));
         
+        // Mouse wheel zoom
+        this.container.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            // Normalize wheel delta across browsers
+            const delta = event.deltaY > 0 ? -1 : 1;
+            this.zoom(delta * 0.1);
+        });
+        
         // Prevent context menu on right-click
         this.container.addEventListener('contextmenu', (e) => e.preventDefault());
+        
+        // Initialize pinch zoom variables
+        this.initialPinchDistance = null;
     }
     
     /**
@@ -93,6 +195,15 @@ class PanoramaViewer {
     onPointerDown(event) {
         event.preventDefault();
         
+        if (event.touches && event.touches.length === 2) {
+            // Store initial pinch distance for zoom
+            this.initialPinchDistance = Math.hypot(
+                event.touches[0].clientX - event.touches[1].clientX,
+                event.touches[0].clientY - event.touches[1].clientY
+            );
+            return;
+        }
+        
         this.isUserInteracting = true;
         
         const clientX = event.clientX || (event.touches && event.touches[0].clientX);
@@ -109,6 +220,22 @@ class PanoramaViewer {
      * Handle pointer move events (mouse or touch)
      */
     onPointerMove(event) {
+        if (event.touches && event.touches.length === 2) {
+            // Calculate current pinch distance for zoom
+            const currentPinchDistance = Math.hypot(
+                event.touches[0].clientX - event.touches[1].clientX,
+                event.touches[0].clientY - event.touches[1].clientY
+            );
+            
+            // Calculate zoom delta based on pinch distance change
+            if (this.initialPinchDistance) {
+                const delta = (currentPinchDistance - this.initialPinchDistance) * 0.01;
+                this.zoom(delta);
+                this.initialPinchDistance = currentPinchDistance;
+            }
+            return;
+        }
+        
         if (!this.isUserInteracting) return;
         
         const clientX = event.clientX || (event.touches && event.touches[0].clientX);
@@ -170,46 +297,116 @@ class PanoramaViewer {
             return;
         }
         
-        this.isLoading = true;
-        this.loadingScreen.style.display = 'flex';
+        // Don't show loading screen for smooth transitions
+        // this.isLoading = true;
+        // this.loadingScreen.style.display = 'flex';
+        
+        // Update current panorama ID
         this.currentPanoramaId = panoramaId;
         
         // Update location info
         document.getElementById('location-name').textContent = panorama.name;
         document.getElementById('location-description').textContent = panorama.description;
         
-        // Load the panorama texture
+        // Create a new mesh but don't remove the old one yet
         const textureLoader = new THREE.TextureLoader();
+        
+        // Set high priority for loading
         textureLoader.load(
             panorama.imageUrl,
             (texture) => {
-                // If there's an existing mesh, remove it
+                // Create new material with the loaded texture
+                const newMaterial = new THREE.MeshBasicMaterial({ map: texture });
+                const newMesh = new THREE.Mesh(this.geometry, newMaterial);
+                
+                // Make the new mesh slightly smaller to be inside the old one
                 if (this.mesh) {
-                    this.scene.remove(this.mesh);
-                    this.material.dispose();
+                    // Add the new mesh to the scene
+                    this.scene.add(newMesh);
+                    
+                    // Fade in the new panorama
+                    this.fadeTransition(this.mesh, newMesh, () => {
+                        // After transition, remove old mesh and update references
+                        this.scene.remove(this.mesh);
+                        this.material.dispose();
+                        this.material = newMaterial;
+                        this.mesh = newMesh;
+                        
+                        // Update navigation arrows
+                        if (window.navigationManager) {
+                            window.navigationManager.updateConnections(panoramaId);
+                        }
+                    });
+                } else {
+                    // First load - no transition needed
+                    this.material = newMaterial;
+                    this.mesh = newMesh;
+                    this.scene.add(this.mesh);
+                    
+                    // Update navigation arrows
+                    if (window.navigationManager) {
+                        window.navigationManager.updateConnections(panoramaId);
+                    }
                 }
                 
-                // Create new material with the loaded texture
-                this.material = new THREE.MeshBasicMaterial({ map: texture });
-                this.mesh = new THREE.Mesh(this.geometry, this.material);
-                this.scene.add(this.mesh);
-                
-                // Hide loading screen
+                // Hide loading screen if it was shown
                 this.isLoading = false;
-                this.loadingScreen.style.display = 'none';
-                
-                // Update navigation arrows
-                if (window.navigationManager) {
-                    window.navigationManager.updateConnections(panoramaId);
+                if (this.loadingScreen) {
+                    this.loadingScreen.style.display = 'none';
                 }
             },
-            undefined,
+            // Progress callback - can be used to show loading progress
+            (xhr) => {
+                // const percentComplete = (xhr.loaded / xhr.total) * 100;
+                // console.log(`Loading: ${Math.round(percentComplete)}%`);
+            },
             (error) => {
                 console.error('Error loading panorama texture:', error);
                 this.isLoading = false;
-                this.loadingScreen.style.display = 'none';
+                if (this.loadingScreen) {
+                    this.loadingScreen.style.display = 'none';
+                }
             }
         );
+    }
+    
+    /**
+     * Perform a smooth fade transition between two panorama meshes
+     * @param {THREE.Mesh} oldMesh - The current panorama mesh
+     * @param {THREE.Mesh} newMesh - The new panorama mesh
+     * @param {Function} onComplete - Callback function when transition is complete
+     */
+    fadeTransition(oldMesh, newMesh, onComplete) {
+        // Set initial opacity for cross-fade
+        oldMesh.material.transparent = true;
+        newMesh.material.transparent = true;
+        newMesh.material.opacity = 0;
+        
+        // Animation duration in milliseconds
+        const duration = 500;
+        const startTime = performance.now();
+        
+        // Animation function
+        const animate = (currentTime) => {
+            // Calculate progress (0 to 1)
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Update opacities
+            oldMesh.material.opacity = 1 - progress;
+            newMesh.material.opacity = progress;
+            
+            // Continue animation if not complete
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                // Transition complete
+                if (onComplete) onComplete();
+            }
+        };
+        
+        // Start animation
+        requestAnimationFrame(animate);
     }
     
     /**
