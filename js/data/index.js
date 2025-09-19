@@ -2,7 +2,9 @@
 const panoramaData = [
   ...entrancePanoramas,
   ...sdGroundFloor,
-  ...sd2ndFloor
+  ...sd2ndFloor,
+  ...sd3rdFloor
+
   // add other files here
 ];
 /**

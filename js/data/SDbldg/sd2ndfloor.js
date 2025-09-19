@@ -18,9 +18,10 @@ const sd2ndFloor = [
         description: 'Staircase leading to 201,202,203,204,205,206,207,208,209,210',
         imageUrl: 'images/Sdbldg/cornerstairsSD2ndfloor.jpg',
         category: 'Sd bldg.',
-        connections: ['stairs','2ndFloorSD201'],
+        connections: ['stairs','2ndFloorSD201','Sd3rdfloorcornerstairs'],
         arrowPositions: {
             'stairs': { phi: Math.PI / 3, theta: Math.PI * 1.4, direction:'down' }, // Right
+            'Sd3rdfloorcornerstairs': { phi: Math.PI / 2, theta: Math.PI * 1.6, direction:'up' }, // Right
             '2ndFloorSD201': { phi: Math.PI / 3, theta: Math.PI * 2.5,direction:'up' } // Forward
         }
     },
@@ -83,11 +84,12 @@ const sd2ndFloor = [
         description: 'Sd bldg. 2nd floor',
         imageUrl: 'images/Sdbldg/2ndfloorSD(5).jpg',
         category: 'stairs',
-        connections: ['Sd2ndfloor204','Sd2ndfloor205','midstairscr'],
+        connections: ['Sd2ndfloor204','Sd2ndfloor205','midstairscr','Sd3rdfloormidstairs'],
         arrowPositions: {
             'Sd2ndfloor205': { phi: Math.PI / 2.6, theta: Math.PI * 2.3,direction:'up' }, // Right
             'Sd2ndfloor204': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction:'up' }, // Right
-            'midstairscr': { phi: Math.PI / 3, theta: Math.PI * 1.7, direction:'down' },// Right
+            'midstairscr': { phi: Math.PI / 3, theta: Math.PI * 1.7, direction:'down' },
+            'Sd3rdfloormidstairs': { phi: Math.PI / 3, theta: Math.PI * 1.92, direction:'up' },// Right
 
         }
     },
