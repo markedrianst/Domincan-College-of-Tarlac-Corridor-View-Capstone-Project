@@ -68,32 +68,43 @@ class PanoramaViewer {
 
     // --- Controls ---
     addZoomControls() {
-        const zoomControls = document.createElement('div');
-        zoomControls.className = 'zoom-controls';
-        zoomControls.style.position = 'absolute';
-        zoomControls.style.bottom = '220px';
-        zoomControls.style.right = '20px';
-        zoomControls.style.zIndex = '9999';
+    const zoomControls = document.createElement('div');
+    zoomControls.className = 'zoom-controls';
+    zoomControls.style.position = 'absolute';
+    zoomControls.style.bottom = '220px';
+    zoomControls.style.right = '20px';
+    zoomControls.style.zIndex = '9999';
+    zoomControls.style.display = 'flex';
+    zoomControls.style.flexDirection = 'column'; // 👈 stack vertically
+    zoomControls.style.alignItems = 'center';    // 👈 center align
+    zoomControls.style.gap = '8px';              // 👈 spacing between buttons
 
-        const makeBtn = (label, title, onClick) => {
-            const btn = document.createElement('button');
-            btn.innerHTML = label;
-            if (title) btn.title = title;
-            Object.assign(btn.style, {
-                width: '25px', height: '25px', margin: '5px',
-                borderRadius: '50%', border: '2px solid #fff',
-                backgroundColor: 'rgba(0,0,0,0.6)', color: '#fff',
-                fontSize: '20px', cursor: 'pointer'
-            });
-            btn.addEventListener('click', onClick);
-            return btn;
-        };
+    const makeBtn = (label, title, onClick) => {
+        const btn = document.createElement('button');
+        btn.innerHTML = label;
+        if (title) btn.title = title;
+        Object.assign(btn.style, {
+            width: '20px',
+            height: '20px',
+            borderRadius: '50%',
+            border: '2px solid #fff',
+            backgroundColor: 'rgba(0,0,0,0.6)',
+            color: '#fff',
+            fontSize: '20px',
+            cursor: 'pointer',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        });
+        btn.addEventListener('click', onClick);
+        return btn;
+    };
 
-        zoomControls.appendChild(makeBtn('+', null, () => this.zoom(1)));
-        zoomControls.appendChild(makeBtn('R', 'Reset Zoom', () => this.resetZoom()));
-        zoomControls.appendChild(makeBtn('-', null, () => this.zoom(-1)));
-        this.container.appendChild(zoomControls);
-    }
+    zoomControls.appendChild(makeBtn('+', 'Zoom In', () => this.zoom(1)));
+    zoomControls.appendChild(makeBtn('R', 'Reset Zoom', () => this.resetZoom()));
+    zoomControls.appendChild(makeBtn('-', 'Zoom Out', () => this.zoom(-1)));
+    this.container.appendChild(zoomControls);
+}
 
     // --- Events ---
     setupEventListeners() {
