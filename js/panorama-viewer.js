@@ -129,8 +129,8 @@ class PanoramaViewer {
             const deltaY = y - this.startY;
 
             // 🔹 Smoother (smaller factor)
-            this.targetLon = this.startLon + deltaX * 0.1;
-            this.targetLat = this.startLat + deltaY * 0.1;
+            this.targetLon = this.startLon + deltaX * 0.2;
+            this.targetLat = this.startLat + deltaY * 0.2;
         };
 
         const end = () => { this.isUserInteracting = false; };
