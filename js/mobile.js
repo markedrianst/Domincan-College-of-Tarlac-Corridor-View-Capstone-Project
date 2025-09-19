@@ -1,4 +1,3 @@
-
 class MobileSupport {
   constructor() {
     this.isMobile = this.checkMobile();
@@ -14,65 +13,93 @@ class MobileSupport {
   }
 
   checkMobile() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
+    return (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      ) || "ontouchstart" in window // fallback for touch devices
     );
   }
 
   applyMobileOptimizations() {
-    document.body.classList.add('mobile-device');
+    document.body.classList.add("mobile-device");
 
+    // Lower pixel ratio on mobile to improve FPS
     if (window.panoramaViewer && window.panoramaViewer.renderer) {
       window.panoramaViewer.renderer.setPixelRatio(
-        Math.min(window.devicePixelRatio, 1.5)
+        Math.min(window.devicePixelRatio || 1, 2)
       );
     }
 
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
-      .mobile-device .nav-arrow {
-        width: 50px;
-        height: 50px;
+      /* Make nav arrows more tappable */
+      .nav-arrow {
+        position: absolute; /* ✅ keeps stable placement */
+        transform: translate(-50%, -50%); /* ✅ prevents reflow jumps */
+        width: clamp(40px, 8vw, 60px);
+        height: clamp(40px, 8vw, 60px);
+        will-change: transform;
       }
-      .mobile-device .nav-arrow i {
-        font-size: 24px;
+      .nav-arrow i {
+        font-size: clamp(18px, 5vw, 28px);
       }
-      .mobile-device #search-input {
-        font-size: 16px;
-        height: 44px;
+
+      /* Search bar scaling */
+      #search-input {
+        font-size: clamp(14px, 3vw, 18px);
+        height: clamp(36px, 5vh, 48px);
       }
-      .mobile-device .search-result-item {
-        padding: 15px;
+
+      /* Search results scale better */
+      .search-result-item {
+        padding: clamp(10px, 2vw, 16px);
+        font-size: clamp(12px, 3vw, 16px);
+      }
+
+      /* Make buttons tap-friendly */
+      button {
+        min-width: 40px;
+        min-height: 40px;
+        font-size: clamp(14px, 3vw, 18px);
+      }
+
+      /* Ensure panorama container always fits */
+      #panorama-container {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
       }
     `;
     document.head.appendChild(style);
   }
 
   setupEventListeners() {
-    const panoramaContainer = document.getElementById('panorama-container');
+    const panoramaContainer = document.getElementById("panorama-container");
     if (!panoramaContainer) return;
 
+    // Touch start
     panoramaContainer.addEventListener(
-      'touchstart',
+      "touchstart",
       (e) => {
         this.touchStartX = e.touches[0].clientX;
         this.touchStartY = e.touches[0].clientY;
         this.touchMoved = false;
       },
-      { passive: false }
+      { passive: true }
     );
 
+    // Touch move (detect drag vs tap)
     panoramaContainer.addEventListener(
-      'touchmove',
+      "touchmove",
       () => {
         this.touchMoved = true;
       },
-      { passive: false }
+      { passive: true }
     );
 
-    // Handle tap events for navigation arrows
+    // Touch end (handle taps)
     panoramaContainer.addEventListener(
-      'touchend',
+      "touchend",
       (e) => {
         if (!this.touchMoved) {
           const touch = e.changedTouches[0];
@@ -83,51 +110,86 @@ class MobileSupport {
 
           if (
             element &&
-            (element.classList.contains('nav-arrow') ||
-              element.closest('.nav-arrow'))
+            (element.classList.contains("nav-arrow") ||
+              element.closest(".nav-arrow"))
           ) {
-            const arrow = element.classList.contains('nav-arrow')
+            const arrow = element.classList.contains("nav-arrow")
               ? element
-              : element.closest('.nav-arrow');
+              : element.closest(".nav-arrow");
             const targetId = arrow.dataset.target;
 
             if (window.transitionManager && targetId) {
               const currentId =
                 window.panoramaViewer.getCurrentId?.() || null;
+
+              // 🔒 Lock arrow reposition
+              if (window.navigationManager) {
+                window.navigationManager.isLocked = true;
+              }
+
               window.transitionManager.startTransition(currentId, targetId);
+
+              // 🔓 Unlock after transition ends (~0.9s)
+              setTimeout(() => {
+                if (window.navigationManager) {
+                  window.navigationManager.isLocked = false;
+                  window.navigationManager.updateArrowPositions(
+                    window.panoramaViewer.camera
+                  );
+                }
+              }, 950);
             } else {
               arrow.click();
             }
           }
         }
       },
-      { passive: false }
+      { passive: true }
     );
 
-    // Also handle desktop clicks consistently
-    document.addEventListener('click', (e) => {
-      const arrow = e.target.closest('.nav-arrow');
+    // Desktop clicks
+    document.addEventListener("click", (e) => {
+      const arrow = e.target.closest(".nav-arrow");
       if (arrow) {
         const targetId = arrow.dataset.target;
         if (window.transitionManager && targetId) {
           const currentId = window.panoramaViewer.getCurrentId?.() || null;
+
+          // 🔒 Lock arrow reposition
+          if (window.navigationManager) {
+            window.navigationManager.isLocked = true;
+          }
+
           window.transitionManager.startTransition(currentId, targetId);
+
+          // 🔓 Unlock after transition ends (~0.9s)
+          setTimeout(() => {
+            if (window.navigationManager) {
+              window.navigationManager.isLocked = false;
+              window.navigationManager.updateArrowPositions(
+                window.panoramaViewer.camera
+              );
+            }
+          }, 950);
+
           e.preventDefault();
         }
       }
     });
 
-    window.addEventListener('orientationchange', () => {
-      this.handleOrientationChange();
-    });
+    // Resize + orientation support
+    window.addEventListener("resize", () => this.handleResize());
+    window.addEventListener("orientationchange", () =>
+      this.handleResize()
+    );
   }
 
-  handleOrientationChange() {
+  handleResize() {
     setTimeout(() => {
       if (window.panoramaViewer) {
         window.panoramaViewer.onWindowResize();
       }
-      if (window.navigationManager) {
+      if (window.navigationManager && !window.navigationManager.isLocked) {
         window.navigationManager.updateArrowPositions(
           window.panoramaViewer.camera
         );
