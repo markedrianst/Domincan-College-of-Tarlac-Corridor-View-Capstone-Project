@@ -1,81 +1,39 @@
 class TransitionManager {
   constructor() {
-    this.transitionElement = document.createElement('div');
-    this.transitionElement.className = 'transition-overlay';
-    Object.assign(this.transitionElement.style, {
-      position: 'fixed',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      opacity: '0',
+    this.container = document.getElementById('panorama-container');
+
+    Object.assign(this.container.style, {
       transform: 'scale(1)',
-      transition: 'opacity 0.6s ease-in-out, transform 0.8s ease-in-out',
-      pointerEvents: 'none',
-      zIndex: '9999',
-      willChange: 'transform, opacity'
+      transition: 'transform 0.45s cubic-bezier(.25, .1, .25, 1), opacity 0.45s cubic-bezier(.25, .1, .25, 1)',
+      willChange: 'transform, opacity',
+      backgroundColor: '#000' // prevents white flash
     });
-
-    document.body.appendChild(this.transitionElement);
-  }
-
-  resolveImageUrl(panoId) {
-    if (window.panoramas && Array.isArray(window.panoramas)) {
-      const pano = window.panoramas.find(p => p.id === panoId);
-      return pano ? pano.imageUrl : null;
-    }
-    return null;
   }
 
   startTransition(fromId, toId) {
-    const currentImg = this.resolveImageUrl(fromId);
-    const nextImg = this.resolveImageUrl(toId);
+    // --- Step 1: Quick zoom out & fade ---
+    this.container.style.transition = 'transform 0.45s cubic-bezier(.25, .1, .25, 1), opacity 0.45s cubic-bezier(.25, .1, .25, 1)';
+    this.container.style.transform = 'scale(1.8)';
+    this.container.style.opacity = '0.8';
 
-    if (!currentImg || !nextImg) {
-      // If either image is missing, just load directly
-      if (window.panoramaViewer) {
-        window.panoramaViewer.loadPanorama(toId);
-      }
-      return;
-    }
-
-    // Phase 1: show CURRENT pano snapshot
-    this.transitionElement.style.backgroundImage = `url(${currentImg})`;
-    this.transitionElement.style.opacity = '1';
-    this.transitionElement.style.transform = 'scale(1)';
-    void this.transitionElement.offsetWidth;
-
-    // Animate zoom OUT + fade
-    this.transitionElement.style.transform = 'scale(2)';
-    this.transitionElement.style.opacity = '0';
-
+    // --- Step 2: Switch pano faster ---
     setTimeout(() => {
-      // Load NEXT pano underneath
-      if (window.panoramaViewer) {
-        window.panoramaViewer.loadPanorama(toId);
-      }
+      window.panoramaViewer.loadPanorama(toId);
 
-      // Phase 2: show NEXT pano snapshot (start zoomed in)
-      this.transitionElement.style.transition = 'none';
-      this.transitionElement.style.backgroundImage = `url(${nextImg})`;
-      this.transitionElement.style.transform = 'scale(1.5)';
-      this.transitionElement.style.opacity = '0';
-      void this.transitionElement.offsetWidth;
+      this.container.style.transition = 'none';
+      this.container.style.transform = 'scale(1.1)';
+      this.container.style.opacity = '1';
 
-      // Animate zoom IN + fade
-      this.transitionElement.style.transition =
-        'opacity 0.6s ease-in-out, transform 0.8s ease-in-out';
-      this.transitionElement.style.opacity = '1';
-      this.transitionElement.style.transform = 'scale(1)';
+      // Force reflow
+      void this.container.offsetWidth;
 
-      // Finally fade away overlay
-      setTimeout(() => {
-        this.transitionElement.style.opacity = '0';
-      }, 800);
-    }, 800);
+      requestAnimationFrame(() => {
+        // --- Step 3: Smooth zoom-in & fade-in ---
+        this.container.style.transition = 'transform 0.45s cubic-bezier(.25, .1, .25, 1), opacity 0.45s cubic-bezier(.25, .1, .25, 1)';
+        this.container.style.transform = 'scale(1)';
+        this.container.style.opacity = '1';
+      });
+    }, 450); // match Step 1 duration
   }
 }
 
