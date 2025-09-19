@@ -33,10 +33,10 @@ const sd3rdFloor = [
         description: 'This area leading to room 301,302,303,304,305,306,307,308,309,310',
         imageUrl: 'images/Sdbldg/3rdfloorSD1.jpg',
         category: 'Sd bldg.',
-        connections: ['Sd3rdfloorcornerstairs', 'SdGroundFloor1','Sd3rdfloor301'],
+        connections: ['Sd3rdfloorcornerstairs', 'Sd4thfloorcornerstairs','Sd3rdfloor301'],
         arrowPositions: {
             'Sd3rdfloorcornerstairs': { phi: Math.PI / 2.6, theta: Math.PI * 0.9 ,direction:'down' }, // Up-forward
-            'SdGroundFloor1': { phi: Math.PI / 2.5, theta: Math.PI * 1.01,direction:'up' } ,// Right
+            'Sd4thfloorcornerstairs': { phi: Math.PI / 2.5, theta: Math.PI * 1.01,direction:'up' } ,// Right
             'Sd3rdfloor301': { phi: Math.PI / 3, theta: Math.PI * 1.45,direction:'up' } // Right
 
         }
@@ -105,10 +105,11 @@ const sd3rdFloor = [
         description: 'Staircase leading to the third floor',
         imageUrl: 'images/Sdbldg/3rdfloorSD6.jpg',
         category: 'Sd bldg.',
-        connections: ['Sd3rdfloor304','Sd3rdfloormidstairs','Sd3rdfloor305'],
+        connections: ['Sd3rdfloor304','Sd3rdfloormidstairs','Sd3rdfloor305','Sd4thfloormidstairs'],
         arrowPositions: {
            'Sd3rdfloor304': { phi: Math.PI / 3, theta: Math.PI * 1.6 ,direction:'up' }, // Up-forward
             'Sd3rdfloormidstairs': { phi: Math.PI /3, theta: Math.PI * 1.75,direction:'down' },
+            'Sd4thfloormidstairs': { phi: Math.PI /2.8, theta: Math.PI * 2,direction:'up' },
             'Sd3rdfloor305': { phi: Math.PI /2.8, theta: Math.PI * 2.4,direction:'up' }
 
         }
