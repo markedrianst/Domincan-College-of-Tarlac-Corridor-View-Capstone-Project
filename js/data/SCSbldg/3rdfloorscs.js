@@ -7,10 +7,11 @@ const scsthirdfloor =[
     description: 'SCS bldg. 3rd floor',
     imageUrl: 'images/Scsbldg/scs3rd1.jpg',
     category: ['SCS bldg.'],
-    connections: ['Scs2ndto3rd','scs3rd2'],
+    connections: ['Scs2ndto3rd','scs3rd2','Scs3rdto4th'],
     arrowPositions: {
       'Scs2ndto3rd': { phi: Math.PI / 3, theta: Math.PI * 0.65, direction: 'up'},
       'scs3rd2': { phi: Math.PI / 3, theta: Math.PI * 2.1, direction: 'up'},
+      'Scs3rdto4th': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up'},
        
 
 
@@ -47,7 +48,7 @@ const scsthirdfloor =[
     connections: ['scs3rd2','scs3rd4'],
     arrowPositions: {
       'scs3rd2': { phi: Math.PI / 3, theta: Math.PI * 1.05, direction: 'up'},
-    'scs3rd4': { phi: Math.PI / 3, theta: Math.PI * 1.95, direction: 'up'},
+    'scs3rd4': { phi: Math.PI / 3, theta: Math.PI * 1.9, direction: 'up'},
      
     
      
@@ -65,11 +66,25 @@ const scsthirdfloor =[
     connections: ['scs3rd3','Sd3rdfloor301'],
     arrowPositions: {
       'scs3rd3': { phi: Math.PI / 3, theta: Math.PI * 1.05, direction: 'up'},
-    'Sd3rdfloor301': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
+    'Sd3rdfloor301': { phi: Math.PI / 3, theta: Math.PI * 1.95, direction: 'up'},
      
     
      
        }
+    },  {  
+        id: 'Scs3rdto4th',
+    name: 'SCS Stairs to 4th Floor',
+    description: 'SCS bldg. 4th floor',
+    imageUrl: 'images/Scsbldg/scsStairsto4th.jpg',
+    category: ['SCS bldg.'],
+    connections: ['scs3rd1','scs4rd1',],
+    arrowPositions: {
+      'scs3rd1': { phi: Math.PI / 3.1, theta: Math.PI * 0.86, direction: 'up'},
+      'scs4rd1': { phi: Math.PI / 3, theta: Math.PI * 0.60, direction: 'up'}
+
+        
+       }
     }
+    ,
 
 ];
