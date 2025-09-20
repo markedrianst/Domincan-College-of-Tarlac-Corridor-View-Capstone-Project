@@ -43,11 +43,10 @@ class NavigationManager {
       } else if (manual.direction) {
         // map simple direction strings to icons
         switch(manual.direction) {
-          case 'up': iconClass = 'fa-arrow-up'; break;
-          case 'down': iconClass = 'fa-arrow-down'; break;
-          case 'left': iconClass = 'fa-arrow-left'; break;
-          case 'right': iconClass = 'fa-arrow-right'; break;
-          case 'forward': iconClass = 'fa-door-open'; break;
+          case 'up': iconClass = 'images/Arrows/Arrow-up.png'; break;
+          case 'down': iconClass = 'images/Arrows/Arrow-down.png'; break;
+          case 'left': iconClass = 'images/Arrows/left.png'; break;
+          case 'right': iconClass = 'images/Arrows/Arrow-right.png'; break; 
           default: iconClass = null;
         }
       }
@@ -64,7 +63,12 @@ class NavigationManager {
       }
     }
     
-    arrow.innerHTML = `<i class="fas ${iconClass}"></i>`;
+    arrow.innerHTML = `
+      <div class="arrow-content">
+        <img src="${iconClass}" alt="Arrow" class="arrow-icon" />
+        <div class="arrow-label">${connectedPanorama.name}</div>   
+        </div>
+    `;
     arrow.title = `Go to ${connectedPanorama.name}`;
     arrow.style.position = 'absolute';
     
