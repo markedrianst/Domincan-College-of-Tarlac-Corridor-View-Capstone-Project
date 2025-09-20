@@ -1,4 +1,4 @@
-const sdtoolbldg =[
+const sdtoolfbldg =[
     {
     id: 'SDtoOLF1',
     name: 'Sd to OLF hallway1',
