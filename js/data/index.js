@@ -21,7 +21,7 @@ const panoramaData = [
 
 
  ...sdtoolbldg,
-//  ...olfbldg
+ ...olfbldg
 
 
   // add other files here
