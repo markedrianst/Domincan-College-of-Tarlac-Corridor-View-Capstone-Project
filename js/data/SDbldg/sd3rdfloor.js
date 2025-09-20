@@ -48,11 +48,11 @@ const sd3rdFloor = [
         description: 'Sd bldg. 3rd floor',
         imageUrl: 'images/Sdbldg/3rdfloorSD2.jpg',
         category: 'Sd bldg.',
-        connections: ['', 'Sd3rdfloor302','Sd3rdfloor1','2ndFloorSD'],
+        connections: ['', 'Sd3rdfloor302','Sd3rdfloor1','scs3rd4'],
         arrowPositions: {
             'Sd3rdfloor1': { phi: Math.PI / 3, theta: Math.PI * 1.1 ,direction:'up' }, // Up-forward
              'Sd3rdfloor302': { phi: Math.PI / 3, theta: Math.PI * 2,direction:'up' } ,// Right
-            '2ndFloorSD': { phi: Math.PI / 3, theta: Math.PI * .6,direction:'up' } // Right
+            'scs3rd4': { phi: Math.PI / 3, theta: Math.PI * .6,direction:'up' } // Right
 
         }
     },
