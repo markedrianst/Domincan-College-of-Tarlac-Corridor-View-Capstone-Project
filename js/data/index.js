@@ -8,7 +8,9 @@ const panoramaData = [
   ...scsfirstfloor,
   ...scssecondfloor,
  ...scsthirdfloor,
-    ...scsfourthfloor,
+  ...scsfourthfloor,
+ ...sdtoolbldg,
+
 
   // add other files here
 ];
