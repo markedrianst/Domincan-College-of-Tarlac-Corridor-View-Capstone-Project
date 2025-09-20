@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load initial panorama (entrance)
 
-    window.panoramaViewer.loadPanorama('scs4rd3');
+    window.panoramaViewer.loadPanorama('entrance');
 
     
     // Add fullscreen button for mobile
