@@ -47,9 +47,9 @@ const sd4thfloor =[
         description: 'Sd bldg. 4th floor',
         imageUrl: 'images/Sdbldg/4thfloorsd2.jpg',
         category: 'Sd bldg.',
-        connections: ['Sd4thfloor1', 'Sd4thfloor3','Sd3rdfloor301'],
+        connections: ['Sd4thfloor1', 'Sd4thfloor3','scs4rd4'],
         arrowPositions: {
-            'Sd3rdfloor301': { phi: Math.PI / 2.6, theta: Math.PI * 0.45 ,direction:'up' }, // Up-forward
+            'scs4rd4': { phi: Math.PI / 2.6, theta: Math.PI * 0.48 ,direction:'up' }, // Up-forward
             'Sd4thfloor3': { phi: Math.PI / 2.5, theta: Math.PI * 1.9,direction:'up' } ,// Right
             'Sd4thfloor1': { phi: Math.PI / 2.5, theta: Math.PI * 1,direction:'up' } ,// Right
 
