@@ -2,7 +2,7 @@ const hrsecondfloor =[
 
 
 {  //connects to scs2nd to scs3rd
-        id: 'Hr2nd1',
+    id: 'Hr2nd1',
     name: 'VPAA Office',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/Hrbldg/HR2ndfloor.jpg',
