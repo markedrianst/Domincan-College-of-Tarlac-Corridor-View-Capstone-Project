@@ -10,7 +10,7 @@ class PanoramaViewer {
         // Zoom
         this.zoomLevel = 1.0;
         this.targetZoom = 1.0;
-        this.minZoom = 0.5;
+        this.minZoom = 1.0;
         this.maxZoom = 2.5;
         this.zoomSpeed = 0.05;
 

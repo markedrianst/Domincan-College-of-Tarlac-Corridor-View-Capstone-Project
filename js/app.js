@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.mobileSupport = new MobileSupport();
     
     // Load initial panorama (entrance) change this in debugging base on id
-    window.panoramaViewer.loadPanorama('3rdfloormidstairs');
+    window.panoramaViewer.loadPanorama('Sd4thfloor8');
     
     // Add fullscreen button for mobile
     if (window.mobileSupport.isMobile) {
