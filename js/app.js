@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load initial panorama (entrance)
 
-    window.panoramaViewer.loadPanorama('olfgroundfloor6');
+    window.panoramaViewer.loadPanorama('entrance');
 
 
 
