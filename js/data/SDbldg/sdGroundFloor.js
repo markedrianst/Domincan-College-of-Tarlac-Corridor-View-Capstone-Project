@@ -122,9 +122,9 @@ const sdGroundFloor = [
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(10).jpg',
         category: 'Sd bldg.',
-        connections: [ 'SdGroundfloor9'],
+        connections: [ 'SdGroundfloor9','SDtoOLF1'],
         arrowPositions: {
-            // 'SdGroundfloor': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
+            'SDtoOLF1': { phi: Math.PI / 2.6, theta: Math.PI * 2.53,direction:'up' }, // Right
             'SdGroundfloor9': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction:'up' }// Right        }
     }
 },
