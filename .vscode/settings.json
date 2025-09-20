@@ -1,6 +1,4 @@
 {
-  "liveServer.settings.port": 5501,
-  "github-actions.workflows.pinned.workflows": [
-    "dynamic/pages/pages-build-deployment"
+  "liveServer.settings.port": 5501
   ]
 }
