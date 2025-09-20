@@ -1,22 +1,26 @@
 // Merge all category arrays into one dataset
 const panoramaData = [
-...entrancePanoramas,
+  ...entrancePanoramas,
 // SCS BUILDING
-...scsfirstfloor,
-...scssecondfloor,
-...scsthirdfloor,
-...scsfourthfloor,
-//SD BUILDING
-...sdGroundFloor,
-...sd2ndFloor,
-...sd3rdFloor,
-...sd4thfloor,
+    ...scsfirstfloor,
+  ...scssecondfloor,
+ ...scsthirdfloor,
+  ...scsfourthfloor,
+
+    //SD BUILDING
+  ...sdGroundFloor,
+  ...sd2ndFloor,
+  ...sd3rdFloor,
+  ...sd4thfloor,
   //HR BUILDING
-...hrsecondfloor,
-...hrthirdfloor,
-...hrfourthfloor,
-//Olf bldg.
- ...sdtoolfbldg,
+
+
+   ...hrsecondfloor,
+    ...hrthirdfloor,
+    ...hrfourthfloor,
+
+
+ ...sdtoolbldg,
  ...olfbldg
 
 
