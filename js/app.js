@@ -21,7 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load initial panorama (entrance)
 
+
     window.panoramaViewer.loadPanorama('entrance');
+
+
+
+
+
 
     
     // Add fullscreen button for mobile
