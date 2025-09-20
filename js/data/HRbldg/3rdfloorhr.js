@@ -23,7 +23,7 @@ const hrthirdfloor =[
     description: 'HR bldg. 3rd floor',
     imageUrl: 'images/HRbldg/HR3rdfloor6.jpg',
     category: ['HR bldg.'],
-    connections: ['Hr3rd1','Hr3rd3'],
+    connections: ['Hr3rd1','Hr3rd3',],
     arrowPositions: {   
       'Hr3rd1': { phi: Math.PI / 3, theta: Math.PI * 1.8, direction: 'up'},
        'Hr3rd3': { phi: Math.PI / 3, theta: Math.PI * 1.25, direction: 'up'},
@@ -57,10 +57,11 @@ const hrthirdfloor =[
     description: 'HR bldg. 3rd floor',
     imageUrl: 'images/HRbldg/HR3rdfloor4.jpg',
     category: ['HR bldg.'],
-    connections: ['Hr3rd3','Hr3rd5'],
+    connections: ['Hr3rd3','Hr3rd5','Hr2nd1'],
     arrowPositions: {   
       'Hr3rd3': { phi: Math.PI / 3, theta: Math.PI *1.70, direction: 'up'},
        'Hr3rd5': { phi: Math.PI / 3, theta: Math.PI * 2.80, direction: 'up'},
+       'Hr2nd1': { phi: Math.PI / 3, theta: Math.PI * 2.50, direction: 'up'},
       
       
 
@@ -76,11 +77,11 @@ const hrthirdfloor =[
     description: 'HR bldg. 3rd floor',
     imageUrl: 'images/HRbldg/HR3rdfloor3.jpg',
     category: ['HR bldg.'],
-    connections: ['Hr3rd4','Hr3rd6'],
+    connections: ['Hr3rd4','Hr3rd6','Hr4th1'],
     arrowPositions: {   
       'Hr3rd4': { phi: Math.PI / 3, theta: Math.PI * 1.40, direction: 'up'},
        'Hr3rd6': { phi: Math.PI / 3, theta: Math.PI * 2.55, direction: 'up'},
-      
+      'Hr4th1': { phi: Math.PI / 3, theta: Math.PI * 1.60, direction: 'up'},
       
 
 
