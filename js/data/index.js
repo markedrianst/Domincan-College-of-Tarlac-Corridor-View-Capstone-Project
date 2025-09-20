@@ -18,6 +18,7 @@ const panoramaData = [
     ...hrsecondfloor,
 
  ...sdtoolbldg,
+ ...olfbldg
 
 
   // add other files here
