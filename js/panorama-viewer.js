@@ -87,7 +87,7 @@ class PanoramaViewer {
         const zoomControls = document.createElement('div');
         zoomControls.className = 'zoom-controls';
         zoomControls.style.position = 'absolute';
-        zoomControls.style.bottom = '20px';
+        zoomControls.style.bottom = '200px';
         zoomControls.style.right = '20px';
         zoomControls.style.zIndex = '100';
         

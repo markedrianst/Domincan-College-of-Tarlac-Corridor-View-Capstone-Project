@@ -5,10 +5,10 @@ const sd4thfloor =[
         description: 'Staircase leading to the 4th floor',//description
         imageUrl: 'images/Sdbldg/MidStairsSD4thfloor.jpg',// image
         category: 'Sd bldg.',
-        connections: ['3rdfloormidstairs', 'Sd2ndfloormidstairs'],//button connections
+        connections: ['mid4thfloor6', '3rdfloormidstairs'],//button connections
         arrowPositions: {
-            '3rdfloormidstairs': { phi: Math.PI / 2.3, theta: Math.PI * -1.5 ,direction:'rigth' }, //button position
-            'Sd2ndfloormidstairs': { phi: Math.PI / 3.6, theta: Math.PI * 1,direction:'down' } // button position
+            'mid4thfloor6': { phi: Math.PI / 2.3, theta: Math.PI * -1.5 ,direction:'rigth' }, //button position
+            '3rdfloormidstairs': { phi: Math.PI / 3.6, theta: Math.PI * 1,direction:'down' } // button position
             
         }
     },
@@ -102,10 +102,11 @@ const sd4thfloor =[
         description: 'Sd bldg. 4th floor',
         imageUrl: 'images/Sdbldg/4thfloorsd6.jpg',
         category: 'Sd bldg.',
-        connections: ['Sd4thfloor3', 'Sd4thfloor7'],
+        connections: ['Sd4thfloor5', 'Sd4thfloor7','Sd4thfloormidstairs'],
         arrowPositions: {
-             'Sd4thfloor3': { phi: Math.PI / 2.5, theta: Math.PI * 1.6,direction:'up' } ,// Right
+             'Sd4thfloor5': { phi: Math.PI / 2.5, theta: Math.PI * 1.6,direction:'up' } ,// Right
             'Sd4thfloor7': { phi: Math.PI / 2.5, theta: Math.PI * 2.40,direction:'up' } ,// Right
+             'Sd4thfloormidstairs': { phi: Math.PI / 2.5, theta: Math.PI * 2,direction:'down' } ,// Right
 
         }
     },
@@ -133,7 +134,7 @@ const sd4thfloor =[
         connections: ['Sd4thfloor7', 'Sd4thfloor9'],
         arrowPositions: {
              'Sd4thfloor7': { phi: Math.PI / 2.5, theta: Math.PI * 1,direction:'up' } ,// Right
-            'Sd4thfloor9': { phi: Math.PI / 2.5, theta: Math.PI * 1.2,direction:'up' } ,// Right
+            'Sd4thfloor9': { phi: Math.PI / 2.5, theta: Math.PI * 1.95,direction:'up' } ,// Right
 
         }
     },
@@ -144,10 +145,10 @@ const sd4thfloor =[
         description: 'Sd bldg. 4th floor',
         imageUrl: 'images/Sdbldg/4thfloorsd9.jpg',
         category: 'Sd bldg.',
-        connections: ['Sd4thfloor8', 'Sd3rdfloor301'],
+        connections: ['Sd4thfloor8',],
         arrowPositions: {
-             'Sd4thfloor8': { phi: Math.PI / 2.5, theta: Math.PI * 1.6,direction:'up' } ,// Right
-            'Sd3rdfloor301': { phi: Math.PI / 2.5, theta: Math.PI * 1.2,direction:'up' } ,// Right
+            
+            'Sd4thfloor8': { phi: Math.PI / 2.5, theta: Math.PI * 1,direction:'up' } ,// Right
 
         }
     },
