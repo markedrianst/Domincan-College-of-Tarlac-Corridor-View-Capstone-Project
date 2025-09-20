@@ -44,10 +44,10 @@ const sdtoolbldg =[
     description: 'SD to OLF Hallway',
     imageUrl: 'images/SDtoOlf-Hallway/connectingsdolf4.jpg',
     category: ['hallway'],
-    connections: ['SDtoOLF1','SDtoOLF3','SDtoOLF2'],
+    connections: ['SDtoOLF2','SDtoOLF3','olfgroundfloor1'],
     arrowPositions: {
       'SDtoOLF2': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up'},
-      'SDtoOLF1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
+      'olfgroundfloor1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
       'SDtoOLF3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'}
        }
     },

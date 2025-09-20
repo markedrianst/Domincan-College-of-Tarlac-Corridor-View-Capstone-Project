@@ -10,6 +10,7 @@ const panoramaData = [
  ...scsthirdfloor,
   ...scsfourthfloor,
  ...sdtoolbldg,
+ ...olfbldg
 
 
   // add other files here
