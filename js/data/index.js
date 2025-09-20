@@ -13,12 +13,15 @@ const panoramaData = [
   ...sd3rdFloor,
   ...sd4thfloor,
   //HR BUILDING
-   ...hrthirdfloor,
+
+
    ...hrsecondfloor,
+    ...hrthirdfloor,
     ...hrfourthfloor,
 
 
  ...sdtoolbldg,
+ ...olfbldg
 
 
   // add other files here
