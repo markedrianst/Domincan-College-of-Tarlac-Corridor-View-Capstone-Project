@@ -49,12 +49,14 @@ header {
 }
 
 /* Category Bar */
-.category-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
+#category-bar {
+  display: flex;              /* Arrange children in a row */
+  overflow-x: auto;           /* Enables horizontal scrolling */
+  white-space: nowrap;        /* Prevents wrapping */
+  scrollbar-width: thin;      /* Optional: thinner scrollbar (Firefox) */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
+    
 
 .category-bar .category-btn {
     padding: 6px 12px;
