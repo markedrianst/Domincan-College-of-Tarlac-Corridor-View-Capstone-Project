@@ -27,84 +27,76 @@ class NavigationManager {
     this.arrows = [];
   }
   
-  createArrow(connectedPanorama, index, total) {
-    const arrow = document.createElement('div');
-    arrow.className = 'nav-arrow';
-    
-    // Determine icon / direction
-    let iconClass = null;
-    let manualDirection = null;
-    const pano = getPanoramaById(this.currentPanoramaId);
-    
-    if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
-      const manual = pano.arrowPositions[connectedPanorama.id];
-      if (manual.directionIcon) {
-        iconClass = manual.directionIcon;
-      } else if (manual.direction) {
-        // map simple direction strings to icons
-        switch(manual.direction) {
-          case 'up': iconClass = 'images/Arrows/Arrow-up.png'; break;
-          case 'down': iconClass = 'images/Arrows/Arrow-down.png'; break;
-          case 'left': iconClass = 'images/Arrows/left.png'; break;
-          case 'right': iconClass = 'images/Arrows/Arrow-right.png'; break; 
-          default: iconClass = null;
-        }
+createArrow(connectedPanorama, index, total) {
+  const arrow = document.createElement('div');
+  arrow.className = 'nav-arrow';
+
+  let iconClass = null;
+  const pano = getPanoramaById(this.currentPanoramaId);
+
+  if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
+    const manual = pano.arrowPositions[connectedPanorama.id];
+    if (manual.directionIcon) {
+      iconClass = manual.directionIcon;
+    } else if (manual.direction) {
+      switch(manual.direction) {
+        case 'up': iconClass = 'images/Arrows/Arrow-up.png'; break;
+        case 'down': iconClass = 'images/Arrows/Arrow-down.png'; break;
+        case 'left': iconClass = 'images/Arrows/left.png'; break;
+        case 'right': iconClass = 'images/Arrows/Arrow-right.png'; break; 
+        default: iconClass = 'fa-arrow-right';
       }
     }
-    
-    // If no manual icon given, use default logic
-    if (!iconClass) {
-      if (connectedPanorama.id === 'stairs') {
-        iconClass = 'fa-arrow-up';
-      } else {
-        const directions = ['fa-arrow-up', 'fa-arrow-right', 'fa-arrow-down', 'fa-arrow-left'];
-        const directionIndex = Math.floor((index / total) * directions.length);
-        iconClass = directions[ directionIndex ];
-      }
-    }
-    
-    arrow.innerHTML = `
-      <div class="arrow-content">
-        <img src="${iconClass}" alt="Arrow" class="arrow-icon" />
-        <div class="arrow-label">${connectedPanorama.name}</div>   
-        </div>
-    `;
-    arrow.title = `Go to ${connectedPanorama.name}`;
-    arrow.style.position = 'absolute';
-    
-    // Manual or auto spherical position
-    let theta, phi;
-    if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
-      const manual = pano.arrowPositions[connectedPanorama.id];
-      theta = (manual.theta != null) ? manual.theta : (index / total) * 2 * Math.PI;
-      phi   = (manual.phi   != null) ? manual.phi   : Math.PI / 2;
-    } else {
-      theta = (index / total) * 2 * Math.PI;
-      phi = Math.PI / 2;
-    }
-    
-    const position = { phi, theta };
-    
-    const arrowData = {
-      element: arrow,
-      targetId: connectedPanorama.id,
-      position: position
-    };
-    
-    this.arrows.push(arrowData);
-    
-    arrow.addEventListener('click', () => {
-      this.navigateTo(connectedPanorama.id);
-    });
-    arrow.addEventListener('mouseenter', () => {
-      arrow.style.transform = 'scale(1.2)';
-    });
-    arrow.addEventListener('mouseleave', () => {
-      arrow.style.transform = 'scale(1)';
-    });
-    
-    this.panoramaContainer.appendChild(arrow);
   }
+
+  if (!iconClass) {
+    iconClass = 'fa-arrow-right';
+  }
+
+  // ✅ Detect if it's an image or icon
+  let iconHTML;
+  if (iconClass.includes('.png') || iconClass.includes('.jpg')) {
+    iconHTML = `<img src="${iconClass}" alt="Arrow" class="arrow-icon" />`;
+  } else {
+    iconHTML = `<i class="fa ${iconClass} arrow-icon"></i>`;
+  }
+
+  arrow.innerHTML = `
+    <div class="arrow-content">
+      ${iconHTML}
+      <div class="arrow-label">${connectedPanorama.name}</div>   
+    </div>
+  `;
+  arrow.title = `Go to ${connectedPanorama.name}`;
+  arrow.style.position = 'absolute';
+
+  let theta, phi;
+  if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
+    const manual = pano.arrowPositions[connectedPanorama.id];
+    theta = (manual.theta != null) ? manual.theta : (index / total) * 2 * Math.PI;
+    phi   = (manual.phi   != null) ? manual.phi   : Math.PI / 2;
+  } else {
+    theta = (index / total) * 2 * Math.PI;
+    phi = Math.PI / 2;
+  }
+
+  const position = { phi, theta };
+
+  const arrowData = {
+    element: arrow,
+    targetId: connectedPanorama.id,
+    position: position
+  };
+
+  this.arrows.push(arrowData);
+
+  // ✅ Click + touch for mobile
+  arrow.addEventListener('click', () => this.navigateTo(connectedPanorama.id));
+  arrow.addEventListener('touchstart', () => this.navigateTo(connectedPanorama.id));
+
+  this.panoramaContainer.appendChild(arrow);
+}
+
   
   updateArrowPositions(camera) {
     if (!camera) return;
