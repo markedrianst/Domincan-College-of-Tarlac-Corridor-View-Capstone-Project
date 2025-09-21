@@ -110,9 +110,9 @@ const snfirstfloor =[
     description: 'SN bldg. 1st floor',
     imageUrl: 'images/SNbldg/SN1stfloor6.jpg',
     category: ['SN bldg.'],
-    connections: ['Hr1rd1','sn1st6'],
+    connections: ['slr1st1','sn1st6'],
     arrowPositions: {
-      'Hr1rd1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
+      'slr1st1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
       'sn1st6': { phi: Math.PI / 3, theta: Math.PI * .5, direction: 'up'}
 
         
