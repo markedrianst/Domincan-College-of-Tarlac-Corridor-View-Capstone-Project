@@ -16,6 +16,7 @@ const panoramaData = [
   // HR BUILDING
 ...hr1stfloor,
 ...hr4thfloor,
+...hr3rdfloor,
   // OLF BUILDING
   ...olfbldg,
   ...olf2ndbldg,
