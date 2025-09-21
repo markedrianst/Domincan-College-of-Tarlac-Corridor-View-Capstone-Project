@@ -19,10 +19,11 @@ const hr1stfloor = [
     description: 'HR bldg. 1st floor',
     imageUrl: 'images/HRbldg/HR1stfloor2.jpg',
     category: ['HR bldg.'],
-    connections: ['shortcutsdtoccs','Hr1rd2'],
+    connections: ['shortcutsdtoccs','Hr1rd2','sn1st1'],
     arrowPositions: {
         'shortcutsdtoccs': { phi: Math.PI / 3, theta: Math.PI * .9, direction: 'up'},
-        'Hr1rd2': { phi: Math.PI / 3, theta: Math.PI * 2.25, direction: 'up'}
+        'Hr1rd2': { phi: Math.PI / 3, theta: Math.PI * 2.25, direction: 'up'},
+            'sn1st1': { phi: Math.PI / 3, theta: Math.PI * 1.6, direction: 'up'}
 
        }
 },
