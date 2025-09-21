@@ -57,112 +57,106 @@ class MobileSupport {
         style.id = 'mobile-support-style';
         style.textContent = `
          .mobile-device #location-info {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        max-height: 35vh;
-        background-color: rgba(255, 255, 255, 0.48);
-        color: #000000ff;
-        font-size: 1rem;
-        padding: 1rem;
-        box-sizing: border-box;
-        overflow-y: auto;
-        z-index: 1000;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        backdrop-filter: blur(5px);
-    }
-
-    .mobile-device #location-info h2 {
-        font-size: 1.2rem;
-        margin: 0 0 0.5rem 0;
-        word-break: break-word;
-    }
-
-    .mobile-device #location-info p {
-        font-size: 1rem;
-        margin: 0;
-        word-break: break-word;
-    }
-
-    /* Small screen adjustments */
-    @media (max-width: 375px) {
-        .mobile-device #location-info {
-            font-size: 0.95rem;
-            padding: 0.75rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-height: 35vh;
+            background-color: rgba(255, 255, 255, 0.48);
+            color: #000000ff;
+            font-size: 1rem;
+            padding: 1rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+            z-index: 1000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            backdrop-filter: blur(5px);
         }
 
         .mobile-device #location-info h2 {
-            font-size: 1rem;
+            font-size: 1.2rem;
+            margin: 0 0 0.5rem 0;
+            word-break: break-word;
         }
 
         .mobile-device #location-info p {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            margin: 0;
+            word-break: break-word;
         }
-    }
 
-            /* Ensure full viewport size for panorama container */
-            #panorama-container {
-                width: 100vw;
-                height: 100vh;
-                overflow: hidden;
-                touch-action: none; /* Disable default touch gestures */
+        @media (max-width: 375px) {
+            .mobile-device #location-info {
+                font-size: 0.95rem;
+                padding: 0.75rem;
             }
 
-            /* Navigation arrows size & touch target */
-            .mobile-device .nav-arrow {
-                width: 12vw;
-                height: 12vw;
-                max-width: 60px;
-                max-height: 60px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .mobile-device .nav-arrow i {
-                font-size: 4vw;
-                max-font-size: 24px;
-                pointer-events: none; /* Let parent handle events */
-            }
-
-            /* Search input adjustments */
-            .mobile-device #search-input {
+            .mobile-device #location-info h2 {
                 font-size: 1rem;
-                height: 3rem;
-                width: 90vw;
-                max-width: 400px;
-                box-sizing: border-box;
-                padding: 0.5rem 1rem;
             }
 
-            /* Search result item padding */
-            .mobile-device .search-result-item {
-                padding: 1rem;
-                background-color: rgba(255, 255, 255, 0.48);
+            .mobile-device #location-info p {
+                font-size: 0.9rem;
             }
+        }
 
-            /* Media queries for very small devices */
-            @media (max-width: 320px) {
-                .mobile-device .nav-arrow {
-                    width: 40px;
-                    height: 40px;
-                }
-                .mobile-device .nav-arrow i {
-                    font-size: 16px;
-                }
-            }
+        #panorama-container {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            touch-action: none; /* Disable default touch gestures */
+        }
 
-            @media (min-width: 768px) {
-                .mobile-device .nav-arrow {
-                    width: 60px;
-                    height: 60px;
-                }
-                .mobile-device .nav-arrow i {
-                    font-size: 24px;
-                }
+        .mobile-device .nav-arrow {
+            width: 12vw;
+            height: 12vw;
+            max-width: 60px;
+            max-height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-device .nav-arrow i {
+            font-size: 4vw;
+            max-font-size: 24px;
+            pointer-events: none;
+        }
+
+        .mobile-device #search-input {
+            font-size: 1rem;
+            height: 3rem;
+            width: 90vw;
+            max-width: 400px;
+            box-sizing: border-box;
+            padding: 0.5rem 1rem;
+        }
+
+        .mobile-device .search-result-item {
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.48);
+        }
+
+        @media (max-width: 320px) {
+            .mobile-device .nav-arrow {
+                width: 40px;
+                height: 40px;
             }
+            .mobile-device .nav-arrow i {
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .mobile-device .nav-arrow {
+                width: 60px;
+                height: 60px;
+            }
+            .mobile-device .nav-arrow i {
+                font-size: 24px;
+            }
+        }
         `;
         document.head.appendChild(style);
     }
@@ -172,34 +166,31 @@ class MobileSupport {
      */
     setupEventListeners() {
         const panoramaContainer = document.getElementById('panorama-container');
-
         if (!panoramaContainer) return;
 
-        // Prevent default touch behavior to avoid browser navigation gestures
+        // Touch start
         panoramaContainer.addEventListener('touchstart', (e) => {
             this.touchStartX = e.touches[0].clientX;
             this.touchStartY = e.touches[0].clientY;
             this.touchMoved = false;
-        }, { passive: false });
+        }, { passive: true }); // ✅ passive true, no preventDefault
 
+        // Touch move (keep passive unless blocking scroll)
         panoramaContainer.addEventListener('touchmove', (e) => {
             this.touchMoved = true;
-        }, { passive: false });
+        }, { passive: true });
 
-        // Handle tap events for navigation arrows
+        // Touch end → detect tap
         panoramaContainer.addEventListener('touchend', (e) => {
             if (!this.touchMoved) {
-                // This was a tap, not a drag
                 const touch = e.changedTouches[0];
                 const element = document.elementFromPoint(touch.clientX, touch.clientY);
-
-                // Check if the tapped element is a navigation arrow or inside it
                 if (element && (element.classList.contains('nav-arrow') || element.closest('.nav-arrow'))) {
                     const arrow = element.classList.contains('nav-arrow') ? element : element.closest('.nav-arrow');
-                    arrow.click(); // Trigger the click event on the arrow
+                    arrow.click();
                 }
             }
-        }, { passive: false });
+        }, { passive: true });
 
         // Handle orientation change
         window.addEventListener('orientationchange', () => {
@@ -211,15 +202,14 @@ class MobileSupport {
      * Handle device orientation change
      */
     handleOrientationChange() {
-        // Wait for orientation change to complete
         setTimeout(() => {
-            // Update renderer and camera
             if (window.panoramaViewer) {
                 window.panoramaViewer.onWindowResize();
             }
-
-            // Update navigation arrows
-            if (window.navigationManager) {
+            if (this.isMobile) {
+                this.applyMobileOptimizations(); // ✅ reapply optimizations
+            }
+            if (window.navigationManager && window.panoramaViewer) {
                 window.navigationManager.updateArrowPositions(window.panoramaViewer.camera);
             }
         }, 300);
@@ -230,18 +220,16 @@ class MobileSupport {
      */
     enableFullscreen() {
         const element = document.documentElement;
-
         if (element.requestFullscreen) {
             element.requestFullscreen();
-        } else if (element.webkitRequestFullscreen) { /* Safari */
+        } else if (element.webkitRequestFullscreen) { 
             element.webkitRequestFullscreen();
-        } else if (element.msRequestFullscreen) { /* IE11 */
+        } else if (element.msRequestFullscreen) { 
             element.msRequestFullscreen();
-        } else if (element.mozRequestFullScreen) { /* Firefox */
+        } else if (element.mozRequestFullScreen) { 
             element.mozRequestFullScreen();
         }
     }
 }
 
-// Export the mobile support for use in other modules
 window.mobileSupport = new MobileSupport();
