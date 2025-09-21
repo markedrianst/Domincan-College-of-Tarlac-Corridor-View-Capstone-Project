@@ -56,6 +56,52 @@ class MobileSupport {
         const style = document.createElement('style');
         style.id = 'mobile-support-style';
         style.textContent = `
+         .mobile-device #location-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        max-height: 35vh;
+        background-color: rgba(0, 0, 0, 0.75);
+        color: #fff;
+        font-size: 1rem;
+        padding: 1rem;
+        box-sizing: border-box;
+        overflow-y: auto;
+        z-index: 1000;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        backdrop-filter: blur(5px);
+    }
+
+    .mobile-device #location-info h2 {
+        font-size: 1.2rem;
+        margin: 0 0 0.5rem 0;
+        word-break: break-word;
+    }
+
+    .mobile-device #location-info p {
+        font-size: 1rem;
+        margin: 0;
+        word-break: break-word;
+    }
+
+    /* Small screen adjustments */
+    @media (max-width: 375px) {
+        .mobile-device #location-info {
+            font-size: 0.95rem;
+            padding: 0.75rem;
+        }
+
+        .mobile-device #location-info h2 {
+            font-size: 1rem;
+        }
+
+        .mobile-device #location-info p {
+            font-size: 0.9rem;
+        }
+    }
+
             /* Ensure full viewport size for panorama container */
             #panorama-container {
                 width: 100vw;
