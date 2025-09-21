@@ -32,10 +32,10 @@ const hr2ndfloor = [
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/HR2ndfloor2.jpg',
     category: ['HR bldg.'],
-    connections: ['Hr2nd2', 'Hr3rd2'],
+    connections: ['Hr2nd2', 'sn2nd1'],
     arrowPositions: {
       'Hr2nd2': { phi: Math.PI / 3, theta: Math.PI * 0.85, direction: 'up' },
-      'Hr3rd2': { phi: Math.PI / 3, theta: Math.PI * 2.3, direction: 'up' }
+      'sn2nd1': { phi: Math.PI / 3, theta: Math.PI * 2.3, direction: 'up' }
     }
   }
 ];
