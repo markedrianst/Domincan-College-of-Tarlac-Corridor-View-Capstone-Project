@@ -3,7 +3,7 @@ const hr2ndfloor = [
     id: 'Hr2nd1',
     name: 'VPAA Office',
     description: 'HR bldg. 2nd floor',
-    imageUrl: 'images/Hrbldg/HR2ndfloor.jpg',
+    imageUrl: 'images/HRbldg/HR2ndfloor.jpg',
     category: ['HR bldg.'],
     connections: ['Hr3rd4', 'Hr2nd2'],
     arrowPositions: {
@@ -16,7 +16,7 @@ const hr2ndfloor = [
     id: 'Hr2nd2',
     name: 'HR 2ND FLOOR',
     description: 'HR bldg. 2nd floor',
-    imageUrl: 'images/Hrbldg/HR2ndfloor1.jpg',
+    imageUrl: 'images/HRbldg/HR2ndfloor1.jpg',
     category: ['HR bldg.'],
     connections: ['Hr2nd3', 'Hr2nd1', 'Hr1rd4'],
     arrowPositions: {
@@ -30,7 +30,7 @@ const hr2ndfloor = [
     id: 'Hr2nd3',
     name: 'HR 2ND2',
     description: 'HR bldg. 2nd floor',
-    imageUrl: 'images/Hrbldg/HR2ndfloor2.jpg',
+    imageUrl: 'images/HRbldg/HR2ndfloor2.jpg',
     category: ['HR bldg.'],
     connections: ['Hr2nd2', 'Hr3rd2'],
     arrowPositions: {
