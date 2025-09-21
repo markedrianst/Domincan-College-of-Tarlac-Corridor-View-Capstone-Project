@@ -64,11 +64,12 @@ const slrfourthfloor =[
     description: 'SLR bldg. 4th floor',
     imageUrl: 'images/SLRbldg/SLR4thfloor4.jpg',
     category: ['SLR bldg.'],
-    connections: [,'slr4th3'],
+    connections: ['slr4th3','olp4thfloor1'],
     arrowPositions: {
       
 
-        'slr4th3': { phi: Math.PI / 3, theta: Math.PI * .8, direction: 'up'}
+        'slr4th3': { phi: Math.PI / 3, theta: Math.PI * .8, direction: 'up'},
+         'olp4thfloor1': { phi: Math.PI / 3, theta: Math.PI * 2.3, direction: 'up'}
 
         
        }

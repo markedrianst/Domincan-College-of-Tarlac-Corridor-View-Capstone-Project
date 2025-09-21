@@ -99,10 +99,11 @@ const hr3rdfloor = [
   description: 'HR 3rd floor',
   imageUrl: 'images/HRbldg/HR3rdfloor.jpg',
   category: ['HR bldg.'],
-  connections: ['Hr3rd7'],
+  connections: ['Hr3rd7','olp3rdfloor4','olp4thfloor4'],
   arrowPositions: {
     'Hr3rd7': { phi: Math.PI / 3, theta: Math.PI * 1.1, direction: 'up' },
-    'Sd3rdfloor308': { phi: Math.PI / 3, theta: Math.PI * 1.3, direction: 'up' }
+    'olp3rdfloor4': { phi: Math.PI / 3, theta: Math.PI * 1.65, direction: 'up' },
+     'olp4thfloor4': { phi: Math.PI / 3, theta: Math.PI * .7, direction: 'up' }   
   }
 }
 
