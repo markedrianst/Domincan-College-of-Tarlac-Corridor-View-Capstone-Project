@@ -95,11 +95,12 @@ const hr1stfloor = [
     description: 'HR bldg. 3rd floor',
     imageUrl: 'images/HRbldg/HR1stfloor5.jpg',
     category: ['HR bldg.'],
-    connections: ['Hr1rd4','Hr1rd6','SDtoOLF4'],
+    connections: ['Hr1rd4','Hr1rd6','SDtoOLF4','connectinghallwaytolp'],
     arrowPositions: {
         'Hr1rd4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'},
         'Hr1rd6': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
-           'SDtoOLF4': { phi: Math.PI / 3, theta: Math.PI * .5, direction: 'up'}
+           'SDtoOLF4': { phi: Math.PI / 3, theta: Math.PI * .5, direction: 'up'},
+           'connectinghallwaytolp': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up'}
 
        }
 },
