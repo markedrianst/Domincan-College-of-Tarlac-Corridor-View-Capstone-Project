@@ -4,7 +4,7 @@ const hr4thfloor = [
     id: 'Hr4thfloorLibrary',
     name: 'Hr 4thfloorLibrary',
     description: 'Hr bldg. 4th floor Library',
-    imageUrl: 'images/HRbldg/HRrthfloor.jpg',
+    imageUrl: 'images/HRbldg/HR4thfloor.jpg',
     category: ['2nd OLF bldg.'],
     connections: ['olfgroundfloor1'],
     arrowPositions: {
