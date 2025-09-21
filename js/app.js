@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load initial panorama (entrance)
 
-    window.panoramaViewer.loadPanorama('SdGroundfloor10');
+    window.panoramaViewer.loadPanorama('shortcutsdtoccs');
 
 
 
