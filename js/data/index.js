@@ -26,7 +26,12 @@ const panoramaData = [
   ...sdtoolfbldg,
     // SN BUILDING
 ...snfirstfloor,
-...snsecondfloor
+...snsecondfloor,
+
+    // SLR BUILDING
+    ...slrfirstfloor,
+    ...slrsecondfloor,
+    ...slrthirdfloor,
   // add other files here
 ];
 
