@@ -6,9 +6,9 @@ const hr4thfloor = [
     description: 'Hr bldg. 4th floor Library',
     imageUrl: 'images/HRbldg/HR4thfloor.jpg',
     category: ['2nd OLF bldg.'],
-    connections: ['olfgroundfloor1'],
+    connections: ['Hr3rd5'],
     arrowPositions: {
-    'olfgroundfloor1':{ phi: Math.PI / 4, theta: Math.PI * 1.20, direction: 'up'}
+    'Hr3rd5':{ phi: Math.PI / 4, theta: Math.PI * 1.20, direction: 'up'}
    
     
        }
