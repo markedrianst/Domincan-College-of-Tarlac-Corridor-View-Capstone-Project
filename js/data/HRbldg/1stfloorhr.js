@@ -5,7 +5,7 @@ const hrfirstfloor =[
     id: 'shortcutsdtoccs',
     name: 'ShortCuttoCCS',
     description: 'HR bldg. 1st floor',
-    imageUrl: 'images/HRbldg/sdShortcutToDepartmentOffices.jpg',
+    imageUrl: 'images/Arrows/Arrow-down.png',
     category: ['HR bldg.'],
     connections: ['SdGroundfloor10','Hr1rd1'],
     arrowPositions: {
