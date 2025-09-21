@@ -62,7 +62,7 @@ class MobileSupport {
         left: 0;
         width: 100%;
         max-height: 35vh;
-        background-color: rgba(0, 0, 0, 0.75);
+        background-color: rgba(0, 0, 0, 0.19);
         color: #fff;
         font-size: 1rem;
         padding: 1rem;
