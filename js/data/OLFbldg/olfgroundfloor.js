@@ -5,10 +5,11 @@ const olfbldg = [
     description: 'OLF Ground Floor leading to RPQA,Accounting,Registrar',
     imageUrl: 'images/OLFbldg/OLF1stfloor.jpg',
     category: ['OLF bldg.'],
-    connections: ['olfgroundfloor2','SDtoOLF4',],
+    connections: ['olfgroundfloor2','SDtoOLF4','SideStairsOLF'],
     arrowPositions: {
       'olfgroundfloor2': { phi: Math.PI / 3, theta: Math.PI * 2.6, direction: 'up'},
-      'SDtoOLF4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'}
+      'SDtoOLF4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'},
+        'SideStairsOLF': { phi: Math.PI / 3, theta: Math.PI * 1.75, direction: 'up'}
        }
     },
  {
@@ -72,10 +73,10 @@ const olfbldg = [
     description: 'OLF Ground Floor',
     imageUrl: 'images/OLFbldg/OLF1stfloor5.jpg',
     category: ['OLF bldg.'],
-    connections: ['olfgroundfloor4','olfgroundfloor5',],
+    connections: ['OLF3','olfgroundfloor5',],
     arrowPositions: {
     'olfgroundfloor5': { phi: Math.PI / 3.5, theta: Math.PI * 1.2, direction: 'down'},
-    'olfgroundfloor4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'}
+    'OLF3': { phi: Math.PI / 3.5, theta: Math.PI * 1, direction: 'up'}
 
        }
     },
