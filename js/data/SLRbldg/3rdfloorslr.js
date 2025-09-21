@@ -5,9 +5,10 @@ const slrthirdfloor =[
     description: 'SLR bldg. 3rd floor',
     imageUrl: 'images/SLRbldg/SLR3rdfloor.jpg',
     category: ['SLR bldg.'],
-    connections: ['slr3rd2'],
+    connections: ['slr3rd2','slr4th1'],
     arrowPositions: {
       'slr3rd2': { phi: Math.PI / 3, theta: Math.PI * 1.93, direction: 'up'},
+         'slr4th1': { phi: Math.PI / 3, theta: Math.PI *.6, direction: 'up'},
 
 
         
@@ -82,10 +83,11 @@ const slrthirdfloor =[
     description: 'SLR bldg. 3rd floor',
     imageUrl: 'images/SLRbldg/SLR3rdfloor5.jpg',
     category: ['SLR bldg.'],
-    connections: [,'SLR3rdStairs'],
+    connections: [,'SLR3rdStairs','Slr4thfloor'],
     arrowPositions: {
 
         'SLR3rdStairs': { phi: Math.PI / 4, theta: Math.PI * 1.75, direction: 'up'},
+            'Slr4thfloor': { phi: Math.PI / 4.2, theta: Math.PI * 2, direction: 'up'},
 
 
         

@@ -32,6 +32,7 @@ const panoramaData = [
     ...slrfirstfloor,
     ...slrsecondfloor,
     ...slrthirdfloor,
+    ...slrfourthfloor,
   // add other files here
 ];
 
