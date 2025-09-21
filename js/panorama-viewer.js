@@ -290,86 +290,95 @@ class PanoramaViewer {
      * Load a panorama by ID
      * @param {string} panoramaId - The ID of the panorama to load
      */
-    loadPanorama(panoramaId) {
-        const panorama = getPanoramaById(panoramaId);
-        if (!panorama) {
-            console.error(`Panorama with ID ${panoramaId} not found`);
-            return;
-        }
-        
-        // Don't show loading screen for smooth transitions
-        // this.isLoading = true;
-        // this.loadingScreen.style.display = 'flex';
-        
-        // Update current panorama ID
-        this.currentPanoramaId = panoramaId;
-        
-        // Update location info
-        document.getElementById('location-name').textContent = panorama.name;
-        document.getElementById('location-description').textContent = panorama.description;
-        
-        // Create a new mesh but don't remove the old one yet
-        const textureLoader = new THREE.TextureLoader();
-        
-        // Set high priority for loading
+ /**
+
+ */
+loadPanorama(panoramaId) {
+    const panorama = getPanoramaById(panoramaId);
+    if (!panorama) {
+        console.error(`Panorama with ID ${panoramaId} not found`);
+        return;
+    }
+
+    this.currentPanoramaId = panoramaId;
+
+    // Update location info
+    document.getElementById('location-name').textContent = panorama.name;
+    document.getElementById('location-description').textContent = panorama.description;
+
+    // Loader
+    const textureLoader = new THREE.TextureLoader();
+
+    // ✅ If preloaded, use cached texture
+    if (panorama._preloadedTexture) {
+        this.applyPanoramaTexture(panorama._preloadedTexture, panoramaId);
+    } else {
         textureLoader.load(
             panorama.imageUrl,
             (texture) => {
-                // Create new material with the loaded texture
-                const newMaterial = new THREE.MeshBasicMaterial({ map: texture });
-                const newMesh = new THREE.Mesh(this.geometry, newMaterial);
-                
-                // Make the new mesh slightly smaller to be inside the old one
-                if (this.mesh) {
-                    // Add the new mesh to the scene
-                    this.scene.add(newMesh);
-                    
-                    // Fade in the new panorama
-                    this.fadeTransition(this.mesh, newMesh, () => {
-                        // After transition, remove old mesh and update references
-                        this.scene.remove(this.mesh);
-                        this.material.dispose();
-                        this.material = newMaterial;
-                        this.mesh = newMesh;
-                        
-                        // Update navigation arrows
-                        if (window.navigationManager) {
-                            window.navigationManager.updateConnections(panoramaId);
-                        }
-                    });
-                } else {
-                    // First load - no transition needed
-                    this.material = newMaterial;
-                    this.mesh = newMesh;
-                    this.scene.add(this.mesh);
-                    
-                    // Update navigation arrows
-                    if (window.navigationManager) {
-                        window.navigationManager.updateConnections(panoramaId);
-                    }
-                }
-                
-                // Hide loading screen if it was shown
-                this.isLoading = false;
-                if (this.loadingScreen) {
-                    this.loadingScreen.style.display = 'none';
-                }
+                panorama._preloadedTexture = texture; // cache
+                this.applyPanoramaTexture(texture, panoramaId);
             },
-            // Progress callback - can be used to show loading progress
-            (xhr) => {
-                // const percentComplete = (xhr.loaded / xhr.total) * 100;
-                // console.log(`Loading: ${Math.round(percentComplete)}%`);
-            },
-            (error) => {
-                console.error('Error loading panorama texture:', error);
-                this.isLoading = false;
-                if (this.loadingScreen) {
-                    this.loadingScreen.style.display = 'none';
-                }
-            }
+            undefined,
+            (error) => console.error("Error loading panorama texture:", error)
         );
     }
-    
+
+    // ✅ Optionally preload neighbor panoramas
+    if (panorama.connections) {
+        panorama.connections.slice(0, 2).forEach((neighborId) => this.preloadPanorama(neighborId));
+    }
+}
+
+/**
+ * Apply texture to panorama with transition & cleanup
+ */
+applyPanoramaTexture(texture, panoramaId) {
+    const newMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    const newMesh = new THREE.Mesh(this.geometry, newMaterial);
+
+    if (this.mesh) {
+        this.scene.add(newMesh);
+
+        // Smooth fade transition
+        this.fadeTransition(this.mesh, newMesh, () => {
+            // ✅ Cleanup old panorama
+            this.scene.remove(this.mesh);
+            if (this.mesh.geometry) this.mesh.geometry.dispose();
+            if (this.mesh.material) this.mesh.material.dispose();
+            this.mesh = newMesh;
+            this.material = newMaterial;
+
+            // Update navigation arrows
+            if (window.navigationManager) {
+                window.navigationManager.updateConnections(panoramaId);
+            }
+        });
+    } else {
+        // First load
+        this.mesh = newMesh;
+        this.material = newMaterial;
+        this.scene.add(this.mesh);
+
+        if (window.navigationManager) {
+            window.navigationManager.updateConnections(panoramaId);
+        }
+    }
+}
+
+/**
+ * Preload panorama texture for faster transition
+ */
+preloadPanorama(panoramaId) {
+    const panorama = getPanoramaById(panoramaId);
+    if (!panorama || panorama._preloadedTexture) return;
+
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load(panorama.imageUrl, (texture) => {
+        panorama._preloadedTexture = texture;
+    });
+}
+
     /**
      * Perform a smooth fade transition between two panorama meshes
      * @param {THREE.Mesh} oldMesh - The current panorama mesh
