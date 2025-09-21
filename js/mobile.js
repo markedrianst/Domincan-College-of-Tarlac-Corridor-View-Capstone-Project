@@ -62,8 +62,8 @@ class MobileSupport {
         left: 0;
         width: 100%;
         max-height: 35vh;
-        background-color: rgba(0, 0, 0, 0.19);
-        color: #fff;
+        background-color: rgba(255, 255, 255, 0.48);
+        color: #000000ff;
         font-size: 1rem;
         padding: 1rem;
         box-sizing: border-box;
@@ -140,6 +140,7 @@ class MobileSupport {
             /* Search result item padding */
             .mobile-device .search-result-item {
                 padding: 1rem;
+                background-color: rgba(255, 255, 255, 0.48);
             }
 
             /* Media queries for very small devices */
