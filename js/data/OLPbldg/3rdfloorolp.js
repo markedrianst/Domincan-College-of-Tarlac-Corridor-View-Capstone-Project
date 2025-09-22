@@ -37,7 +37,7 @@ const olp3rdfloor =[
     arrowPositions: {
       'olp3rdfloor2': { phi: Math.PI / 3, theta: Math.PI * 1.58, direction: 'up'},
       'olp3rdfloor4': { phi: Math.PI / 3, theta: Math.PI * 0.45, direction: 'up'},
-          'olp3rdfloorstairs': { phi: Math.PI / 3, theta: Math.PI * 0.3, direction: 'up'},
+      'olp3rdfloorstairs': { phi: Math.PI / 3, theta: Math.PI * 0.3, direction: 'up'},
       'olp4thstairs': { phi: Math.PI / 3, theta: Math.PI * 0.08, direction: 'up'}
 
 
@@ -51,11 +51,10 @@ const olp3rdfloor =[
     description: 'OLP bldg. 3rd floor',
     imageUrl: 'images/OLPbldg/OLP3rdfloor4.jpg',
     category: ['OLP bldg.'],
-    connections: ['olp3rdfloor3','olp4thstairs'],
+    connections: ['olp3rdfloor3','olp2nd_stairs_to3rd'],
     arrowPositions: {
       'olp3rdfloor3': { phi: Math.PI / 4, theta: Math.PI * .5, direction: 'up'},
-     
-      'olp4thstairs': { phi: Math.PI / 4.15, theta: Math.PI * .8, direction: 'down'}
+      'olp2nd_stairs_to3rd': { phi: Math.PI / 4.15, theta: Math.PI * .8, direction: 'down'}
 
 
         
