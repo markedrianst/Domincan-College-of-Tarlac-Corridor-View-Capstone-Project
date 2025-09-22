@@ -20,10 +20,10 @@ const olp1stfloor =[
     description: 'OLP bldg. 1st floor',
     imageUrl: 'images/OLPbldg/OLP1stfloor(cafeteria).jpg',
     category: ['OLP bldg.'],
-    connections: ['connectinghallwaytolp','olp3rdfloor2'],
+    connections: ['connectinghallwaytolp','olp2nd_stairs_from1st'],
     arrowPositions: {
       'connectinghallwaytolp': { phi: Math.PI / 3, theta: Math.PI * 1.65, direction: 'up'},
-      'olp3rdfloor2': { phi: Math.PI / 3, theta: Math.PI * 0.4, direction: 'up'}
+      'olp2nd_stairs_from1st': { phi: Math.PI / 3, theta: Math.PI * .87, direction: 'up'}
 
         
        }
