@@ -350,9 +350,12 @@ applyPanoramaTexture(texture, panoramaId) {
             this.material = newMaterial;
 
             // Update navigation arrows
-            if (window.navigationManager) {
-                window.navigationManager.updateConnections(panoramaId);
-            }
+         if (window.navigationManager) {
+    window.navigationManager.updateConnections(panoramaId);
+}
+// notify listeners that panorama finished loading
+window.dispatchEvent(new CustomEvent('panoramaLoaded', { detail: { id: panoramaId } }));
+
         });
     } else {
         // First load

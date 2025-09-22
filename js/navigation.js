@@ -134,14 +134,56 @@ createArrow(connectedPanorama, index, total) {
     const y = (-vec.y * 0.5 + 0.5) * height;
     return { x, y };
   }
-  
-  navigateTo(panoramaId) {
-    if (window.panoramaViewer) {
-      if (window.transitionManager) {
-        window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
-      } else {
-        window.panoramaViewer.loadPanorama(panoramaId);
-      }
+navigateTo(panoramaId) {
+  const fromId = this.currentPanoramaId; // pano kung saan ka galing
+
+  // one-time listener: ia-apply ang facing pagkatapos ma-load ang bagong panorama
+  const onLoaded = (e) => {
+    const loadedId = e?.detail?.id;
+    if (!loadedId) return;
+
+    const targetPano = getPanoramaById(loadedId);
+    const sourcePano = getPanoramaById(fromId);
+
+    // Prefer: use the arrow in the TARGET that points back to the SOURCE
+    let chosen = null;
+    if (targetPano?.arrowPositions?.[fromId]) {
+      chosen = targetPano.arrowPositions[fromId]; // already in target's frame — best
+    } else if (sourcePano?.arrowPositions?.[loadedId]) {
+      // Fallback: invert the source->target arrow (opposite direction on sphere)
+      const a = sourcePano.arrowPositions[loadedId];
+      chosen = { phi: a.phi, theta: (a.theta + Math.PI) }; // add PI to flip direction
+    }
+
+    if (chosen && window.panoramaViewer) {
+      // convert radians -> degrees for viewer.lat/lon
+      const latDeg = 60 - (chosen.phi * 180 / Math.PI);
+      let lonDeg = (chosen.theta * 180 / Math.PI);
+
+      // normalize lon to 0..360 (optional, keeps values tidy)
+      lonDeg = ((lonDeg % 360) + 360) % 360;
+
+      // apply facing
+      window.panoramaViewer.lat = latDeg;
+      window.panoramaViewer.lon = lonDeg;
+
+      // DEBUG (optional) — uncomment while testing:
+      // console.log('Facing set on load:', { fromId, loadedId, phi: chosen.phi, theta: chosen.theta, latDeg, lonDeg });
+    }
+  };
+
+  window.addEventListener('panoramaLoaded', onLoaded, { once: true });
+
+  // Keep your existing navigation logic (transition or direct load)
+  if (window.panoramaViewer) {
+    if (window.transitionManager) {
+      window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
+    } else {
+      window.panoramaViewer.loadPanorama(panoramaId);
     }
   }
+}
+
+
+
 }
