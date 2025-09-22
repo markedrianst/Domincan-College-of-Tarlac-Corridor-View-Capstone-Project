@@ -80,10 +80,10 @@ const hr1stfloor = [
     description: 'HR bldg. 3rd floor',
     imageUrl: 'images/HRbldg/HR1stfloor3.jpg',
     category: ['HR bldg.'],
-    connections: ['Hr1rd4','Hr3rd2',],
+    connections: ['Hr1rd4','Hr1rd4'],
     arrowPositions: {
         'Hr1rd4': { phi: Math.PI / 3, theta: Math.PI * .9, direction: 'up'},
-        'Hr3rd2': { phi: Math.PI / 3, theta: Math.PI * 2.1, direction: 'up'},
+        'Hr1rd4': { phi: Math.PI / 3, theta: Math.PI * 2.1, direction: 'up'},
        
         
 
