@@ -64,9 +64,10 @@ createArrow(connectedPanorama, index, total) {
   arrow.innerHTML = `
     <div class="arrow-content">
       ${iconHTML}
-      <div class="arrow-label">${connectedPanorama.name}</div>   
+     
     </div>
   `;
+   // <div class="arrow-label">${connectedPanorama.name}</div>
   arrow.title = `Go to ${connectedPanorama.name}`;
   arrow.style.position = 'absolute';
 

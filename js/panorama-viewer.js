@@ -82,66 +82,72 @@ class PanoramaViewer {
     }
     
     // Add zoom buttons to the UI
-    addZoomControls() {
-        // Create zoom controls container
-        const zoomControls = document.createElement('div');
-        zoomControls.className = 'zoom-controls';
-        zoomControls.style.position = 'absolute';
-        zoomControls.style.bottom = '200px';
-        zoomControls.style.right = '20px';
-        zoomControls.style.zIndex = '100';
-        
-        // Create zoom in button
-        const zoomInBtn = document.createElement('button');
-        zoomInBtn.innerHTML = '+';
-        zoomInBtn.style.width = '40px';
-        zoomInBtn.style.height = '40px';
-        zoomInBtn.style.fontSize = '20px';
-        zoomInBtn.style.margin = '5px';
-        zoomInBtn.style.cursor = 'pointer';
-        zoomInBtn.style.borderRadius = '50%';
-        zoomInBtn.style.border = '2px solid #fff';
-        zoomInBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        zoomInBtn.style.color = '#fff';
-        zoomInBtn.addEventListener('click', () => this.zoom(1));
-        
-        // Create zoom out button
-        const zoomOutBtn = document.createElement('button');
-        zoomOutBtn.innerHTML = '-';
-        zoomOutBtn.style.width = '40px';
-        zoomOutBtn.style.height = '40px';
-        zoomOutBtn.style.fontSize = '20px';
-        zoomOutBtn.style.margin = '5px';
-        zoomOutBtn.style.cursor = 'pointer';
-        zoomOutBtn.style.borderRadius = '50%';
-        zoomOutBtn.style.border = '2px solid #fff';
-        zoomOutBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        zoomOutBtn.style.color = '#fff';
-        zoomOutBtn.addEventListener('click', () => this.zoom(-1));
-        
-        // Create reset zoom button
-        const resetZoomBtn = document.createElement('button');
-        resetZoomBtn.innerHTML = 'R';
-        resetZoomBtn.title = 'Reset Zoom';
-        resetZoomBtn.style.width = '40px';
-        resetZoomBtn.style.height = '40px';
-        resetZoomBtn.style.fontSize = '16px';
-        resetZoomBtn.style.margin = '5px';
-        resetZoomBtn.style.cursor = 'pointer';
-        resetZoomBtn.style.borderRadius = '50%';
-        resetZoomBtn.style.border = '2px solid #fff';
-        resetZoomBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        resetZoomBtn.style.color = '#fff';
-        resetZoomBtn.addEventListener('click', () => this.resetZoom());
-        
-        // Add buttons to controls container
-        zoomControls.appendChild(zoomInBtn);
-        zoomControls.appendChild(resetZoomBtn);
-        zoomControls.appendChild(zoomOutBtn);
-        
-        // Add controls to container
-        this.container.appendChild(zoomControls);
+addZoomControls() {
+    // Skip adding zoom controls if on mobile
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return;
     }
+
+    // Create zoom controls container
+    const zoomControls = document.createElement('div');
+    zoomControls.className = 'zoom-controls';
+    zoomControls.style.position = 'absolute';
+    zoomControls.style.bottom = '200px';
+    zoomControls.style.right = '20px';
+    zoomControls.style.zIndex = '100';
+
+    // Create zoom in button
+    const zoomInBtn = document.createElement('button');
+    zoomInBtn.innerHTML = '+';
+    zoomInBtn.style.width = '40px';
+    zoomInBtn.style.height = '40px';
+    zoomInBtn.style.fontSize = '20px';
+    zoomInBtn.style.margin = '5px';
+    zoomInBtn.style.cursor = 'pointer';
+    zoomInBtn.style.borderRadius = '50%';
+    zoomInBtn.style.border = '2px solid #fff';
+    zoomInBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    zoomInBtn.style.color = '#fff';
+    zoomInBtn.addEventListener('click', () => this.zoom(1));
+
+    // Create zoom out button
+    const zoomOutBtn = document.createElement('button');
+    zoomOutBtn.innerHTML = '-';
+    zoomOutBtn.style.width = '40px';
+    zoomOutBtn.style.height = '40px';
+    zoomOutBtn.style.fontSize = '20px';
+    zoomOutBtn.style.margin = '5px';
+    zoomOutBtn.style.cursor = 'pointer';
+    zoomOutBtn.style.borderRadius = '50%';
+    zoomOutBtn.style.border = '2px solid #fff';
+    zoomOutBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    zoomOutBtn.style.color = '#fff';
+    zoomOutBtn.addEventListener('click', () => this.zoom(-1));
+
+    // Create reset zoom button
+    const resetZoomBtn = document.createElement('button');
+    resetZoomBtn.innerHTML = 'R';
+    resetZoomBtn.title = 'Reset Zoom';
+    resetZoomBtn.style.width = '40px';
+    resetZoomBtn.style.height = '40px';
+    resetZoomBtn.style.fontSize = '16px';
+    resetZoomBtn.style.margin = '5px';
+    resetZoomBtn.style.cursor = 'pointer';
+    resetZoomBtn.style.borderRadius = '50%';
+    resetZoomBtn.style.border = '2px solid #fff';
+    resetZoomBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    resetZoomBtn.style.color = '#fff';
+    resetZoomBtn.addEventListener('click', () => this.resetZoom());
+
+    // Add buttons to controls container
+    zoomControls.appendChild(zoomInBtn);
+    zoomControls.appendChild(resetZoomBtn);
+    zoomControls.appendChild(zoomOutBtn);
+
+    // Add controls to container
+    this.container.appendChild(zoomControls);
+}
+
     
     // Reset zoom to default level
     resetZoom() {
@@ -241,8 +247,8 @@ class PanoramaViewer {
         const clientX = event.clientX || (event.touches && event.touches[0].clientX);
         const clientY = event.clientY || (event.touches && event.touches[0].clientY);
         
-        this.lon = (this.onPointerDownMouseX - clientX) * 0.1 + this.onPointerDownLon;
-        this.lat = (clientY - this.onPointerDownMouseY) * 0.1 + this.onPointerDownLat;
+        this.lon = (this.onPointerDownMouseX - clientX) * 0.2+ this.onPointerDownLon;
+        this.lat = (clientY - this.onPointerDownMouseY) * 0.2 + this.onPointerDownLat;
         
         // Limit vertical rotation
         this.lat = Math.max(-85, Math.min(85, this.lat));
