@@ -124,19 +124,29 @@ class MobileSupport {
             pointer-events: none;
         }
 
-        .mobile-device #search-input {
+       .mobile-device #search-input {
             font-size: 1rem;
             height: 3rem;
-            width: 90vw;
+            width: 85vw;
             max-width: 400px;
             box-sizing: border-box;
             padding: 0.5rem 1rem;
+              margin-left: 2.5rem;
+
+            /* 🎨 adjust colors here */
+            background-color: rgba(255, 255, 255, 0.7); /* dark background */
+            color: #000000ff; /* text color */
+            border: 1px solid #315d41ff; /* border color */
         }
 
         .mobile-device .search-result-item {
             padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.48);
+            background-color: rgba(0, 0, 0, 0); /* dark background */
+            color: #000000ff; /* text color */
         }
+
+
+      
 
         @media (max-width: 320px) {
             .mobile-device .nav-arrow {
