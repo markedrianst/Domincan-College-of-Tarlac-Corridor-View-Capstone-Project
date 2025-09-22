@@ -47,7 +47,7 @@ const olp2ndfloor = [
     category: ['OLP bldg.'],
     connections: ['slr2nd4','olp2nd_room1'],
     arrowPositions: {
-      'slr2nd4': { phi: Math.PI / 4, theta: Math.PI * 1.1, direction: 'up'},
+      'slr2nd4': { phi: Math.PI / 4, theta: Math.PI * 1.35, direction: 'up'},
       'olp2nd_room1': { phi: Math.PI / 3, theta: Math.PI * 2.4, direction: 'up'}
     }
   }
