@@ -8,7 +8,7 @@ const sd3rdFloor = [
         category: 'Sd bldg.',
         connections: ['3rdfloormidstairs', 'Sd2ndfloormidstairs'],
         arrowPositions: {
-            '3rdfloormidstairs': { phi: Math.PI / 2.3, theta: Math.PI * -1.5 ,direction:'rigth' }, // Up-forward
+            '3rdfloormidstairs': { phi: Math.PI / 2.9, theta: Math.PI * -1.3,direction:'up' }, // Up-forward
             'Sd2ndfloormidstairs': { phi: Math.PI / 3.6, theta: Math.PI * 1,direction:'down' } // Right
         }
     },
