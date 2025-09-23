@@ -7,7 +7,7 @@ const sd4thfloor =[
         category: 'Sd bldg.',
         connections: ['mid4thfloor6', '3rdfloormidstairs'],//button connections
         arrowPositions: {
-            'mid4thfloor6': { phi: Math.PI / 2.3, theta: Math.PI * -1.5 ,direction:'rigth' }, //button position
+            'mid4thfloor6': { phi: Math.PI / 2.9, theta: Math.PI * -1.3,direction:'up' }, //button position
             '3rdfloormidstairs': { phi: Math.PI / 3.6, theta: Math.PI * 1,direction:'down' } // button position
             
         }

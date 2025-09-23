@@ -8,11 +8,33 @@ class NavigationManager {
   updateConnections(panoramaId) {
     this.currentPanoramaId = panoramaId;
     this.clearArrows();
+
     const connected = getConnectedPanoramas(panoramaId);
-    const total = connected.length;
-    connected.forEach((conn, index) => {
-      this.createArrow(conn, index, total);
+    let allowed = connected;
+
+    // 🚦 If navigation is active, only show the NEXT step in the path
+    if (window.navigationPath && window.navigationStep < window.navigationPath.length) {
+      const nextId = window.navigationPath[window.navigationStep];
+      allowed = connected.filter(c => {
+        const id = (typeof c === "string") ? c : c.id;
+        return id === nextId;
+      });
+    }
+
+    const total = allowed.length;
+    allowed.forEach((conn, index) => {
+      const panoObj = (typeof conn === "string") ? getPanoramaById(conn) : conn;
+      const arrow = this.createArrow(panoObj, index, total);
+
+      // ⭐ Highlight if it's the next navigation step
+      if (window.navigationPath && window.navigationStep < window.navigationPath.length) {
+        const nextId = window.navigationPath[window.navigationStep];
+        if (panoObj.id === nextId) {
+          arrow.classList.add("active-step");
+        }
+      }
     });
+
     if (window.panoramaViewer) {
       this.updateArrowPositions(window.panoramaViewer.camera);
     }
@@ -31,46 +53,75 @@ createArrow(connectedPanorama, index, total) {
   const arrow = document.createElement('div');
   arrow.className = 'nav-arrow';
 
-  let iconClass = null;
+  let iconHTML;
   const pano = getPanoramaById(this.currentPanoramaId);
 
-  if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
-    const manual = pano.arrowPositions[connectedPanorama.id];
-    if (manual.directionIcon) {
-      iconClass = manual.directionIcon;
-    } else if (manual.direction) {
-      switch(manual.direction) {
-        case 'up': iconClass = 'images/Arrows/Arrow-up.png'; break;
-        case 'down': iconClass = 'images/Arrows/Arrow-down.png'; break;
-        case 'left': iconClass = 'images/Arrows/left.png'; break;
-        case 'right': iconClass = 'images/Arrows/Arrow-right.png'; break; 
-        default: iconClass = 'fa-arrow-right';
+  // ✅ If navigation (search) is active → use special nav arrow images
+  if (window.navigationPath) {
+    if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
+      const manual = pano.arrowPositions[connectedPanorama.id];
+      if (manual.direction) {
+        switch (manual.direction) {
+          case 'up':    
+            iconHTML = `<img src="images/Arrows/Arrow-up1.png" class="arrow-icon" />`; 
+            break;
+          case 'down':  
+            iconHTML = `<img src="images/Arrows/Arrow-down1.png" class="arrow-icon" />`; 
+            break;
+          case 'left':  
+            iconHTML = `<img src="images/Arrows/Arrow-left1.png" class="arrow-icon" />`; 
+            break;
+          case 'right': 
+            iconHTML = `<img src="images/Arrows/Arrow-right1.png" class="arrow-icon" />`; 
+            break;
+          default:      
+            iconHTML = `<img src="images/Arrows/Arrow-up.png" class="arrow-icon" />`; 
+        }
       }
     }
-  }
 
-  if (!iconClass) {
-    iconClass = 'fa-arrow-right';
-  }
+    // 🎌 If this is the final destination → GPS/location pin
+    if (
+      window.navigationStep < window.navigationPath.length &&
+      connectedPanorama.id === window.navigationPath[window.navigationPath.length - 1]
+    ) {
+iconHTML = `<img src="images/Arrows/gps.png" class="arrow-icon bounce" />`;
+    }
 
-  // ✅ Detect if it's an image or icon
-  let iconHTML;
-  if (iconClass.includes('.png') || iconClass.includes('.jpg')) {
-    iconHTML = `<img src="${iconClass}" alt="Arrow" class="arrow-icon" />`;
   } else {
-    iconHTML = `<i class="fa ${iconClass} arrow-icon"></i>`;
+    // 🟢 Free navigation → use normal arrows
+    if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
+      const manual = pano.arrowPositions[connectedPanorama.id];
+      if (manual.direction) {
+        switch (manual.direction) {
+          case 'up':    
+            iconHTML = `<img src="images/Arrows/Arrow-up.png" class="arrow-icon" />`; 
+            break;
+          case 'down':  
+            iconHTML = `<img src="images/Arrows/Arrow-down.png" class="arrow-icon" />`; 
+            break;
+          case 'left':  
+            iconHTML = `<img src="images/Arrows/Arrow-left.png" class="arrow-icon" />`; 
+            break;
+          case 'right': 
+            iconHTML = `<img src="images/Arrows/Arrow-right.png" class="arrow-icon" />`; 
+            break;
+          default:      
+            iconHTML = `<i class="fa fa-arrow-right arrow-icon"></i>`; 
+        }
+      }
+    }
   }
 
   arrow.innerHTML = `
     <div class="arrow-content">
       ${iconHTML}
-     
     </div>
   `;
-   // <div class="arrow-label">${connectedPanorama.name}</div>
   arrow.title = `Go to ${connectedPanorama.name}`;
   arrow.style.position = 'absolute';
 
+  // position logic stays the same...
   let theta, phi;
   if (pano && pano.arrowPositions && pano.arrowPositions[connectedPanorama.id]) {
     const manual = pano.arrowPositions[connectedPanorama.id];
@@ -91,14 +142,14 @@ createArrow(connectedPanorama, index, total) {
 
   this.arrows.push(arrowData);
 
-  // ✅ Click + touch for mobile
   arrow.addEventListener('click', () => this.navigateTo(connectedPanorama.id));
   arrow.addEventListener('touchstart', () => this.navigateTo(connectedPanorama.id));
 
   this.panoramaContainer.appendChild(arrow);
+  return arrow;
 }
 
-  
+
   updateArrowPositions(camera) {
     if (!camera) return;
     const w = this.panoramaContainer.clientWidth;
@@ -117,7 +168,6 @@ createArrow(connectedPanorama, index, total) {
       
       if (dot < 0) {
         arrow.element.style.display = 'flex';
-        // optionally adjust anchor
         const arrowWidth = arrow.element.offsetWidth;
         const arrowHeight = arrow.element.offsetHeight;
         arrow.element.style.left = `${screenPos.x - arrowWidth/2}px`;
@@ -135,56 +185,133 @@ createArrow(connectedPanorama, index, total) {
     const y = (-vec.y * 0.5 + 0.5) * height;
     return { x, y };
   }
-navigateTo(panoramaId) {
-  const fromId = this.currentPanoramaId; // pano kung saan ka galing
 
-  // one-time listener: ia-apply ang facing pagkatapos ma-load ang bagong panorama
-  const onLoaded = (e) => {
-    const loadedId = e?.detail?.id;
-    if (!loadedId) return;
+  navigateTo(panoramaId) {
+    const fromId = this.currentPanoramaId;
+    const onLoaded = (e) => {
+      const loadedId = e?.detail?.id;
+      if (!loadedId) return;
 
-    const targetPano = getPanoramaById(loadedId);
-    const sourcePano = getPanoramaById(fromId);
+      if (window.navigationPath) {
+        const expectedId = window.navigationPath[window.navigationStep];
+        if (loadedId === expectedId) {
+          window.navigationStep++;
 
-    // Prefer: use the arrow in the TARGET that points back to the SOURCE
-    let chosen = null;
-    if (targetPano?.arrowPositions?.[fromId]) {
-      chosen = targetPano.arrowPositions[fromId]; // already in target's frame — best
-    } else if (sourcePano?.arrowPositions?.[loadedId]) {
-      // Fallback: invert the source->target arrow (opposite direction on sphere)
-      const a = sourcePano.arrowPositions[loadedId];
-      chosen = { phi: a.phi, theta: (a.theta + Math.PI) }; // add PI to flip direction
-    }
+          const guideBox = document.getElementById("location-info");
+          if (guideBox) {
+            if (window.navigationStep < window.navigationPath.length) {
+              const nextId = window.navigationPath[window.navigationStep];
+              
+              // 🚩 If this is the second-to-last step
+              if (window.navigationStep === window.navigationPath.length - 1) {
+                guideBox.querySelector("#location-description").innerText =
+                  "🚩 Almost there... final step!";
+              } else {
+                guideBox.querySelector("#location-description").innerText =
+                  `Next: ${getPanoramaById(nextId).name}`;
+              }
 
-    if (chosen && window.panoramaViewer) {
-      // convert radians -> degrees for viewer.lat/lon
-      const latDeg = 60 - (chosen.phi * 180 / Math.PI);
-      let lonDeg = (chosen.theta * 180 / Math.PI);
+            } else {
+              guideBox.querySelector("#location-description").innerText =
+                "✅ You’ve arrived at your destination!";
+              window.navigationPath = null; // unlock free navigation
+            }
+          }
 
-      // normalize lon to 0..360 (optional, keeps values tidy)
-      lonDeg = ((lonDeg % 360) + 360) % 360;
+          // 🚀 Refresh arrows for the newly loaded panorama
+          window.navigationManager.updateConnections(loadedId);
+        }
+      }
+    };
 
-      // apply facing
-      window.panoramaViewer.lat = latDeg;
-      window.panoramaViewer.lon = lonDeg;
+    window.addEventListener('panoramaLoaded', onLoaded, { once: true });
 
-      // DEBUG (optional) — uncomment while testing:
-      // console.log('Facing set on load:', { fromId, loadedId, phi: chosen.phi, theta: chosen.theta, latDeg, lonDeg });
-    }
-  };
-
-  window.addEventListener('panoramaLoaded', onLoaded, { once: true });
-
-  // Keep your existing navigation logic (transition or direct load)
-  if (window.panoramaViewer) {
-    if (window.transitionManager) {
-      window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
-    } else {
-      window.panoramaViewer.loadPanorama(panoramaId);
+    if (window.panoramaViewer) {
+      if (window.transitionManager) {
+        window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
+      } else {
+        window.panoramaViewer.loadPanorama(panoramaId);
+      }
     }
   }
 }
 
+// === Pathfinding (BFS shortest path) ===
+function findShortestPath(startId, targetId) {
+  if (startId === targetId) return [startId];
+  const visited = new Set();
+  const queue = [[startId]];
 
+  while (queue.length > 0) {
+    const path = queue.shift();
+    const node = path[path.length - 1];
+    if (node === targetId) return path;
 
+    if (!visited.has(node)) {
+      visited.add(node);
+      const pano = getPanoramaById(node);
+      if (pano && pano.connections) {
+        pano.connections.forEach(neigh => {
+          if (!visited.has(neigh)) {
+            queue.push([...path, neigh]);
+          }
+        });
+      }
+    }
+  }
+  return null;
 }
+
+// === Start user navigation ===
+// === Start user navigation ===
+function startUserNavigation(targetId) {
+  const startId = window.navigationManager.currentPanoramaId;
+  const path = findShortestPath(startId, targetId);
+  if (!path) {
+    alert("No route found.");
+    return;
+  }
+
+  console.log("Navigation path:", path);
+  window.navigationPath = path;
+  window.navigationStep = 1;
+
+  const guideBox = document.getElementById("location-info");
+  if (guideBox && path[1]) {
+    guideBox.querySelector("#location-description").innerText =
+      `Next: ${getPanoramaById(path[1]).name}`;
+  }
+
+  // 🔄 Refresh arrows for current pano
+  window.navigationManager.updateConnections(startId);
+
+  // 👀 Show Cancel button
+  document.getElementById("cancelNavBtn").style.display = "block";
+}
+
+// === Cancel navigation ===
+function cancelNavigation() {
+  window.navigationPath = null;
+  window.navigationStep = 0;
+
+  const guideBox = document.getElementById("location-info");
+  if (guideBox) {
+    guideBox.querySelector("#location-description").innerText =
+      "Navigation canceled. Free explore mode.";
+  }
+
+  // 🔄 Refresh arrows for current panorama
+  if (window.navigationManager && window.navigationManager.currentPanoramaId) {
+    window.navigationManager.updateConnections(window.navigationManager.currentPanoramaId);
+  }
+
+  // 👀 Hide Cancel button
+  document.getElementById("cancelNavBtn").style.display = "none";
+
+  console.log("❌ Navigation canceled, back to free mode");
+}
+
+window.startUserNavigation = startUserNavigation;
+window.cancelNavigation = cancelNavigation;
+
+

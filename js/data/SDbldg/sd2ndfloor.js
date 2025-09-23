@@ -156,7 +156,7 @@ const sd2ndFloor = [
         connections: ['SdGroundfloor6','Sd2ndfloormidstairs'],
         arrowPositions: {
             'SdGroundfloor6': { phi: Math.PI / 3.5, theta: Math.PI * 1, direction:'down' },// Right
-            'Sd2ndfloormidstairs': { phi: Math.PI / 2, theta: Math.PI * 0.5, direction:'right' },
+            'Sd2ndfloormidstairs': { phi: Math.PI / 2.9, theta: Math.PI * -1.3,direction:'up' },
         
         }
     },
