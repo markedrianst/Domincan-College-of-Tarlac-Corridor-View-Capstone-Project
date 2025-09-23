@@ -146,7 +146,7 @@ class SearchManager {
 
     navigateToPanorama(panoramaId) {
         if (window.panoramaViewer) {
-            window.panoramaViewer.loadPanorama(panoramaId);
+        startUserNavigation(panoramaId);
             this.hideResults();
             this.searchInput.value = '';
         }
