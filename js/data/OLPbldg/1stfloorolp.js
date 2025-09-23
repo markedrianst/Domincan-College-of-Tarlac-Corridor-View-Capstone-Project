@@ -2,7 +2,7 @@ const olp1stfloor =[
   {
     id: 'connectinghallwaytolp',
     name: 'Connecting Hallway to OLP',
-    description: 'OLP bldg. 3rd floor',
+    description: 'OLP bldg.Ground Floor',
     imageUrl: 'images/OLPbldg/OLP1stfloor(playfield).jpg',
     category: ['OLP bldg.'],
     connections: ['Hr1rd5','Coveredcourt','1stfloorolpstairs'],
@@ -17,7 +17,7 @@ const olp1stfloor =[
       {
     id: '1stfloorolpstairs',
     name: '1stfloorolpstairs',
-    description: 'OLP bldg. 1st floor',
+    description: 'OLP bldg. Ground Floor',
     imageUrl: 'images/OLPbldg/OLP1stfloor(cafeteria).jpg',
     category: ['OLP bldg.'],
     connections: ['connectinghallwaytolp','olp2nd_stairs_from1st'],
@@ -32,7 +32,7 @@ const olp1stfloor =[
        {
     id: 'Coveredcourt',
     name: 'Coveredcourt',
-    description: 'OLP bldg. 1st floor',
+    description: 'OLP bldg. Ground Floor',
     imageUrl: 'images/OLPbldg/OLP1stfloor(court).jpg',
     category: ['OLP bldg.'],
     connections: ['connectinghallwaytolp'],
