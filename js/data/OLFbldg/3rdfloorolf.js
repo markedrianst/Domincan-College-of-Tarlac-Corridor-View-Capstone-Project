@@ -5,7 +5,7 @@ const olf3rdbldg = [
     name: 'OLF301',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/OLF3rdfloor.jpg',
-    category: ['3rd OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['OLF3rd2',],
     arrowPositions: {
 
@@ -18,7 +18,7 @@ const olf3rdbldg = [
     name: 'OLF302',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/OLF3rdfloor1.jpg',
-    category: ['2nd OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['OLF3rd1','OLF3rd3'],
     arrowPositions: {
 
@@ -32,7 +32,7 @@ const olf3rdbldg = [
     name: 'OLF303',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/OLF3rdfloor2.jpg',
-    category: ['2nd OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['OLF3rd2','OLF3rd4'],
     arrowPositions: {
 
@@ -45,7 +45,7 @@ const olf3rdbldg = [
     name: 'OLF304',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/OLF3rdfloor3.jpg',
-    category: ['2nd OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['OLF3rd5','OLF3rd3','StairsTo3rdFloor','Stairsto4thfloor'],
     arrowPositions: {
 
@@ -60,7 +60,7 @@ const olf3rdbldg = [
     name: 'OLF305',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/OLF3rdfloor4.jpg',
-    category: ['3rd OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['OLF3rd4','OLF3rd6',],
     arrowPositions: {
 
@@ -73,7 +73,7 @@ const olf3rdbldg = [
     name: 'OLF306',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/OLF3rdfloor5.jpg',
-    category: ['3rd OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['OLF3rd5','OLF3rd7'],
     arrowPositions: {
 
@@ -86,7 +86,7 @@ const olf3rdbldg = [
     name: 'OLF307',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/OLF3rdfloor6.jpg',
-    category: ['3rd OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['OLF3rd6',],
     arrowPositions: {
 
@@ -100,7 +100,7 @@ const olf3rdbldg = [
     name: 'StairsTo4thFloor',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/OLF3rdfloor7.jpg',
-    category: ['3rd OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['OLF3rd4','olf4th103'],
     arrowPositions: {
 

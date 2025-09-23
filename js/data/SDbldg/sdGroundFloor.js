@@ -17,7 +17,7 @@ const sdGroundFloor = [
         name: 'Sd 101',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/sd1st2.jpg',
-        category: 'Sd bldg.',
+        category: ['Sd bldg.','Offices'],
         connections: ['SdGroundFloor1', 'SdGroundfloor3','scs1st1'],
         arrowPositions: {
         'SdGroundfloor3': { phi: Math.PI / 2.6, theta: Math.PI * 1.9,direction:'up' }, // Right
@@ -33,7 +33,7 @@ const sdGroundFloor = [
         name: 'Sd 102 ,103',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(3).jpg',
-        category: 'Sd bldg.',
+        category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor2', 'SdGroundfloor4'],
         arrowPositions: { 
            'SdGroundfloor4': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
@@ -46,7 +46,7 @@ const sdGroundFloor = [
         name: 'Sd 104',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(4).jpg',
-        category: 'Sd bldg.',
+        category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor3', 'SdGroundfloor5'],
         arrowPositions: {
             'SdGroundfloor5': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
@@ -59,7 +59,7 @@ const sdGroundFloor = [
         name: 'Sd 105, 106',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(5).jpg',
-        category: 'Sd bldg.',
+        category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor4', 'SdGroundfloor6'],
         arrowPositions: {
             'SdGroundfloor6': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
@@ -71,7 +71,7 @@ const sdGroundFloor = [
         name: 'Sd middle Stairs',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(6).jpg',
-        category: 'Sd bldg.',
+        category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor5','SdGroundfloor7','midstairscr'],
         arrowPositions: {
             'SdGroundfloor7': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
@@ -84,7 +84,7 @@ const sdGroundFloor = [
         name: 'Sd 107,108, 109',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(7).jpg',
-        category: 'Sd bldg.',
+        category: ['Sd bldg.','Offices'],
         connections: [ 'SdGroundfloor6','SdGroundfloor8'],
         arrowPositions: {
             'SdGroundfloor8': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
@@ -97,7 +97,7 @@ const sdGroundFloor = [
         name: 'Sd 110,111,112',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(8).jpg',
-        category: 'Sd bldg.',
+        category: ['Sd bldg.','Offices'],
         connections: [ 'SdGroundfloor7','SdGroundfloor9'],
         arrowPositions: {
             'SdGroundfloor9': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
@@ -109,7 +109,7 @@ const sdGroundFloor = [
         name: 'Sd 113',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(9).jpg',
-        category: 'Sd bldg.',
+        category: ['Sd bldg.','Offices'],
         connections: [ 'SdGroundfloor8','SdGroundfloor10'],
         arrowPositions: {
             'SdGroundfloor10': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
@@ -121,7 +121,7 @@ const sdGroundFloor = [
         name: 'Sd 114',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(10).jpg',
-        category: 'Sd bldg.',
+        category: ['Sd bldg.','Offices'],
         connections: [ 'SdGroundfloor9','SDtoOLF1','shortcutsdtoccs'],
         arrowPositions: {
              

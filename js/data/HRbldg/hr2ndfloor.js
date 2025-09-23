@@ -4,7 +4,7 @@ const hr2ndfloor = [
     name: 'VPAA Office',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/HR2ndfloor.jpg',
-    category: ['HR bldg.'],
+    category: ['HR bldg.','Offices'],
     connections: ['Hr3rd4', 'Hr2nd2'],
     arrowPositions: {
       'Hr3rd4': { phi: Math.PI / 3, theta: Math.PI * 1.15, direction: 'up' },
