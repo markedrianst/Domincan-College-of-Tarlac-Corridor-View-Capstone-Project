@@ -186,54 +186,57 @@ iconHTML = `<img src="images/Arrows/gps.png" class="arrow-icon bounce" />`;
     return { x, y };
   }
 
-  navigateTo(panoramaId) {
-    const fromId = this.currentPanoramaId;
-    const onLoaded = (e) => {
-      const loadedId = e?.detail?.id;
-      if (!loadedId) return;
+navigateTo(panoramaId) {
+  const fromId = this.currentPanoramaId;
+  const onLoaded = (e) => {
+    const loadedId = e?.detail?.id;
+    if (!loadedId) return;
 
-      if (window.navigationPath) {
-        const expectedId = window.navigationPath[window.navigationStep];
-        if (loadedId === expectedId) {
-          window.navigationStep++;
+    if (window.navigationPath) {
+      const expectedId = window.navigationPath[window.navigationStep];
+      if (loadedId === expectedId) {
+        window.navigationStep++;
 
-          const guideBox = document.getElementById("location-info");
-          if (guideBox) {
-            if (window.navigationStep < window.navigationPath.length) {
-              const nextId = window.navigationPath[window.navigationStep];
-              
-              // 🚩 If this is the second-to-last step
-              if (window.navigationStep === window.navigationPath.length - 1) {
-                guideBox.querySelector("#location-description").innerText =
-                  "🚩 Almost there... final step!";
-              } else {
-                guideBox.querySelector("#location-description").innerText =
-                  `Next: ${getPanoramaById(nextId).name}`;
-              }
-
+        const guideBox = document.getElementById("location-info");
+        if (guideBox) {
+          if (window.navigationStep < window.navigationPath.length) {
+            const nextId = window.navigationPath[window.navigationStep];
+            if (window.navigationStep === window.navigationPath.length - 1) {
+              guideBox.querySelector("#location-description").innerText =
+                "🚩 Almost there... final step!";
             } else {
               guideBox.querySelector("#location-description").innerText =
-                "✅ You’ve arrived at your destination!";
-              window.navigationPath = null; // unlock free navigation
+                `Next: ${getPanoramaById(nextId).name}`;
             }
+          } else {
+            guideBox.querySelector("#location-description").innerText =
+              "✅ You’ve arrived at your destination!";
+
+            // ✅ Hide cancel button when destination reached
+            const cancelBtn = document.getElementById("cancelNavBtn");
+            if (cancelBtn) cancelBtn.style.display = "none";
+
+            window.navigationPath = null; // unlock free navigation
           }
-
-          // 🚀 Refresh arrows for the newly loaded panorama
-          window.navigationManager.updateConnections(loadedId);
         }
-      }
-    };
 
-    window.addEventListener('panoramaLoaded', onLoaded, { once: true });
-
-    if (window.panoramaViewer) {
-      if (window.transitionManager) {
-        window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
-      } else {
-        window.panoramaViewer.loadPanorama(panoramaId);
+        // Refresh arrows for the newly loaded panorama
+        window.navigationManager.updateConnections(loadedId);
       }
     }
+  };
+
+  window.addEventListener('panoramaLoaded', onLoaded, { once: true });
+
+  if (window.panoramaViewer) {
+    if (window.transitionManager) {
+      window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
+    } else {
+      window.panoramaViewer.loadPanorama(panoramaId);
+    }
   }
+}
+
 }
 
 // === Pathfinding (BFS shortest path) ===
