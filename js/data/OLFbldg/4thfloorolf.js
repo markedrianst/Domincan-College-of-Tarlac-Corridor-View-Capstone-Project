@@ -6,7 +6,7 @@ const olf4thbldg = [
     name: 'College Library',
     description: 'OLF 4th Floor',
     imageUrl: 'images/OLFbldg/OLF4thfloor.jpg',
-    category: ['4th OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['olf4th102',],
     arrowPositions: {
 
@@ -19,7 +19,7 @@ const olf4thbldg = [
     name: 'olf4th102',
     description: 'OLF 4th Floor',
     imageUrl: 'images/OLFbldg/OLF4thfloor1.jpg',
-    category: ['4th OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['olf4thLIBRARY','olf4th103'],
     arrowPositions: {
 
@@ -34,7 +34,7 @@ const olf4thbldg = [
     name: 'olf4th103',
     description: 'OLF 4th Floor',
     imageUrl: 'images/OLFbldg/OLF4thfloor2.jpg',
-    category: ['4th OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['olf4th102','olf4th104','Stairsto4thfloor'],
     arrowPositions: {
 
@@ -49,7 +49,7 @@ const olf4thbldg = [
     name: 'olf4th104',
     description: 'OLF 4th Floor',
     imageUrl: 'images/OLFbldg/OLF4thfloor3.jpg',
-    category: ['4th OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['olf4th103','olf4th105'],
     arrowPositions: {
 
@@ -63,7 +63,7 @@ const olf4thbldg = [
     name: 'olf4th105',
     description: 'OLF 4th Floor',
     imageUrl: 'images/OLFbldg/OLF4thfloor4.jpg',
-    category: ['4th OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['olf4th104','olf4th106'],
     arrowPositions: {
 
@@ -77,7 +77,7 @@ const olf4thbldg = [
     name: 'olf4th106',
     description: 'OLF 4th Floor',
     imageUrl: 'images/OLFbldg/OLF4thfloor5.jpg',
-    category: ['4th OLF bldg.'],
+    category: ['OLP bldg.'],
     connections: ['olf4th105',],
     arrowPositions: {
 

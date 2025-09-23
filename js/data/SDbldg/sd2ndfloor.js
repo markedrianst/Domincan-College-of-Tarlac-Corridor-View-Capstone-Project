@@ -5,7 +5,7 @@ const sd2ndFloor = [
         name: 'Staircase',
         description: 'Staircase leading to the second floor',
         imageUrl: 'images/Sdbldg/CornerStairs2ndfloorSD.jpg',
-        category: 'stairs',
+        category: [],
         connections: ['2ndFloorSD', 'SdGroundFloor1'],
         arrowPositions: {
             '2ndFloorSD': { phi: Math.PI / 2.6, theta: Math.PI * 0 ,direction:'up' }, // Up-forward
