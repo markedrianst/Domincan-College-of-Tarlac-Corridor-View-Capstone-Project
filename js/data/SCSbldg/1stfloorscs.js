@@ -1,7 +1,7 @@
 const scsfirstfloor =[
   {
     id: 'scs1st1',
-    name: 'SCS 101',
+    name: 'Sd to Sc1 step1',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/scs1st4.jpg',
     category: ['SCS bldg.'],
@@ -15,7 +15,7 @@ const scsfirstfloor =[
     },
     {
     id: 'scs1st2',
-    name: 'SCS 102',
+    name: 'Sd to Sc1 step2',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/scs1st3.jpg',
     category: ['SCS bldg.'],
@@ -28,7 +28,7 @@ const scsfirstfloor =[
        }
     },
     {  id: 'scs1st3',
-    name: 'SCS 103',
+    name: 'SCS 104',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/scs1st2.jpg',
     category: ['SCS bldg.'],
@@ -42,7 +42,7 @@ const scsfirstfloor =[
     },
     { 
          id: 'scs1st4',
-    name: 'SCS 104',
+    name: 'SCS 101,102,103',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/scs1st1.jpg',
     category: ['SCS bldg.'],
