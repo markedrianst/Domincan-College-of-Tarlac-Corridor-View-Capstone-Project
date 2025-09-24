@@ -4,7 +4,7 @@ const slrfirstfloor =[
     name: 'Junior Higschool Faculty',
     description: 'SLR bldg. 1st floor',
     imageUrl: 'images/SLRbldg/SLR1stfloor.jpg',
-    category: ['SLR bldg.'],
+    category: ['SLR bldg.','Offices'],
     connections: ['sn1st7','slr1st2'],
     arrowPositions: {
       'sn1st7': { phi: Math.PI / 3, theta: Math.PI * 2.32, direction: 'up'},
@@ -18,7 +18,7 @@ const slrfirstfloor =[
     name: 'Junior Higschool Faculty',
     description: 'SLR bldg. 1st floor',
     imageUrl: 'images/SLRbldg/SLR1stfloor1.jpg',
-    category: ['SLR bldg.'],
+    category: ['SLR bldg.','Offices'],
     connections: ['slr1st3','slr1st1'],
     arrowPositions: {
       'slr1st3': { phi: Math.PI / 3, theta: Math.PI * 2.37, direction: 'up'},
@@ -62,7 +62,7 @@ const slrfirstfloor =[
     name: 'Clinic',
     description: 'SLR bldg. 1st floor',
     imageUrl: 'images/SLRbldg/SLR1stfloor4.jpg',
-    category: ['SLR bldg.'],
+    category: ['SLR bldg.','Offices'],
     connections: ['slr1st4'],
     arrowPositions: {
       'slr1st4': { phi: Math.PI / 3, theta: Math.PI * 2.6, direction: 'up'},

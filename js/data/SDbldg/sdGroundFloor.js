@@ -14,7 +14,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor2',
-        name: 'Sd 101',
+        name: 'Guidance for College Department SD 101',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/sd1st2.jpg',
         category: ['Sd bldg.','Offices'],
@@ -30,7 +30,7 @@ const sdGroundFloor = [
 
     {
         id: 'SdGroundfloor3',
-        name: 'Sd 102 ,103',
+        name: 'HRMDO Sd 102, 103',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(3).jpg',
         category: ['Sd bldg.','Offices'],
@@ -56,7 +56,7 @@ const sdGroundFloor = [
 
         {
         id: 'SdGroundfloor5',
-        name: 'Sd 105, 106',
+        name: 'Corporate affair office Sd 105, 106',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(5).jpg',
         category: ['Sd bldg.','Offices'],
@@ -81,7 +81,7 @@ const sdGroundFloor = [
     },
        {
         id: 'SdGroundfloor7',
-        name: 'Sd 107,108, 109',
+        name: 'Principal office Sd107, Office of the chaplain 108, comm ext servc. 109',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(7).jpg',
         category: ['Sd bldg.','Offices'],
@@ -94,7 +94,7 @@ const sdGroundFloor = [
 
       {
         id: 'SdGroundfloor8',
-        name: 'Sd 110,111,112',
+        name: 'Theology cle prog 110, ERMDO/NSTP/CWTS 111, Discipline council office 112 ',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(8).jpg',
         category: ['Sd bldg.','Offices'],
@@ -118,7 +118,7 @@ const sdGroundFloor = [
 },
     {
         id: 'SdGroundfloor10',
-        name: 'Sd 114',
+        name: 'OSAS Sd 114',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(10).jpg',
         category: ['Sd bldg.','Offices'],
