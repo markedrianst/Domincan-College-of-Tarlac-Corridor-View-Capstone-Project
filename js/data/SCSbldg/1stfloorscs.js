@@ -28,10 +28,10 @@ const scsfirstfloor =[
        }
     },
     {  id: 'scs1st3',
-    name: 'SCS 104',
+    name: 'SHS Faculty Room SCS 104',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/scs1st2.jpg',
-    category: ['SCS bldg.'],
+    category: ['SCS bldg.','Offices'],
     connections: ['scs1st2','scs1st4'],
     arrowPositions: {
       'scs1st2': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'},
@@ -42,7 +42,7 @@ const scsfirstfloor =[
     },
     { 
          id: 'scs1st4',
-    name: 'SCS 101,102,103',
+    name: 'MIS Office SCS 101,SHS Principal Office SCS 102,SHS Faculty Room SCS103',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/scs1st1.jpg',
     category: ['SCS bldg.'],

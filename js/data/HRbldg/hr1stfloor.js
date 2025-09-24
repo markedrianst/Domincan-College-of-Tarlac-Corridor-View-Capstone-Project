@@ -18,7 +18,7 @@ const hr1stfloor = [
     name: 'CCS OFFICE',
     description: 'HR bldg. 1st floor',
     imageUrl: 'images/HRbldg/HR1stfloor2.jpg',
-    category: ['HR bldg.'],
+    category: ['HR bldg.','Offices'],
     connections: ['shortcutsdtoccs','Hr1rd2','sn1st1'],
     arrowPositions: {
         'shortcutsdtoccs': { phi: Math.PI / 3, theta: Math.PI * .9, direction: 'up'},
@@ -31,9 +31,9 @@ const hr1stfloor = [
 {  //connects to scs2nd to scs3rd
     id: 'Hr1rd2', 
     name: 'CLA/CED OFFICE',
-    description: 'HR bldg. 3rd floor',
+    description: 'HR bldg. 1st floor',
     imageUrl: 'images/HRbldg/HR1stfloor1.jpg',
-    category: ['HR bldg.'],
+    category: ['HR bldg.','Offices'],
     connections: ['Hr1rd1','Hr1rd3'],
     arrowPositions: {
         'Hr1rd1': { phi: Math.PI / 3, theta: Math.PI * .92, direction: 'up'},
@@ -50,7 +50,7 @@ const hr1stfloor = [
     name: 'CBA,CCJE',
     description: 'HR bldg. 1st floor',
     imageUrl: 'images/HRbldg/HR1stfloor4.jpg',
-    category: ['HR bldg.'],
+    category: ['HR bldg.','Offices'],
     connections: ['Hr1rd3','Hr2nd2','Hr1rd5'],
     arrowPositions: {
         'Hr1rd3': { phi: Math.PI / 3, theta: Math.PI * .9, direction: 'up'},
@@ -63,9 +63,9 @@ const hr1stfloor = [
 {  //connects to scs2nd to scs3rd
     id: 'Hr1rd3',
     name: 'BSHM OFFICE',
-    description: 'HR bldg. 3rd floor',
+    description: 'HR bldg. 1st floor',
     imageUrl: 'images/HRbldg/HR1stfloor3.jpg',
-    category: ['HR bldg.'],
+    category: ['HR bldg.','Offices'],
     connections: [,'Hr1rd4','Hr1rd2'],
     arrowPositions: {
       
@@ -77,7 +77,7 @@ const hr1stfloor = [
 {  //connects to scs2nd to scs3rd
     id: 'Hr1rd5',
     name: 'Center Hall',
-    description: 'HR bldg. 3rd floor',
+    description: 'HR bldg. 1st floor',
     imageUrl: 'images/HRbldg/HR1stfloor5.jpg',
     category: ['HR bldg.'],
     connections: ['Hr1rd4','Hr1rd6','SDtoOLF4','connectinghallwaytolp'],
@@ -94,9 +94,9 @@ const hr1stfloor = [
 {  //connects to scs2nd to scs3rd
     id: 'Hr1rd6',
     name: 'Center Hall',
-    description: 'HR bldg. 3rd floor',
+    description: 'HR bldg. 1st floor',
     imageUrl: 'images/HRbldg/HR1stfloor6.jpg',
-    category: ['HR bldg.'],
+    category: ['HR bldg.','Offices'],
     connections: ['Hr1rd5','Hr3rd2'],
     arrowPositions: {
         'Hr1rd5': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up'},
