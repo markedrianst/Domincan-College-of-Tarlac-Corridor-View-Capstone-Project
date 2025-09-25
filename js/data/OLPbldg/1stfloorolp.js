@@ -35,8 +35,10 @@ const olp1stfloor =[
     description: 'OLP bldg. Ground Floor',
     imageUrl: 'images/OLPbldg/OLP1stfloor(court).jpg',
     category: ['OLP bldg.'],
-    connections: ['connectinghallwaytolp'],
+    connections: ['connectinghallwaytolp','slr1st5'],
     arrowPositions: {
+
+      'slr1st5': { phi: Math.PI / 3, theta: Math.PI * 2.1, direction: 'up'},
       'connectinghallwaytolp': { phi: Math.PI / 3, theta: Math.PI * .7, direction: 'up'},
  
         
