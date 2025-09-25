@@ -106,7 +106,7 @@ const sdGroundFloor = [
 },
       {
         id: 'SdGroundfloor9',
-        name: 'Sd 113',
+        name: ' OSAS Sd 113',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(9).jpg',
         category: ['Sd bldg.','Offices'],
@@ -118,7 +118,7 @@ const sdGroundFloor = [
 },
     {
         id: 'SdGroundfloor10',
-        name: 'OSAS Sd 114',
+        name: 'SSC Sd 114',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SDFirstfloor(10).jpg',
         category: ['Sd bldg.','Offices'],
