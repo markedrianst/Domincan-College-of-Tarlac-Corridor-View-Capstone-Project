@@ -3,7 +3,7 @@ const sdGroundFloor = [
         id: 'SdGroundFloor1',
         name: 'Access in SD and SCS bldg.',
         description: 'Connects entrance to classrooms', 
-        imageUrl: 'images/Sdbldg/sd1st1.jpg',
+        imageUrl: 'images/Sdbldg/sdcornerstairs1.jpg',
         category: ['Sd bldg.'],
         connections: ['SdGroundfloor2', 'entrance', 'stairs'],
         arrowPositions: {
@@ -16,7 +16,7 @@ const sdGroundFloor = [
         id: 'SdGroundfloor2',
         name: 'Guidance for College Department SD 101',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/sd1st2.jpg',
+        imageUrl: 'images/Sdbldg/entrance3.jpg',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundFloor1', 'SdGroundfloor3','scs1st1'],
         arrowPositions: {
@@ -32,7 +32,7 @@ const sdGroundFloor = [
         id: 'SdGroundfloor3',
         name: 'HRMDO Sd 102, 103',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SDFirstfloor(3).jpg',
+        imageUrl: 'images/Sdbldg/Sd101.jpg',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor2', 'SdGroundfloor4'],
         arrowPositions: { 
@@ -45,7 +45,7 @@ const sdGroundFloor = [
         id: 'SdGroundfloor4',
         name: 'Sd 104',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SDFirstfloor(4).jpg',
+        imageUrl: 'images/Sdbldg/Sd102.jpg',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor3', 'SdGroundfloor5'],
         arrowPositions: {
@@ -58,7 +58,7 @@ const sdGroundFloor = [
         id: 'SdGroundfloor5',
         name: 'Corporate affair office Sd 105, 106',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SDFirstfloor(5).jpg',
+        imageUrl: 'images/Sdbldg/Sd103.jpg',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor4', 'SdGroundfloor6'],
         arrowPositions: {
@@ -70,7 +70,7 @@ const sdGroundFloor = [
         id: 'SdGroundfloor6',
         name: 'Sd middle Stairs',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SDFirstfloor(6).jpg',
+        imageUrl: 'images/Sdbldg/Sd104.jpg',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor5','SdGroundfloor7','midstairscr'],
         arrowPositions: {
@@ -83,7 +83,7 @@ const sdGroundFloor = [
         id: 'SdGroundfloor7',
         name: 'Principal office Sd107, Office of the chaplain 108, comm ext servc. 109',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SDFirstfloor(7).jpg',
+        imageUrl: 'images/Sdbldg/Sd105.jpg',
         category: ['Sd bldg.','Offices'],
         connections: [ 'SdGroundfloor6','SdGroundfloor8'],
         arrowPositions: {
