@@ -3,7 +3,7 @@ const entrancePanoramas = [
     id: 'entrance',
     name: 'Main Entrance',
     description: 'Domimicam College of Tarlac Main Entrance',
-    imageUrl: 'images/Sdbldg/MainEntrance.jpg',
+    imageUrl: 'images/Sdbldg/MainEntrance.webp',
     category: ['entrance'],
     connections: ['SdGroundFloor1'],
     arrowPositions: {
