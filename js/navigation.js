@@ -143,22 +143,39 @@ class NavigationManager {
 
       const targetPano = getPanoramaById(loadedId);
       const sourcePano = getPanoramaById(fromId);
+if (window.panoramaViewer) {
+  let lat = null, lon = null;
 
-      let chosen = null;
-      if (targetPano?.arrowPositions?.[fromId]) {
-        chosen = targetPano.arrowPositions[fromId];
-      } else if (sourcePano?.arrowPositions?.[loadedId]) {
-        const a = sourcePano.arrowPositions[loadedId];
-        chosen = { phi: a.phi, theta: a.theta + Math.PI };
-      }
+  if (targetPano?.defaultView) {
+    // 👁 If pano defines a defaultView → use it
+    lat = 50 - (targetPano.defaultView.phi * 180 / Math.PI);
+    lon = (targetPano.defaultView.theta * 180 / Math.PI);
+  } else if (window.navigationPath && window.navigationStep < window.navigationPath.length) {
+    // 🚀 Navigation mode → face next arrow
+    const nextId = window.navigationPath[window.navigationStep];
+    if (targetPano?.arrowPositions?.[nextId]) {
+      const forward = targetPano.arrowPositions[nextId];
+      lat = 50 - (forward.phi * 180 / Math.PI);
+      lon = (forward.theta * 180 / Math.PI);
+    }
+  } else {
+    // 🌐 Free explore mode → face back where you came from
+    if (targetPano?.arrowPositions?.[fromId]) {
+      const back = targetPano.arrowPositions[fromId];
+      lat = 60 - (back.phi * 180 / Math.PI);
+      lon = (back.theta * 180 / Math.PI);
+    }
+  }
 
-      if (chosen && window.panoramaViewer) {
-        const lat = 60 - (chosen.phi * 180 / Math.PI);
-        let lon = (chosen.theta * 180 / Math.PI);
-        lon = ((lon % 360) + 360) % 360;
-        window.panoramaViewer.lat = lat;
-        window.panoramaViewer.lon = lon;
-      }
+  if (lat !== null && lon !== null) {
+    lon = ((lon % 360) + 360) % 360;
+    setTimeout(() => {
+      window.panoramaViewer.lat = lat;
+      window.panoramaViewer.lon = lon;
+    }, 100); // slight delay so pano fully loads
+  }
+}
+
 
       // Navigation path updates
       if (window.navigationPath) {

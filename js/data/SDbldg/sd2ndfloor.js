@@ -4,14 +4,17 @@ const sd2ndFloor = [
         id: 'stairs',
         name: 'Staircase',
         description: 'Staircase leading to the second floor',
-        imageUrl: 'images/Sdbldg/CornerStairs2ndfloorSD.jpg',
+        imageUrl: 'images/Sdbldg/stairs.jpg',
         category: [],
         connections: ['2ndFloorSD', 'SdGroundFloor1'],
         arrowPositions: {
-            '2ndFloorSD': { phi: Math.PI / 2.6, theta: Math.PI * 0 ,direction:'up' }, // Up-forward
+            '2ndFloorSD': { phi: Math.PI / 2.6, theta: Math.PI * 2.1 ,direction:'up' }, // Up-forward
             'SdGroundFloor1': { phi: Math.PI / 2.9, theta: Math.PI * 1.85,direction:'down' } // Right
-        }
+        },
+          defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 2.1 } // 👈 always face 2nd floor
+
     },
+    
     {
         id: '2ndFloorSD',
         name: '2ndFloorSD',
