@@ -162,7 +162,7 @@ if (window.panoramaViewer) {
     // 🌐 Free explore mode → face back where you came from
     if (targetPano?.arrowPositions?.[fromId]) {
       const back = targetPano.arrowPositions[fromId];
-      lat = 60 - (back.phi * 180 / Math.PI);
+      lat = 50 - (back.phi * 180 / Math.PI);
       lon = (back.theta * 180 / Math.PI);
     }
   }
