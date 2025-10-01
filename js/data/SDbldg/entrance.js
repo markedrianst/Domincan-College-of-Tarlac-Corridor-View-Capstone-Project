@@ -7,7 +7,7 @@ const entrancePanoramas = [
     category: ['entrance'],
     connections: ['SdGroundFloor1'],
     arrowPositions: {
-      'SdGroundFloor1': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction: 'up' }
+      'SdGroundFloor1': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction: 'up' }
     }
   }
 ];
