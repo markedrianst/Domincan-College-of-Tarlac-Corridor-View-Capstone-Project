@@ -71,7 +71,7 @@ const sdGroundFloor = [
         id: 'SdGroundfloor6',
         name: 'SD 103',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SD102 (2).webp',
+        imageUrl: 'images/Sdbldg/Sd103.webp',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor5','SdGroundfloor7'],
         arrowPositions: {
