@@ -26,7 +26,7 @@ const entrancePanoramas = [
     id: 'entrance2',
     name: 'SD Building - Ground Floor Hallway',
     description: 'SD Building Ground Floor Hallway View',
-    imageUrl: 'images/Sdbldg/MainEntrance3.webp',
+    imageUrl: 'images/Sdbldg/Mainentrance3.webp',
     category: ['entrance'],
     connections: ['SdGroundFloor1', 'entrance1'],
     arrowPositions: {
