@@ -4,7 +4,32 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* Fix for touch delays and performance */
+.zoom-controls button {
+    touch-action: manipulation;
+}
 
+canvas {
+    display: block;
+    outline: none;
+}
+
+/* Ensure loading screen is properly styled */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    z-index: 1000;
+    pointer-events: none;
+}
 html, body {
     margin: 0;
     padding: 0;
@@ -251,7 +276,7 @@ main {
 }
 
 /* Loading Screen */
-/* Loading Screen */
+/* Loading Screen
 .loading-screen {
     position: fixed;
     top: 0;
@@ -259,7 +284,7 @@ main {
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.95);
-    display: none; /* hidden by default */
+    display: none; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -274,7 +299,7 @@ main {
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 15px;
-}
+} */
 #cancelNavBtn {
   position: absolute;
   top: 20px;
