@@ -34,9 +34,10 @@ const sd3rdFloor = [
         description: 'Side stairs to third floor',
         imageUrl: 'images/Sdbldg/1.3 SD SIDE STAIRS 3RD FLOOR .webp',
         category: 'Sd bldg.',
-        connections: ['Sd3rdfloorhallway','Sd3rdfloormidstairs'],
+        connections: ['Sd3rdfloorhallway','Sd3rdfloormidstairs','Sd4thfloorcornerstairs'],
         arrowPositions: {
             'Sd3rdfloormidstairs': { phi: Math.PI / 4, theta: -0.3, direction:'down' },
+            'Sd4thfloorcornerstairs': { phi: Math.PI / 3, theta: 0.3, direction:'up' },
             'Sd3rdfloorhallway': { phi: Math.PI / 3, theta: 3.3, direction:'up' }
         }
     },
@@ -116,7 +117,8 @@ const sd3rdFloor = [
     arrowPositions: {
         'Sd3rdfloor304': { phi: Math.PI / 3, theta: -3, direction:'up' },
         'Sd3rdfloor305': { phi: Math.PI / 2.8, theta: 0, direction:'up' },
-        'Sd3rdfloormidstairs4': { phi: Math.PI / 3.8, theta: 3.7, direction:'down' }
+        'Sd3rdfloormidstairs4': { phi: Math.PI / 3.8, theta: 3.7, direction:'down' },
+        'Sd4thfloormidstairs': { phi: Math.PI / 3.8, theta: -1.3, direction:'up' }
     }
 },
 
