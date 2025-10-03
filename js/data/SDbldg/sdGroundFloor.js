@@ -5,11 +5,11 @@ const sdGroundFloor = [
         description: 'Connects entrance to classrooms', 
         imageUrl: 'images/Sdbldg/Sd1.webp',
         category: ['Sd bldg.'],
-        connections: ['SdGroundfloor2', 'entrance2', 'stairs'],
+        connections: ['SdGroundfloor2', 'entrance2', 'Sd2ndfloorcorner1'],
         arrowPositions: {
             'SdGroundfloor2': { phi: Math.PI / 2.6, theta: Math.PI * 2 ,direction: 'up' }, // Right
             'entrance2': { phi: Math.PI / 2.6, theta: Math.PI * 0.90,direction: 'up' }, // Back
-            'stairs': { phi: Math.PI / 2.6, theta: Math.PI * 1.5 ,direction: 'up' } // Up-left
+            'Sd2ndfloorcorner1': { phi: Math.PI / 2.6, theta: Math.PI * 1.5 ,direction: 'up' } // Up-left
         }
     },
     {
