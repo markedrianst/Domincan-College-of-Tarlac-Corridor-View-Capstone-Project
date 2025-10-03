@@ -121,10 +121,11 @@ const sdGroundFloor = [
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd107.webp',
         category: ['Sd bldg.','Offices'],
-        connections: ['SdGroundfloor9','SdGroundfloor11'],
+        connections: ['SdGroundfloor9','SdGroundfloor11','sd2ndfloorcr'],
         arrowPositions: {
             'SdGroundfloor11': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
-            'SdGroundfloor9': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+            'SdGroundfloor9': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' },
+            'sd2ndfloorcr': { phi: Math.PI / 2.6, theta: Math.PI * 1.5, direction:'up' }
         }
     },
     {
