@@ -24,7 +24,9 @@ const sd2ndfloor = [
     arrowPositions: {
       'Sd2ndfloorcorner1': { phi: Math.PI * 5 / 3, theta: 2.7, direction: 'down' }, // replaced negative phi
       'Sd2ndfloorcornerstairs': { phi: Math.PI / 3, theta: 3.2, direction: 'up' }
-    }
+    },
+        defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 2 } // always face 2nd floor
+
   },
   // Existing corner stairs
   {
