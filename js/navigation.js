@@ -133,85 +133,82 @@ class NavigationManager {
     const v = vector.clone().project(camera);
     return { x: (v.x * 0.5 + 0.5) * width, y: (-v.y * 0.5 + 0.5) * height };
   }
+navigateTo(panoramaId) {
+  const fromId = this.currentPanoramaId;
 
-  navigateTo(panoramaId) {
-    const fromId = this.currentPanoramaId;
+  const onLoaded = (e) => {
+    const loadedId = e?.detail?.id;
+    if (!loadedId) return;
 
-    const onLoaded = (e) => {
-      const loadedId = e?.detail?.id;
-      if (!loadedId) return;
+    const targetPano = getPanoramaById(loadedId);
+    
+    if (window.panoramaViewer) {
+      let lat = null, lon = null;
 
-      const targetPano = getPanoramaById(loadedId);
-      const sourcePano = getPanoramaById(fromId);
-if (window.panoramaViewer) {
-  let lat = null, lon = null;
-
-  if (targetPano?.defaultView) {
-    // 👁 If pano defines a defaultView → use it
-    lat = 50 - (targetPano.defaultView.phi * 180 / Math.PI);
-    lon = (targetPano.defaultView.theta * 180 / Math.PI);
-  } else if (window.navigationPath && window.navigationStep < window.navigationPath.length) {
-    // 🚀 Navigation mode → face next arrow
-    const nextId = window.navigationPath[window.navigationStep];
-    if (targetPano?.arrowPositions?.[nextId]) {
-      const forward = targetPano.arrowPositions[nextId];
-      lat = 50 - (forward.phi * 180 / Math.PI);
-      lon = (forward.theta * 180 / Math.PI);
-    }
-  } else {
-    // 🌐 Free explore mode → face back where you came from
-    if (targetPano?.arrowPositions?.[fromId]) {
-      const back = targetPano.arrowPositions[fromId];
-      lat = 50 - (back.phi * 180 / Math.PI);
-      lon = (back.theta * 180 / Math.PI);
-    }
-  }
-
-  if (lat !== null && lon !== null) {
-    lon = ((lon % 360) + 360) % 360;
-    setTimeout(() => {
-      window.panoramaViewer.lat = lat;
-      window.panoramaViewer.lon = lon;
-    }, 100); // slight delay so pano fully loads
-  }
-}
-
-
-      // Navigation path updates
-      if (window.navigationPath) {
-        if (loadedId === window.navigationPath[window.navigationStep]) {
-          window.navigationStep++;
-          const guide = document.getElementById("location-info");
-          if (guide) {
-            if (window.navigationStep < window.navigationPath.length) {
-              const nextId = window.navigationPath[window.navigationStep];
-              guide.querySelector("#location-description").innerText =
-                window.navigationStep === window.navigationPath.length - 1
-                  ? "🚩 Almost there... final step!"
-                  : `Next: ${getPanoramaById(nextId).name}`;
-            } else {
-              guide.querySelector("#location-description").innerText =
-                "✅ You’ve arrived at your destination!";
-              const cancelBtn = document.getElementById("cancelNavBtn");
-              if (cancelBtn) cancelBtn.style.display = "none";
-              window.navigationPath = null;
-            }
-          }
-          this.updateConnections(loadedId);
+      if (targetPano?.defaultView) {
+        // 👁 If pano defines a defaultView → use it
+        lat = 50 - (targetPano.defaultView.phi * 180 / Math.PI);
+        lon = (targetPano.defaultView.theta * 180 / Math.PI);
+      } else if (window.navigationPath) {
+        // 🚀 NAVIGATION MODE: Use the same logic as explore mode - face back toward where we came from
+        if (targetPano?.arrowPositions?.[fromId]) {
+          const back = targetPano.arrowPositions[fromId];
+          lat = 50 - (back.phi * 180 / Math.PI);
+          lon = (back.theta * 180 / Math.PI);
+        }
+      } else {
+        // 🌐 Free explore mode → face back where you came from
+        if (targetPano?.arrowPositions?.[fromId]) {
+          const back = targetPano.arrowPositions[fromId];
+          lat = 50 - (back.phi * 180 / Math.PI);
+          lon = (back.theta * 180 / Math.PI);
         }
       }
-    };
 
-    window.addEventListener('panoramaLoaded', onLoaded, { once: true });
-
-    if (window.panoramaViewer) {
-      if (window.transitionManager) {
-        window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
-      } else {
-        window.panoramaViewer.loadPanorama(panoramaId);
+      if (lat !== null && lon !== null) {
+        lon = ((lon % 360) + 360) % 360;
+        setTimeout(() => {
+          window.panoramaViewer.lat = lat;
+          window.panoramaViewer.lon = lon;
+        }, 100); // slight delay so pano fully loads
       }
     }
+
+    // Navigation path updates
+    if (window.navigationPath) {
+      if (loadedId === window.navigationPath[window.navigationStep]) {
+        window.navigationStep++;
+        const guide = document.getElementById("location-info");
+        if (guide) {
+          if (window.navigationStep < window.navigationPath.length) {
+            const nextId = window.navigationPath[window.navigationStep];
+            guide.querySelector("#location-description").innerText =
+              window.navigationStep === window.navigationPath.length - 1
+                ? "🚩 Almost there... final step!"
+                : `Next: ${getPanoramaById(nextId).name}`;
+          } else {
+            guide.querySelector("#location-description").innerText =
+              "✅ You've arrived at your destination!";
+            const cancelBtn = document.getElementById("cancelNavBtn");
+            if (cancelBtn) cancelBtn.style.display = "none";
+            window.navigationPath = null;
+          }
+        }
+        this.updateConnections(loadedId);
+      }
+    }
+  };
+
+  window.addEventListener('panoramaLoaded', onLoaded, { once: true });
+
+  if (window.panoramaViewer) {
+    if (window.transitionManager) {
+      window.transitionManager.startTransition(this.currentPanoramaId, panoramaId);
+    } else {
+      window.panoramaViewer.loadPanorama(panoramaId);
+    }
   }
+} 
 }
 
 // Pathfinding & Navigation helpers
