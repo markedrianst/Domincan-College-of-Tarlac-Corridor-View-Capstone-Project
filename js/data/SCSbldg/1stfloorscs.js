@@ -5,9 +5,9 @@ const scsfirstfloor =[
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/scs1st4.jpg',
     category: ['SCS bldg.'],
-    connections: ['SdGroundfloor2','scs1st2'],
+    connections: ['SdGroundfloor4','scs1st2'],
     arrowPositions: {
-      'SdGroundfloor2': { phi: Math.PI / 3, theta: Math.PI * 2.05, direction: 'up'},
+      'SdGroundfloor4': { phi: Math.PI / 3, theta: Math.PI * 2.05, direction: 'up'},
       'scs1st2': { phi: Math.PI / 3, theta: Math.PI * 1.15, direction: 'up'}
 
         

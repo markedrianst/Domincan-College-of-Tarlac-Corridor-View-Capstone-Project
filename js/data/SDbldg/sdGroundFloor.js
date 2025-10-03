@@ -3,26 +3,26 @@ const sdGroundFloor = [
         id: 'SdGroundFloor1',
         name: 'Access in SD and SCS bldg.',
         description: 'Connects entrance to classrooms', 
-        imageUrl: 'images/Sdbldg/sdcornerstairs1.jpg',
+        imageUrl: 'images/Sdbldg/Sd1.webp',
         category: ['Sd bldg.'],
-        connections: ['SdGroundfloor2', 'entrance', 'stairs'],
+        connections: ['SdGroundfloor2', 'entrance2', 'Sd2ndfloorcorner1'],
         arrowPositions: {
             'SdGroundfloor2': { phi: Math.PI / 2.6, theta: Math.PI * 2 ,direction: 'up' }, // Right
-            'entrance': { phi: Math.PI / 2.6, theta: Math.PI * 0.85,direction: 'up' }, // Back
-            'stairs': { phi: Math.PI / 2.6, theta: Math.PI * 1.5 ,direction: 'up' } // Up-left
+            'entrance2': { phi: Math.PI / 2.6, theta: Math.PI * 0.90,direction: 'up' }, // Back
+            'Sd2ndfloorcorner1': { phi: Math.PI / 2.6, theta: Math.PI * 1.5 ,direction: 'up' } // Up-left
         }
     },
     {
         id: 'SdGroundfloor2',
         name: 'Guidance for College Department SD 101',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/entrance3.jpg',
+        imageUrl: 'images/Sdbldg/SD101.webp',
         category: ['Sd bldg.','Offices'],
-        connections: ['SdGroundFloor1', 'SdGroundfloor3','scs1st1'],
+        connections: ['SdGroundFloor1', 'SdGroundfloor3'],
         arrowPositions: {
-        'SdGroundfloor3': { phi: Math.PI / 2.6, theta: Math.PI * 1.9,direction:'up' }, // Right
+        'SdGroundfloor3': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
         'SdGroundFloor1': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction: 'up' }, // Back
-         'scs1st1': { phi: Math.PI / 2.6, theta: Math.PI * .5,direction: 'up' }, // Back
+        
       
       
         }
@@ -30,9 +30,9 @@ const sdGroundFloor = [
 
     {
         id: 'SdGroundfloor3',
-        name: 'HRMDO Sd 102, 103',
+        name: 'Guidance for College Department SD 101',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/Sd101.jpg',
+        imageUrl: 'images/Sdbldg/Sd102.webp',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor2', 'SdGroundfloor4'],
         arrowPositions: { 
@@ -43,22 +43,23 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor4',
-        name: 'Sd 104',
+        name: 'SD,SCS Way',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/Sd102.jpg',
+        imageUrl: 'images/Sdbldg/toSCS.webp',
         category: ['Sd bldg.','Offices'],
-        connections: ['SdGroundfloor3', 'SdGroundfloor5'],
+        connections: ['SdGroundfloor3', 'SdGroundfloor5','scs1st1'],
         arrowPositions: {
             'SdGroundfloor5': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
-            'SdGroundfloor3': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction: 'up' }//Right
+            'SdGroundfloor3': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction: 'up' },//Right
+            'scs1st1': { phi: Math.PI / 2.6, theta: Math.PI *2.5,direction: 'up' }, // Back
         }
     },
 
         {
         id: 'SdGroundfloor5',
-        name: 'Corporate affair office Sd 105, 106',
+          name: 'Sd 102',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/Sd103.jpg',
+        imageUrl: 'images/Sdbldg/SD102 (2).webp',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor4', 'SdGroundfloor6'],
         arrowPositions: {
@@ -66,69 +67,162 @@ const sdGroundFloor = [
             'SdGroundfloor4': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction: 'up' }//Right
         }
     },
-        {
+            {
         id: 'SdGroundfloor6',
-        name: 'Sd middle Stairs',
+        name: 'SD 103',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/Sd104.jpg',
+        imageUrl: 'images/Sdbldg/SD103.webp',
         category: ['Sd bldg.','Offices'],
-        connections: ['SdGroundfloor5','SdGroundfloor7','midstairscr'],
+        connections: ['SdGroundfloor5','SdGroundfloor7'],
         arrowPositions: {
-            'SdGroundfloor7': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
-            'SdGroundfloor5': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction: 'up' },//Right
-            'midstairscr': { phi: Math.PI / 2.6, theta: Math.PI * 1.47,direction:'up'} // Right
+            'SdGroundfloor7': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor5': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
         }
     },
-       {
+    {
         id: 'SdGroundfloor7',
-        name: 'Principal office Sd107, Office of the chaplain 108, comm ext servc. 109',
+        name: 'SD 104',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/Sd105.jpg',
+        imageUrl: 'images/Sdbldg/Sd104.webp',
         category: ['Sd bldg.','Offices'],
-        connections: [ 'SdGroundfloor6','SdGroundfloor8'],
+        connections: ['SdGroundfloor6','SdGroundfloor8'],
         arrowPositions: {
-            'SdGroundfloor8': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
-            'SdGroundfloor6': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction:'up' }// Right        }
-    }
-},
-
-      {
+            'SdGroundfloor8': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor6': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+        }
+    },
+    {
         id: 'SdGroundfloor8',
-        name: 'Theology cle prog 110, ERMDO/NSTP/CWTS 111, Discipline council office 112 ',
+        name: 'SD 105',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SDFirstfloor(8).jpg',
+        imageUrl: 'images/Sdbldg/Sd105.webp',
         category: ['Sd bldg.','Offices'],
-        connections: [ 'SdGroundfloor7','SdGroundfloor9'],
+        connections: ['SdGroundfloor7','SdGroundfloor9'],
         arrowPositions: {
-            'SdGroundfloor9': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
-            'SdGroundfloor7': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction:'up' }// Right        }
-    }
-},
-      {
+            'SdGroundfloor9': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor7': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+        }
+    },
+    {
         id: 'SdGroundfloor9',
-        name: ' OSAS Sd 113',
+        name: 'SD 106',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SDFirstfloor(9).jpg',
+        imageUrl: 'images/Sdbldg/Sd106.webp',
         category: ['Sd bldg.','Offices'],
-        connections: [ 'SdGroundfloor8','SdGroundfloor10'],
+        connections: ['SdGroundfloor8','SdGroundfloor10'],
         arrowPositions: {
-            'SdGroundfloor10': { phi: Math.PI / 2.6, theta: Math.PI * 2,direction:'up' }, // Right
-            'SdGroundfloor8': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction:'up' }// Right        }
-    }
-},
+            'SdGroundfloor10': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor8': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+        }
+    },
     {
         id: 'SdGroundfloor10',
-        name: 'SSC Sd 114',
+        name: 'SD Middle Stairs',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SDFirstfloor(10).jpg',
+        imageUrl: 'images/Sdbldg/Sd107.webp',
         category: ['Sd bldg.','Offices'],
-        connections: [ 'SdGroundfloor9','SDtoOLF1','shortcutsdtoccs'],
+        connections: ['SdGroundfloor9','SdGroundfloor11','sd2ndfloorcr'],
         arrowPositions: {
-             
-            'SDtoOLF1': { phi: Math.PI / 2.6, theta: Math.PI * 2.53,direction:'up' }, // Right
-            'SdGroundfloor9': { phi: Math.PI / 2.6, theta: Math.PI * 1,direction:'up' },// Right       
-            'shortcutsdtoccs': { phi: Math.PI / 2.6, theta: Math.PI * 1.7,direction:'up' },// Right 
-             
+            'SdGroundfloor11': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor9': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' },
+            'sd2ndfloorcr': { phi: Math.PI / 2.6, theta: Math.PI * 1.5, direction:'up' }
+        }
+    },
+    {
+        id: 'SdGroundfloor11',
+        name: 'SD 107',
+        description: 'Sd bldg. 1st floor',
+        imageUrl: 'images/Sdbldg/Sd108.webp',
+        category: ['Sd bldg.','Offices'],
+        connections: ['SdGroundfloor10','SdGroundfloor12'],
+        arrowPositions: {
+            'SdGroundfloor12': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor10': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+        }
+    },
+    {
+        id: 'SdGroundfloor12',
+        name: 'SD 108',
+        description: 'Sd bldg. 1st floor',
+        imageUrl: 'images/Sdbldg/Sd109.webp',
+        category: ['Sd bldg.','Offices'],
+        connections: ['SdGroundfloor11','SdGroundfloor13'],
+        arrowPositions: {
+            'SdGroundfloor13': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor11': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+        }
+    },
+    {
+        id: 'SdGroundfloor13',
+        name: 'SD 109',
+        description: 'Sd bldg. 1st floor',
+        imageUrl: 'images/Sdbldg/Sd111.webp',
+        category: ['Sd bldg.','Offices'],
+        connections: ['SdGroundfloor12','SdGroundfloor14'],
+        arrowPositions: {
+            'SdGroundfloor14': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor12': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+        }
+    },
+    {
+        id: 'SdGroundfloor14',
+        name: 'SD 110',
+        description: 'Sd bldg. 1st floor',
+        imageUrl: 'images/Sdbldg/Sd112.webp',
+        category: ['Sd bldg.','Offices'],
+        connections: ['SdGroundfloor13','SdGroundfloor15'],
+        arrowPositions: {
+            'SdGroundfloor15': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor13': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+        }
+    },
+    {
+        id: 'SdGroundfloor15',
+        name: 'SD 111',
+        description: 'Sd bldg. 1st floor',
+        imageUrl: 'images/Sdbldg/Sd113.webp',
+        category: ['Sd bldg.','Offices'],
+        connections: ['SdGroundfloor14','SdGroundfloor16'],
+        arrowPositions: {
+            'SdGroundfloor16': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+            'SdGroundfloor14': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+        }
+    },
+   {
+    id: 'SdGroundfloor16',
+    name: 'SD 112',
+    description: 'Sd bldg. 1st floor',
+    imageUrl: 'images/Sdbldg/Sd114.webp',
+    category: ['Sd bldg.','Offices'],
+    connections: ['SdGroundfloor15','SdGroundfloor18'],
+    arrowPositions: {
+        'SdGroundfloor18': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+        'SdGroundfloor15': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
     }
 },
+{
+    id: 'SdGroundfloor18',
+    name: 'SD 113',
+    description: 'Sd bldg. 1st floor',
+    imageUrl: 'images/Sdbldg/SD 113.webp',
+    category: ['Sd bldg.','Offices'],
+    connections: ['SdGroundfloor16','SdGroundfloor19'],
+    arrowPositions: {
+        'SdGroundfloor19': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }, 
+        'SdGroundfloor16': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' }
+    }
+},
+{
+    id: 'SdGroundfloor19',
+    name: 'SD 114',
+    description: 'Sd bldg. 1st floor',
+    imageUrl: 'images/Sdbldg/SD 114.webp',
+    category: ['Sd bldg.','Offices'],
+    connections: ['SdGroundfloor18','SDtoOLF1','shortcutsdtoccs'],
+    arrowPositions: {
+        'SdGroundfloor18': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' },
+        'SDtoOLF1': { phi: Math.PI / 2.6, theta: Math.PI * 2.53, direction:'up' }, 
+        'shortcutsdtoccs': { phi: Math.PI / 2.6, theta: Math.PI * 1.7, direction:'up' }
+    }
+}
 ];

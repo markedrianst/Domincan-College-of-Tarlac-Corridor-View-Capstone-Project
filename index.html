@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Indoor Street View</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏫</text></svg>">
+    <!-- Preload Three.js from CDN -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
 </head>
 <body>
     <div class="container">
-  <header>
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search locations...">
-        <div id="category-bar" class="category-bar"></div>
-        <div id="search-results" class="search-results"></div>
-    </div>
-</header>
+        <header>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search locations...">
+                <div id="category-bar" class="category-bar"></div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </header>
         <main>
             <div id="panorama-container"></div>
             <div id="nav-directions"></div>
@@ -26,62 +27,64 @@
                 <p id="location-description"></p>
             </div>
             <button id="cancelNavBtn" onclick="cancelNavigation()" style="display:none;">
-  Cancel Navigation
-</button>
+                Cancel Navigation
+            </button>
         </main>
         
-    <div id="loading-screen" class="loading-screen">
-    <div class="spinner"></div>
-    <p>Loading panorama..</p>
-</div>
+        <div id="loading-screen" class="loading-screen">
+            <div class="spinner"></div>
+            <p>Loading panorama..</p>
+        </div>
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> 
-    
-    
-    <!-- SD BLDG. -->
+    <!-- Load only ONE version of Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Building Data Files -->
+    <!-- SD BLDG -->
     <script src="js/data/SDbldg/entrance.js"></script>
     <script src="js/data/SDbldg/sdGroundFloor.js"></script>
     <script src="js/data/SDbldg/sd2ndfloor.js"></script>
     <script src="js/data/SDbldg/sd3rdfloor.js"></script>
     <script src="js/data/SDbldg/sd4thfloor.js"></script>
-<!-- SCS BLDG -->
+    
+    <!-- SCS BLDG -->
     <script src="js/data/SCSbldg/1stfloorscs.js"></script>
     <script src="js/data/SCSbldg/2ndfloorscs.js"></script>
     <script src="js/data/SCSbldg/3rdfloorscs.js"></script>
     <script src="js/data/SCSbldg/4thfloorscs.js"></script>
-<!-- HR BLDG -->
-    <!-- <script src="js/data/HRbldg/1stfloorhr.js"></script> -->
-    <!-- <script src="js/data/HRbldg/2ndfloorhr.js"></script>
-    <script src="js/data/HRbldg/3rdfloorhr.js"></script>
-    <script src="js/data/HRbldg/4thfloorhr.js"></script> -->
 
-<!-- OLF BLDG -->
+    <!-- OLF BLDG -->
     <script src="js/data/OLFbldg/olfgroundfloor.js"></script>
     <script src="js/data/SDtoOLF-hallway/sd-to-olf.js"></script>
     <script src="js/data/OLFbldg/2ndfloorolf.js"></script>
-     <script src="js/data/OLFbldg/3rdfloorolf.js"></script>
-     <script src="js/data/OLFbldg/4thfloorolf.js"></script>
+    <script src="js/data/OLFbldg/3rdfloorolf.js"></script>
+    <script src="js/data/OLFbldg/4thfloorolf.js"></script>
 
-    <script src="js/data/HRbldg/hr3rdfloor.js"></script>
+    <!-- HR BLDG -->
     <script src="js/data/HRbldg/hr1stfloor.js"></script>
     <script src="js/data/HRbldg/hr2ndfloor.js"></script>
+    <script src="js/data/HRbldg/hr3rdfloor.js"></script>
     <script src="js/data/HRbldg/hr4thfloor.js"></script>
 
-      <script src="js/data/SNbldg/1stfloorsn.js"></script>
+    <!-- SN BLDG -->
+    <script src="js/data/SNbldg/1stfloorsn.js"></script>
     <script src="js/data/SNbldg/2ndfloorsn.js"></script>
 
-     <script src="js/data/SLRbldg/1stfloorslr.js"></script>
+    <!-- SLR BLDG -->
+    <script src="js/data/SLRbldg/1stfloorslr.js"></script>
     <script src="js/data/SLRbldg/2ndfloorslr.js"></script>
     <script src="js/data/SLRbldg/3rdfloorslr.js"></script>
     <script src="js/data/SLRbldg/4thfloorslr.js"></script>
 
-    <script src="js/data/OLPbldg/4thfloorolp.js"></script>
-    <script src="js/data/OLPbldg/3rdfloorolp.js"></script>\
+    <!-- OLP BLDG -->
     <script src="js/data/OLPbldg/1stfloorolp.js"></script>
     <script src="js/data/OLPbldg/2ndfloorolp.js"></script>
+    <script src="js/data/OLPbldg/3rdfloorolp.js"></script>
+    <script src="js/data/OLPbldg/4thfloorolp.js"></script>
 
+    <!-- Application Scripts -->
     <script src="js/data/index.js"></script>
     <script src="js/panorama-viewer.js"></script>
     <script src="js/navigation.js"></script>

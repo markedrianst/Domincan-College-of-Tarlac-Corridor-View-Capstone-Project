@@ -1,44 +1,45 @@
 // Merge all category arrays into one dataset
 const panoramaData = [
   ...entrancePanoramas,
-  // SCS BUILDING
-  ...scsfirstfloor,
-  ...scssecondfloor,
-  ...scsthirdfloor,
-  ...scsfourthfloor,
-
   // SD BUILDING
   ...sdGroundFloor,
-  ...sd2ndFloor,
+  ...sd2ndfloor,
   ...sd3rdFloor,
-  ...sd4thfloor,
+//   ...sd4thfloor,
+//   // SCS BUILDING
+  ...scsfirstfloor,
+//   ...scssecondfloor,
+//   ...scsthirdfloor,
+//   ...scsfourthfloor,
 
-  // HR BUILDING
-...hr1stfloor,
-...hr4thfloor,
-...hr3rdfloor,
-...hr2ndfloor,
-  // OLF BUILDING
-  ...olfbldg,
-  ...olf2ndbldg,
-  ...olf3rdbldg,
-  ...olf4thbldg,
-  ...sdtoolfbldg,
-    // SN BUILDING
-...snfirstfloor,
-...snsecondfloor,
+//  // OLF BUILDING
+//   ...olfbldg,
+//   ...olf2ndbldg,
+//   ...olf3rdbldg,
+//   ...olf4thbldg,
+//   ...sdtoolfbldg,
 
-    // SLR BUILDING
-    ...slrfirstfloor,
-    ...slrsecondfloor,
-    ...slrthirdfloor,
-    ...slrfourthfloor,
+//   // HR BUILDING
+// ...hr1stfloor,
+// ...hr4thfloor,
+// ...hr3rdfloor,
+// ...hr2ndfloor,
+ 
+//     // SN BUILDING
+// ...snfirstfloor,
+// ...snsecondfloor,
 
-    ...olp4thfloor,
-    ...olp3rdfloor,
-    ...olp1stfloor,
-   ...olp2ndfloor
-  // add other files here
+//     // SLR BUILDING
+//     ...slrfirstfloor,
+//     ...slrsecondfloor,
+//     ...slrthirdfloor,
+//     ...slrfourthfloor,
+
+//     ...olp4thfloor,
+//     ...olp3rdfloor,
+//     ...olp1stfloor,
+//    ...olp2ndfloor
+//   // add other files here
 ];
 
 /**
