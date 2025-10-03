@@ -20,12 +20,13 @@ const sd2ndfloor = [
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sdcornerstairsto2nd1.webp',
     category: 'Sd bldg.',
-    connections: ['Sd2ndfloorcorner1', 'Sd2ndfloorcornerstairs'],
+    connections: ['Sd2ndfloorcorner1', 'Sd2ndfloorcornerstairs','Sd3rdfloormidstairs'],
     arrowPositions: {
       'Sd2ndfloorcorner1': { phi: Math.PI * 5 / 3, theta: 2.7, direction: 'down' }, // replaced negative phi
-      'Sd2ndfloorcornerstairs': { phi: Math.PI / 3, theta: 3.2, direction: 'up' }
+      'Sd2ndfloorcornerstairs': { phi: Math.PI / 3, theta: 3.2, direction: 'up' },
+      'Sd3rdfloormidstairs': { phi: Math.PI / 3, theta: 0.2, direction: 'up' }
     },
-        defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 2 } // always face 2nd floor
+        defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 1 } // always face 2nd floor
 
   },
   // Existing corner stairs
@@ -101,11 +102,12 @@ const sd2ndfloor = [
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor6.webp',
     category: 'Sd bldg.',
-    connections: ['Sd2ndfloor4', 'Sd2ndfloor7','sd2ndfloorcr'],
+    connections: ['Sd2ndfloor4', 'Sd2ndfloor7','sd2ndfloorcr','Sd3rdfloormidstairs4'],
     arrowPositions: {
       'Sd2ndfloor7': { phi: Math.PI / 3, theta: 0.1, direction: 'up' },
       'Sd2ndfloor4': { phi: Math.PI / 3, theta: 3.2, direction: 'up' },
-       'sd2ndfloorcr': { phi: Math.PI / 3.6, theta: 3.7, direction: 'down' }
+       'sd2ndfloorcr': { phi: Math.PI / 3.6, theta: 3.7, direction: 'down' },
+       'Sd3rdfloormidstairs4': { phi: Math.PI / 3.6, theta: -1.5, direction: 'up' }
     }
   },
   {

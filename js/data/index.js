@@ -4,7 +4,7 @@ const panoramaData = [
   // SD BUILDING
   ...sdGroundFloor,
   ...sd2ndfloor,
-//   ...sd3rdFloor,
+  ...sd3rdFloor,
 //   ...sd4thfloor,
 //   // SCS BUILDING
   ...scsfirstfloor,

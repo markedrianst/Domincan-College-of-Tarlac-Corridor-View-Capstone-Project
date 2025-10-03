@@ -1,172 +1,239 @@
 const sd3rdFloor = [
+     {
+        id: 'Sd3rdfloormidstairs4',
+        name: 'SD  3rd Floor to 2nd FLoor',
+        description: 'To 2nd floor floor',
+        imageUrl: 'images/Sdbldg/MidStairsSD3rdfloor.webp',
+        category: 'Sd bldg.',
+        connections: ['3rdfloormidstairs','Sd2ndfloormidstairs'],
+        arrowPositions: {
+            'Sd2ndfloormidstairs': { phi: Math.PI / 4, theta: 3, direction:'down' },
+            '3rdfloormidstairs': { phi: Math.PI / 3, theta: 2, direction:'up' }
+        },    
+        defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 2 } // always face 2nd floor
 
+    },
     {
         id: 'Sd3rdfloormidstairs',
         name: 'SD 3rd midstairs',
         description: 'Staircase leading to the third floor',
-        imageUrl: 'images/Sdbldg/MidStairsSD3rdfloor.jpg',
+        imageUrl: 'images/Sdbldg/1.2 SD SIDE STAIRS 3RD FLOOR.webp',
         category: 'Sd bldg.',
-        connections: ['3rdfloormidstairs', 'Sd2ndfloormidstairs'],
+        connections: ['Sd3rdfloormidstairs3', 'Sd2ndfloorcorner2'],
         arrowPositions: {
-            '3rdfloormidstairs': { phi: Math.PI / 2.9, theta: Math.PI * -1.3,direction:'up' }, // Up-forward
-            'Sd2ndfloormidstairs': { phi: Math.PI / 3.6, theta: Math.PI * 1,direction:'down' } // Right
+            'Sd3rdfloormidstairs3': { phi: Math.PI / 2.9, theta: 0.5, direction:'up' },
+            'Sd2ndfloorcorner2': { phi: Math.PI / 3.6, theta: -0.3, direction:'down' }
+        },
+                defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 3 } // always face 2nd floor
+
+    },
+
+    {
+        id: 'Sd3rdfloormidstairs3',
+        name: 'SD Side Stairs 3rd Floor',
+        description: 'Side stairs to third floor',
+        imageUrl: 'images/Sdbldg/1.3 SD SIDE STAIRS 3RD FLOOR .webp',
+        category: 'Sd bldg.',
+        connections: ['Sd3rdfloorhallway','Sd3rdfloormidstairs'],
+        arrowPositions: {
+            'Sd3rdfloormidstairs': { phi: Math.PI / 4, theta: -0.3, direction:'down' },
+            'Sd3rdfloorhallway': { phi: Math.PI / 3, theta: 3.3, direction:'up' }
         }
     },
 
     {
-        id: 'Sd3rdfloorcornerstairs',
-        name: 'SD 3rd cornerstairs',
-        description: 'Staircase leading to the third floor',
-        imageUrl: 'images/Sdbldg/sdcornerstairs3rdfloor.jpg',
+        id: 'Sd3rdfloorhallway',
+        name: 'SD Side Stairs Hallway',
+        description: 'Hallway leading to classrooms',
+        imageUrl: 'images/Sdbldg/2 SD SIDE STAIRS-Hallway.webp',
         category: 'Sd bldg.',
-        connections: ['Sd3rdfloor1','2ndFloorSD'],
+        connections: ['Sd3rdfloor301', 'Sd3rdfloormidstairs3'],
         arrowPositions: {
-            'Sd3rdfloor1': { phi: Math.PI / 2.6, theta: Math.PI * 1.15 ,direction:'up' }, // Up-forward
-            '2ndFloorSD': { phi: Math.PI / 2.9, theta: Math.PI * 0.9,direction:'down' } // Right
-
+            'Sd3rdfloor301': { phi: Math.PI / 3, theta: 0.1, direction:'up' },
+            'Sd3rdfloormidstairs3': { phi: Math.PI / 3, theta: -1.9, direction:'up' }
         }
     },
 
     {
-        id: 'Sd3rdfloor1',
-        name: 'SD 3rd floor',
-        description: 'This area leading to room 301,302,303,304,305,306,307,308,309,310',
-        imageUrl: 'images/Sdbldg/3rdfloorSD1.jpg',
-        category: 'Sd bldg.',
-        connections: ['Sd3rdfloorcornerstairs', 'Sd4thfloorcornerstairs','Sd3rdfloor301'],
-        arrowPositions: {
-            'Sd3rdfloorcornerstairs': { phi: Math.PI / 2.6, theta: Math.PI * 0.9 ,direction:'down' }, // Up-forward
-            'Sd4thfloorcornerstairs': { phi: Math.PI / 2.5, theta: Math.PI * 1.01,direction:'up' } ,// Right
-            'Sd3rdfloor301': { phi: Math.PI / 3, theta: Math.PI * 1.45,direction:'up' } // Right
-
-        }
-    },
-
-        {
         id: 'Sd3rdfloor301',
         name: 'SD 301',
         description: 'Sd bldg. 3rd floor',
-        imageUrl: 'images/Sdbldg/3rdfloorSD2.jpg',
+        imageUrl: 'images/Sdbldg/3 SD 301.webp',
         category: 'Sd bldg.',
-        connections: ['', 'Sd3rdfloor302','Sd3rdfloor1','scs3rd4'],
+        connections: ['Sd3rdfloor302','Sd3rdfloorhallway'],
         arrowPositions: {
-            'Sd3rdfloor1': { phi: Math.PI / 3, theta: Math.PI * 1.1 ,direction:'up' }, // Up-forward
-             'Sd3rdfloor302': { phi: Math.PI / 3, theta: Math.PI * 2,direction:'up' } ,// Right
-            'scs3rd4': { phi: Math.PI / 3, theta: Math.PI * .6,direction:'up' } // Right
-
+            'Sd3rdfloorhallway': { phi: Math.PI / 3, theta: -3, direction:'up' },
+            'Sd3rdfloor302': { phi: Math.PI / 3, theta: 0, direction:'up' }
         }
     },
 
-    
-        {
-        id: 'Sd3rdfloor302',
-        name: 'SD 302',
-        description: 'Sd bldg. 3rd floor',
-        imageUrl: 'images/Sdbldg/3rdfloorSD3.jpg',
-        category: 'Sd bldg.',
-        connections: ['Sd3rdfloor301', 'Sd3rdfloor303'],
-        arrowPositions: {
-            'Sd3rdfloor303': { phi: Math.PI / 3, theta: Math.PI * 1.95 ,direction:'up' }, // Up-forward
-            'Sd3rdfloor301': { phi: Math.PI /3, theta: Math.PI * 1.05,direction:'up' }
+{
+    id: 'Sd3rdfloor302',
+    name: 'SD 302',
+    description: 'Sd bldg. 3rd floor',
+    imageUrl: 'images/Sdbldg/4 SD 302.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloor301','Sd3rdfloor303'],
+    arrowPositions: {
+        'Sd3rdfloor303': { phi: Math.PI / 3, theta: 0, direction:'up' },
+        'Sd3rdfloor301': { phi: Math.PI / 3, theta: -3, direction:'up' }
+    }
+},
 
-        }
-    },
+{
+    id: 'Sd3rdfloor303',
+    name: 'SD 303',
+    description: 'Sd bldg. 3rd floor',
+    imageUrl: 'images/Sdbldg/5 SD 303.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloor302','Sd3rdfloor304'],
+    arrowPositions: {
+        'Sd3rdfloor304': { phi: Math.PI / 3, theta: 0, direction:'up' },
+        'Sd3rdfloor302': { phi: Math.PI / 3, theta: -3, direction:'up' }
+    }
+},
 
-            {
-        id: 'Sd3rdfloor303',
-        name: 'SD 303',
-        description: 'Sd bldg. 3rd floor',
-        imageUrl: 'images/Sdbldg/3rdfloorSD4.jpg',
-        category: 'Sd bldg.',
-        connections: ['Sd3rdfloor302','Sd3rdfloor304'],
-        arrowPositions: {
-           'Sd3rdfloor304': { phi: Math.PI / 3, theta: Math.PI * 1.95 ,direction:'up' }, // Up-forward
-            'Sd3rdfloor302': { phi: Math.PI /3, theta: Math.PI * 1.05,direction:'up' }
+{
+    id: 'Sd3rdfloor304',
+    name: 'SD 304',
+    description: 'Sd bldg. 3rd floor',
+    imageUrl: 'images/Sdbldg/6 SD 304.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloor303','3rdfloormidstairs'],
+    arrowPositions: {
+        '3rdfloormidstairs': { phi: Math.PI / 3, theta: 0, direction:'up' },
+        'Sd3rdfloor303': { phi: Math.PI / 3, theta: -3, direction:'up' }
+    }
+},
 
-        }
-    },
-        {
-        id: 'Sd3rdfloor304',
-        name: 'SD 304',
-        description: 'Sd bldg. 3rd floor',
-        imageUrl: 'images/Sdbldg/3rdfloorSD5.jpg',
-        category: 'Sd bldg.',
-        connections: ['Sd3rdfloor303','3rdfloormidstairs'],
-        arrowPositions: {
-           '3rdfloormidstairs': { phi: Math.PI / 3, theta: Math.PI * 1.95 ,direction:'up' }, // Up-forward
-            'Sd3rdfloor303': { phi: Math.PI /3, theta: Math.PI * 1.05,direction:'up' }
+{
+    id: '3rdfloormidstairs',
+    name: 'SD 3rd Midway Stairs',
+    description: 'Staircase leading to the third floor',
+    imageUrl: 'images/Sdbldg/7 SD Midway Stairs.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloor304','Sd3rdfloor305','Sd4thfloormidstairs','Sd3rdfloormidstairs4'],
+    arrowPositions: {
+        'Sd3rdfloor304': { phi: Math.PI / 3, theta: -3, direction:'up' },
+        'Sd3rdfloor305': { phi: Math.PI / 2.8, theta: 0, direction:'up' },
+        'Sd3rdfloormidstairs4': { phi: Math.PI / 3.8, theta: 3.7, direction:'down' }
+    }
+},
 
-        }
-    },
+{
+    id: 'Sd3rdfloor305',
+    name: 'SD 305',
+    description: 'Sd bldg. 3rd floor',
+    imageUrl: 'images/Sdbldg/8 SD 305.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloor306','3rdfloormidstairs'],
+    arrowPositions: {
+        'Sd3rdfloor306': { phi: Math.PI / 3, theta: 0, direction:'up' },
+        '3rdfloormidstairs': { phi: Math.PI / 3, theta: -3, direction:'up' }
+    }
+},
 
-          {
-        id: '3rdfloormidstairs',
-        name: '3rdfloormidstairs',
-        description: 'Staircase leading to the third floor',
-        imageUrl: 'images/Sdbldg/3rdfloorSD6.jpg',
-        category: 'Sd bldg.',
-        connections: ['Sd3rdfloor304','Sd3rdfloormidstairs','Sd3rdfloor305','Sd4thfloormidstairs'],
-        arrowPositions: {
-           'Sd3rdfloor304': { phi: Math.PI / 3, theta: Math.PI * 1.6 ,direction:'up' }, // Up-forward
-            'Sd3rdfloormidstairs': { phi: Math.PI /3, theta: Math.PI * 1.75,direction:'down' },
-            'Sd4thfloormidstairs': { phi: Math.PI /2.8, theta: Math.PI * 2,direction:'up' },
-            'Sd3rdfloor305': { phi: Math.PI /2.8, theta: Math.PI * 2.4,direction:'up' }
+{
+    id: 'Sd3rdfloor306',
+    name: 'SD 306',
+    description: 'Sd bldg. 3rd floor',
+    imageUrl: 'images/Sdbldg/9 SD 306.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloor305','Sd3rdfloor307'],
+    arrowPositions: {
+        'Sd3rdfloor307': { phi: Math.PI / 3, theta: 0, direction:'up' },
+        'Sd3rdfloor305': { phi: Math.PI / 3, theta: -3, direction:'up' }
+    }
+},
 
-        }
-    },
-       {
-        id: 'Sd3rdfloor305',
-        name: 'SD 305',
-        description: 'Sd bldg. 3rd floor',
-        imageUrl: 'images/Sdbldg/3rdfloorSD7.jpg',
-        category: 'Sd bldg.',
-        connections: ['Sd3rdfloor306','3rdfloormidstairs'],
-        arrowPositions: {
-           'Sd3rdfloor306': { phi: Math.PI / 3, theta: Math.PI * 1.95 ,direction:'up' }, // Up-forward
-            '3rdfloormidstairs': { phi: Math.PI /3, theta: Math.PI * 1.05,direction:'up' }
+{
+    id: 'Sd3rdfloor307',
+    name: 'SD 307',
+    description: 'Sd bldg. 3rd floor',
+    imageUrl: 'images/Sdbldg/10 SD 307.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloor306','Sd3rdfloor308'],
+    arrowPositions: {
+        'Sd3rdfloor308': { phi: Math.PI / 3, theta: 0, direction:'up' },
+        'Sd3rdfloor306': { phi: Math.PI / 3, theta: -3, direction:'up' }
+    }
+},
 
-        }
-    },
-     {
-        id: 'Sd3rdfloor306',
-        name: 'SD 306',
-        description: 'Sd bldg. 3rd floor',
-        imageUrl: 'images/Sdbldg/3rdfloorSD8.jpg',
-        category: 'Sd bldg.',
-        connections: ['Sd3rdfloor305','Sd3rdfloor307'],
-        arrowPositions: {
-           'Sd3rdfloor307': { phi: Math.PI / 3, theta: Math.PI * 1.9 ,direction:'up' }, // Up-forward
-            'Sd3rdfloor305': { phi: Math.PI /3, theta: Math.PI * 1.05,direction:'up' }
+{
+    id: 'Sd3rdfloor308',
+    name: 'SD 308 / Extension to HR',
+    description: 'Sd bldg. 3rd floor and extension to HR',
+    imageUrl: 'images/Sdbldg/11 SD 308.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloor307','Sd3rdfloorHRext1'],
+    arrowPositions: {
+        'Sd3rdfloor307': { phi: Math.PI / 3, theta: -3, direction:'up' },
+        'Sd3rdfloorHRext1': { phi: Math.PI / 3, theta: 0, direction:'up' }
+    }
+},
 
-        }
-    },
-       {
-        id: 'Sd3rdfloor307',
-        name: 'SD 307',
-        description: 'Sd bldg. 3rd floor',
-        imageUrl: 'images/Sdbldg/3rdfloorSD9.jpg',
-        category: 'Sd bldg.',
-        connections: ['Sd3rdfloor306','Sd3rdfloor308'],
-        arrowPositions: {
-           'Sd3rdfloor308': { phi: Math.PI / 3, theta: Math.PI * 1.85 ,direction:'up' }, // Up-forward
-            'Sd3rdfloor306': { phi: Math.PI /3, theta: Math.PI * 0.95,direction:'up' }
+{
+    id: 'Sd3rdfloorHRext1',
+    name: 'SD Extension to HR',
+    description: 'Extension hallway to HR',
+    imageUrl: 'images/Sdbldg/11 SD Extesion to HR.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloor308', 'Sd3rdfloorHRext2'],
+    arrowPositions: {
+        'Sd3rdfloor308': { phi: Math.PI / 3, theta: -3, direction:'up' },
+        'Sd3rdfloorHRext2': { phi: Math.PI / 3, theta: 0, direction:'up' }
+    }
+},
 
-        }
-    },
- {
-        id: 'Sd3rdfloor308',
-        name: 'SD 308',
-        description: 'Sd bldg. 3rd floor',
-        imageUrl: 'images/Sdbldg/3rdfloorSD10.jpg',
-        category: 'Sd bldg.',
-        connections: ['Sd3rdfloor307','Hr3rd1'],
-        arrowPositions: {
-            'Sd3rdfloor307': { phi: Math.PI /3, theta: Math.PI * 1.05,direction:'up' },
-            'Hr3rd1': { phi: Math.PI /3, theta: Math.PI * 0,direction:'up' }
+{
+    id: 'Sd3rdfloorHRext2',
+    name: 'SD Extension to HR',
+    description: 'Extension hallway to HR',
+    imageUrl: 'images/Sdbldg/12 SD Extension to HR .webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloorHRext1', 'Sd3rdfloorHRext3'],
+    arrowPositions: {
+        'Sd3rdfloorHRext1': { phi: Math.PI / 3, theta: -3, direction:'up' },
+        'Sd3rdfloorHRext3': { phi: Math.PI / 3, theta: 0, direction:'up' }
+    }
+},
 
-        }
-    },
-    
+{
+    id: 'Sd3rdfloorHRext3',
+    name: 'SD Extension to HR',
+    description: 'Extension hallway to HR',
+    imageUrl: 'images/Sdbldg/13 SD Extesion to HR.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloorHRext2', 'Sd3rdfloorHRext4'],
+    arrowPositions: {
+        'Sd3rdfloorHRext2': { phi: Math.PI / 3, theta: -3, direction:'up' },
+        'Sd3rdfloorHRext4': { phi: Math.PI / 3, theta: 0, direction:'up' }
+    }
+},
 
+{
+    id: 'Sd3rdfloorHRext4',
+    name: 'SD Extension to HR',
+    description: 'Extension hallway to HR',
+    imageUrl: 'images/Sdbldg/14 SD Extesion to HR.webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloorHRext3', 'Sd3rdfloorHRext5'],
+    arrowPositions: {
+        'Sd3rdfloorHRext3': { phi: Math.PI / 3, theta: -3, direction:'up' },
+        'Sd3rdfloorHRext5': { phi: Math.PI / 3, theta: 0, direction:'up' }
+    }
+},
 
+{
+    id: 'Sd3rdfloorHRext5',
+    name: 'SD Extension to HR',
+    description: 'Extension hallway to HR',
+    imageUrl: 'images/Sdbldg/15 SD Extension to HR .webp',
+    category: 'Sd bldg.',
+    connections: ['Sd3rdfloorHRext4', 'Hr3rd1'],
+    arrowPositions: {
+        'Sd3rdfloorHRext4': { phi: Math.PI / 3, theta: -3, direction:'up' },
+        'Hr3rd1': { phi: Math.PI / 3, theta: 0, direction:'up' }
+    }
+}
 ];
