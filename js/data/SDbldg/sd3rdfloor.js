@@ -61,10 +61,11 @@ const sd3rdFloor = [
         description: 'Sd bldg. 3rd floor',
         imageUrl: 'images/Sdbldg/3 SD 301.webp',
         category: 'Sd bldg.',
-        connections: ['Sd3rdfloor302','Sd3rdfloorhallway'],
+        connections: ['Sd3rdfloor302','Sd3rdfloorhallway','scs3rd_304'],
         arrowPositions: {
             'Sd3rdfloorhallway': { phi: Math.PI / 3, theta: -3, direction:'up' },
-            'Sd3rdfloor302': { phi: Math.PI / 3, theta: 0, direction:'up' }
+            'Sd3rdfloor302': { phi: Math.PI / 3, theta: 0, direction:'up' },
+             'scs3rd_304': { phi: Math.PI / 3, theta: 1.5, direction:'up' }
         }
     },
 

@@ -3,12 +3,15 @@ const entrancePanoramas = [
     id: 'entrance',
     name: 'Main Entrance (Outside)',
     description: 'Dominican College of Tarlac - Main Entrance Outside View',
-    imageUrl: 'images/Sdbldg/MainEntrance.webp',
+    imageUrl: 'images/Sdbldg/MainEntrance1.webp',
     category: ['entrance'],
     connections: ['entrance1'],
     arrowPositions: {
-      'entrance1': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction: 'up' }
-    }
+      'entrance1': { phi: Math.PI / 3, theta: Math.PI *1.97, direction: 'up' }
+    },
+     defaultLon: 180,  // face east
+      defaultLat: 0    // level view
+
   },
   {
     id: 'entrance1',

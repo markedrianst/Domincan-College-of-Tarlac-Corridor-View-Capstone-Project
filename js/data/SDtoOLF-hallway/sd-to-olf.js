@@ -1,55 +1,79 @@
-const sdtoolfbldg =[
-    {
+const sdtoolfbldg = [
+  {
     id: 'SDtoOLF1',
     name: 'Sd to OLF hallway1',
     description: 'SD to OLF Hallway',
-    imageUrl: 'images/SDtoOlf-Hallway/connectingsdolf1.jpg',
+    imageUrl: 'images/SDtoOlf-Hallway/B HALLWAY 1ST PART.webp',
     category: ['hallway'],
-    connections: ['SdGroundfloor10','SDtoOLF2'],
+    connections: ['SdGroundfloor19', 'SDtoOLF2'],
     arrowPositions: {
-      'SDtoOLF2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
-      'SdGroundfloor10': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'}
-       }
-    },
+      'SDtoOLF2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'SdGroundfloor19': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
 
- {
+  {
     id: 'SDtoOLF2',
     name: 'Sd to OLF hallway2',
     description: 'SD to OLF Hallway',
-    imageUrl: 'images/SDtoOlf-Hallway/connectingsdolf2.jpg',
+    imageUrl: 'images/SDtoOlf-Hallway/B HALLWAY 2ND PART.webp',
     category: ['hallway'],
-    connections: ['SDtoOLF1','SDtoOLF3'],
+    connections: ['SDtoOLF1', 'SDtoOLF3'],
     arrowPositions: {
-      'SDtoOLF3': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
-      'SDtoOLF1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'}
-       }
-    },
+      'SDtoOLF3': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'SDtoOLF1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
 
-     {
+  {
     id: 'SDtoOLF3',
     name: 'Sd to OLF hallway3',
     description: 'SD to OLF Hallway',
-    imageUrl: 'images/SDtoOlf-Hallway/connectingsdolf3.jpg',
+    imageUrl: 'images/SDtoOlf-Hallway/B HALLWAY 3RD PART.webp',
     category: ['hallway'],
-    connections: ['SDtoOLF4','SDtoOLF2'],
+    connections: ['SDtoOLF4', 'SDtoOLF2'],
     arrowPositions: {
-      'SDtoOLF2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
-      'SDtoOLF4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'}
-       }
-    },
+      'SDtoOLF4': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'SDtoOLF2': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
 
-     {
+  {
     id: 'SDtoOLF4',
     name: 'Sd to OLF hallway4',
     description: 'SD to OLF Hallway',
-    imageUrl: 'images/SDtoOlf-Hallway/connectingsdolf4.jpg',
+    imageUrl: 'images/SDtoOlf-Hallway/B HALLWAY 4TH PART.webp',
     category: ['hallway'],
-    connections: ['Hr1rd5','SDtoOLF3','olfgroundfloor1'],
+    connections: ['SDtoOLF3', 'SDtoOLF5'],
     arrowPositions: {
-      'Hr1rd5': { phi: Math.PI / 3, theta: Math.PI * 1.55, direction: 'up'},
-      'olfgroundfloor1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
-      'SDtoOLF3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up'}
-       }
-    },
+      'SDtoOLF5': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'SDtoOLF3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
 
+  {
+    id: 'SDtoOLF5',
+    name: 'Sd to OLF hallway5',
+    description: 'SD to OLF Hallway',
+    imageUrl: 'images/SDtoOlf-Hallway/B HALLWAY 5TH PART.webp',
+    category: ['hallway'],
+    connections: ['SDtoOLF4', 'SDtoOLF6'],
+    arrowPositions: {
+      'SDtoOLF6': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'SDtoOLF4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+
+  {
+    id: 'SDtoOLF6',
+    name: 'Sd to OLF hallway6',
+    description: 'SD to OLF Hallway',
+    imageUrl: 'images/SDtoOlf-Hallway/B HALLWAY 6TH PART.webp',
+    category: ['hallway'],
+    connections: ['SDtoOLF5', 'olfgroundfloor1'],
+    arrowPositions: {
+      'SDtoOLF5': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'olfgroundfloor1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  }
 ];
