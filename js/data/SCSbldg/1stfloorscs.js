@@ -114,10 +114,10 @@ const scsfirstfloor = [
     description: 'Connection to SCS Stairs 1st floor',
     imageUrl: 'images/Scsbldg/SCS STAIR 2ND FLOOR (1).webp',
     category: ['SCS bldg.', 'Stairs'],
-    connections: ['scs1st6', 'scs1stStairs'],
+    connections: ['scs1st6', 'Scs1stto2nd'],
     arrowPositions: {
       'scs1st6': { phi: Math.PI / 3.1, theta: Math.PI * 0.1, direction: 'down' },
-      'scs1stStairs': { phi: Math.PI / 3, theta: Math.PI * 1.9, direction: 'up' }
+      'Scs1stto2nd': { phi: Math.PI / 3, theta: Math.PI * 1.9, direction: 'up' }
     },
         defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 1 } // always face 2nd floor
   },

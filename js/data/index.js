@@ -9,8 +9,8 @@ const panoramaData = [
 //   // SCS BUILDING
   ...scsfirstfloor,
   ...scssecondfloor,
-//   ...scsthirdfloor,
-//   ...scsfourthfloor,
+  ...scsthirdfloor,
+  ...scsfourthfloor,
 
 //  // OLF BUILDING
 //   ...olfbldg,

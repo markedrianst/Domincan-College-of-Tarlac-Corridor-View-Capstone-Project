@@ -43,12 +43,13 @@ const sd4thfloor = [
         description: 'Entrance to Cisco Lab',
         imageUrl: 'images/Sdbldg/2 4TH FLOOR SD CISCO LAB.webp',
         category: 'Sd bldg.',
-        connections: ['Sd4thfloor4', 'Sd4thfloor2'],
+        connections: ['Sd4thfloor4', 'Sd4thfloor2','scs4th_404_1'],
         arrowPositions: {
             'Sd4thfloor4': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
-            'Sd4thfloor2': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+            'Sd4thfloor2': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+            'scs4th_404_1': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' }
         }
-    },
+        },
     {
         id: 'Sd4thfloor4',
         name: 'SD 402 Lab 1 Entrance',
