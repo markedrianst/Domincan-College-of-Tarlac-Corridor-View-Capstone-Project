@@ -7,8 +7,10 @@ const entrancePanoramas = [
     category: ['entrance'],
     connections: ['entrance1'],
     arrowPositions: {
-      'entrance1': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction: 'up' }
-    }
+      'entrance1': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction: 'up' }
+    },
+              defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 1 } // 👈 always face 2nd floor
+
   },
   {
     id: 'entrance1',
