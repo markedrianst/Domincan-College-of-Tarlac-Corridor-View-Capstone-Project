@@ -1,128 +1,138 @@
 const olf2ndbldg = [
+  { 
+    id: 'OLFSideStairs1',
+    name: 'OLF Side Stairs 1',
+    description: 'OLF 2nd Floor',
+    imageUrl: 'images/OLFbldg/C OLF STAIR 3RD FLOOR (1).webp',
+    category: ['OLP bldg.'],
+    connections: ['EOLF2ndFloorStairs', 'OLFSideStairs2'],
+    arrowPositions: {
+      'EOLF2ndFloorStairs': { phi: Math.PI / 3.6, theta: Math.PI * 1, direction: 'down' },
+      'OLFSideStairs2': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' }
+    },     defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 1.6 } // 👈 always face 2nd floor
 
-     
-    { id: 'SideStairsOLF',
-    name: 'SideStairsOLF',
+  },
+    { 
+    id: 'OLFSideStairs2',
+    name: 'OLF Side Stairs 1',
     description: 'OLF 2nd Floor',
-    imageUrl: 'images/OLFbldg/sidestairsolf2nd.jpg',
+    imageUrl: 'images/OLFbldg/F OLF 204 Midway Stairs.webp',
     category: ['OLP bldg.'],
-    connections: ['olfgroundfloor1','OLF',],
+    connections: ['OLFSideStairs1', 'DOLFStair3rdMiddle'],
     arrowPositions: {
-    'olfgroundfloor1': { phi: Math.PI / 3.2, theta: Math.PI * 0.97, direction: 'down'},
-    'OLF': { phi: Math.PI / 3.05, theta: Math.PI * 0.8, direction: 'up'},
-   
-    
-       }
+      'OLFSideStairs1': { phi: Math.PI / 3.6, theta: Math.PI * 1, direction: 'up' },
+      'DOLFStair3rdMiddle': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' }
     },
-    { id: 'OLF',
-    name: 'OLF',
-    description: 'OLF 2nd Floor',
-    imageUrl: 'images/OLFbldg/OLF2ndfloor.jpg',
-    category: ['OLP bldg.'],
-    connections: ['OLF2','SideStairsOLF'],
-    arrowPositions: {
-    'OLF2': { phi: Math.PI / 3, theta: Math.PI * 1.95, direction: 'up'},
-    'SideStairsOLF': { phi: Math.PI / 3, theta: Math.PI * 1.15, direction: 'down'},
-   
-    
-       }
-    },
-  { id: 'OLF1',
-    name: 'OLF1',
-    description: 'OLF 2nd Floor',
-    imageUrl: 'images/OLFbldg/OLF2ndfloor1.jpg',
-    category: ['OLP bldg.'],
-    connections: ['OLF2','OLF','OLF4'],
-    arrowPositions: {
-    'OLF2': { phi: Math.PI / 3, theta: Math.PI * 1.95, direction: 'down'},
-    'OLF': { phi: Math.PI / 3.2, theta: Math.PI * 1.05, direction: 'up'},
-   
-    
-       }
-    },
-  
-  
-  
-  { id: 'OLF2',
-    name: 'OLF2',
-    description: 'OLF 2nd Floor',
-    imageUrl: 'images/OLFbldg/OLF2ndfloor2.jpg',
-    category: ['OLP bldg.'],
-    connections: ['OLF3','OLF1'],
-    arrowPositions: {
-    'OLF3': { phi: Math.PI / 3, theta: Math.PI * 1.9, direction: 'up'},
-    'OLF1': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up'},
-   
-    
-       }
-    },
-  
-  
-  
-    { id: 'OLF3',
-    name: 'OLF3',
-    description: 'OLF 2nd Floor',
-    imageUrl: 'images/OLFbldg/OLF2ndfloor3.jpg',
-    category: ['OLP bldg.'],
-    connections: ['olfgroundfloor6','StairsTo3rdFloor','OLF4','OLF2'],
-    arrowPositions: {
-    'olfgroundfloor6': { phi: Math.PI / 3, theta: Math.PI * 2.2, direction: 'down'},
-    'StairsTo3rdFloor': { phi: Math.PI / 3.2, theta: Math.PI * 1.85, direction: 'up'},
-    'OLF4': { phi: Math.PI / 3.2, theta: Math.PI * .4, direction: 'up'},
-       'OLF2': { phi: Math.PI / 3.2, theta: Math.PI * 1.6, direction: 'up'}
-       }
-    },
+         defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 1.6 } // 👈 always face 2nd floor
 
-  { id: 'OLF4',
-    name: 'OLF4',
+  },
+  {
+    id: 'DOLF200',
+    name: 'OLF 200 Work Immersion Office',
     description: 'OLF 2nd Floor',
-    imageUrl: 'images/OLFbldg/OLF2ndfloor4.jpg',
+    imageUrl: 'images/OLFbldg/D OLF 200 WORK IMMERSION OFFICE.webp',
     category: ['OLP bldg.'],
-    connections: ['OLF3','OLF5',],
+    connections: [ 'DOLF201', 'olf_side_stair_1_2'],
     arrowPositions: {
-    'OLF3': { phi: Math.PI / 3, theta: Math.PI * 3, direction: 'up'},
-    'OLF5': { phi: Math.PI / 3.2, theta: Math.PI * 1.85, direction: 'up'}
-    
-       }
-    },
-
-{ id: 'OLF5',
-    name: 'OLF5',
-    description: 'OLF 2nd Floor',
-    imageUrl: 'images/OLFbldg/OLF2ndfloor5.jpg',
-    category: ['OLP bldg.'],
-    connections: ['OLF6','OLF4',],
-    arrowPositions: {
-    'OLF6': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'down'},
-    'OLF4': { phi: Math.PI / 3.2, theta: Math.PI * 1.12, direction: 'up'}
-    
-       }
-    },{ id: 'OLF6',
-    name: 'OLF6',
-    description: 'OLF 2nd Floor',
-    imageUrl: 'images/OLFbldg/OLF2ndfloor6.jpg',
-    category: ['OLP bldg.'],
-    connections: [,'OLF5',],
-    arrowPositions: {
-
-    'OLF5': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up'}
-    
-       }
+      'DOLF201': { phi: Math.PI / 3.1, theta: Math.PI * 1, direction: 'up' },
+      'olf_side_stair_1_2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
     }
-
-,{ id: 'StairsTo3rdFloor',
-    name: 'StairsTo3rdFloor',
+  },
+  {
+    id: 'DOLF201',
+    name: 'OLF 201',
     description: 'OLF 2nd Floor',
-    imageUrl: 'images/OLFbldg/OLF2ndfloor7.jpg',
+    imageUrl: 'images/OLFbldg/D OLF 201.webp',
     category: ['OLP bldg.'],
-    connections: ['OLF3rd4','OLF3',],
+    connections: ['DOLF200', 'DOLF202'],
     arrowPositions: {
-
-    'OLF3rd4': { phi: Math.PI / 3.4, theta: Math.PI * 0.9, direction: 'up'},
-        'OLF3': { phi: Math.PI / 3.4, theta: Math.PI * 1.2, direction: 'up'}
-    
-       }
-    },
-
-
+      'DOLF200': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'DOLF202': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+  {
+    id: 'DOLF202',
+    name: 'OLF 202',
+    description: 'OLF 2nd Floor',
+    imageUrl: 'images/OLFbldg/D OLF 202.webp',
+    category: ['OLP bldg.'],
+    connections: ['DOLF201', 'DOLF203'],
+    arrowPositions: {
+      'DOLF201': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'DOLF203': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+  {
+    id: 'DOLF203',
+    name: 'OLF 203',
+    description: 'OLF 2nd Floor',
+    imageUrl: 'images/OLFbldg/D OLF 203.webp',
+    category: ['OLP bldg.'],
+    connections: ['DOLF202', 'EOLF2ndFloorStairs'],
+    arrowPositions: {
+      'DOLF202': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'EOLF2ndFloorStairs': { phi: Math.PI / 3.1, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+  {
+    id: 'EOLF2ndFloorStairs',
+    name: 'OLF 2nd Floor Stairs',
+    description: 'OLF 2nd Floor',
+    imageUrl: 'images/OLFbldg/E OLF 2ND FLOOR STAIRS.webp',
+    category: ['OLP bldg.'],
+    connections: ['OLFSideStairs1', 'DOLF203', 'EOLFStair2ndTo3rd2', 'EOLFStair2ndTo3rd3'],
+    arrowPositions: {
+       'OLFSideStairs1': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
+      'DOLF203': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'EOLFStair2ndTo3rd3': { phi: Math.PI / 3, theta: Math.PI * 1.05, direction: 'up' }
+    }
+  },
+  {
+    id: 'EOLFStair2ndTo3rd3',
+    name: 'OLF Stair 2nd to 3rd Floor (3)',
+    description: 'OLF 2nd Floor',
+    imageUrl: 'images/OLFbldg/E OLF STAIR 2ND TO 3RD FLOOR (3).webp',
+    category: ['OLP bldg.'],
+    connections: ['EOLF2ndFloorStairs', 'olf_stair_2nd_2','FOLF204'],
+    arrowPositions: {
+      'EOLF2ndFloorStairs': { phi: Math.PI / 3, theta: Math.PI *1.5, direction: 'up' },
+      'FOLF204': { phi: Math.PI / 3, theta: Math.PI *2.5, direction: 'up' },
+      'olf_stair_2nd_2': { phi: Math.PI / 3, theta: Math.PI * 2.2, direction: 'down' }
+    }
+  },
+  {
+    id: 'FOLF204',
+    name: 'OLF 204',
+    description: 'OLF 2nd Floor',
+    imageUrl: 'images/OLFbldg/F OLF 204.webp',
+    category: ['OLP bldg.'],
+    connections: ['FOLF205', 'EOLFStair2ndTo3rd3'],
+    arrowPositions: {
+      'FOLF205': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'EOLFStair2ndTo3rd3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+  {
+    id: 'FOLF205',
+    name: 'OLF 205',
+    description: 'OLF 2nd Floor',
+    imageUrl: 'images/OLFbldg/F OLF 205.webp',
+    category: ['OLP bldg.'],
+    connections: ['FOLF204', 'FOLF206'],
+    arrowPositions: {
+      'FOLF204': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'FOLF206': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
+    id: 'FOLF206',
+    name: 'OLF 206',
+    description: 'OLF 2nd Floor',
+    imageUrl: 'images/OLFbldg/F OLF 206.webp',
+    category: ['OLP bldg.'],
+    connections: ['FOLF205'],
+    arrowPositions: {
+      'FOLF205': { phi: Math.PI / 3, theta: Math.PI * 0.95, direction: 'up' }
+    }
+  }
 ];

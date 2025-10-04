@@ -42,9 +42,10 @@ const scs1stfloor_parking = [
     description: 'SCS bldg. 1st floor, fifth parking area',
     imageUrl: 'images/Scsbldg/PARKING 5.webp',
     category: ['SCS bldg.'],
-    connections: ['scs1st_parking_4'],
+    connections: ['scs1st_parking_4','olf_crime_lab'],
     arrowPositions: {
-      'scs1st_parking_4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+      'scs1st_parking_4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+       'olf_crime_lab': { phi: Math.PI / 3, theta: Math.PI *2.2, direction: 'up' }
     }
   }
 ];
