@@ -71,7 +71,7 @@ const sdGroundFloor = [
         id: 'SdGroundfloor6',
         name: 'SD 103',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/SD103.webp',
+        imageUrl: 'images/Sdbldg/SD 103.webp',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor5','SdGroundfloor7'],
         arrowPositions: {
@@ -144,7 +144,7 @@ const sdGroundFloor = [
         id: 'SdGroundfloor12',
         name: 'SD 108',
         description: 'Sd bldg. 1st floor',
-        imageUrl: 'images/Sdbldg/Sd109.webp',
+        imageUrl: 'images/Sdbldg/Sd108 (2).webp',
         category: ['Sd bldg.','Offices'],
         connections: ['SdGroundfloor11','SdGroundfloor13'],
         arrowPositions: {
@@ -216,7 +216,7 @@ const sdGroundFloor = [
     id: 'SdGroundfloor19',
     name: 'SD 114',
     description: 'Sd bldg. 1st floor',
-    imageUrl: 'images/Sdbldg/SD 114.webp',
+    imageUrl: 'images/Sdbldg/sscoffice.webp',
     category: ['Sd bldg.','Offices'],
     connections: ['SdGroundfloor18','SDtoOLF1','shortcutsdtoccs'],
     arrowPositions: {

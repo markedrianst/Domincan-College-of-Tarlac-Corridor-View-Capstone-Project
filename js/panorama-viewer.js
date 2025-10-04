@@ -312,17 +312,20 @@ loadPanorama(panoramaId) {
     document.getElementById('location-name').textContent = panorama.name;
     document.getElementById('location-description').textContent = panorama.description;
 
+    // ✅ Set default facing if panorama has orientation
+    if (panorama.defaultLon !== undefined) this.lon = panorama.defaultLon;
+    if (panorama.defaultLat !== undefined) this.lat = panorama.defaultLat;
+
     // Loader
     const textureLoader = new THREE.TextureLoader();
 
-    // ✅ If preloaded, use cached texture
     if (panorama._preloadedTexture) {
         this.applyPanoramaTexture(panorama._preloadedTexture, panoramaId);
     } else {
         textureLoader.load(
             panorama.imageUrl,
             (texture) => {
-                panorama._preloadedTexture = texture; // cache
+                panorama._preloadedTexture = texture;
                 this.applyPanoramaTexture(texture, panoramaId);
             },
             undefined,
@@ -335,6 +338,7 @@ loadPanorama(panoramaId) {
         panorama.connections.slice(0, 2).forEach((neighborId) => this.preloadPanorama(neighborId));
     }
 }
+
 
 /**
  * Apply texture to panorama with transition & cleanup
