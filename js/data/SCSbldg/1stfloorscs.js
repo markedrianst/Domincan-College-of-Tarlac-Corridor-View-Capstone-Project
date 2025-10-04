@@ -29,10 +29,11 @@ const scsfirstfloor = [
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/PARKING 1.webp',
     category: ['SCS bldg.'],
-    connections: ['scs1st1.1', 'scs1st3'],
+    connections: ['scs1st1.1', 'scs1st3','scs1st_parking_2'],
     arrowPositions: {
       'scs1st1.1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
-      'scs1st3': { phi: Math.PI / 3, theta: Math.PI * 1.95, direction: 'up' }
+      'scs1st3': { phi: Math.PI / 3, theta: Math.PI * 1.95, direction: 'up' },
+      'scs1st_parking_2':{ phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' }
     }
   },
   {
