@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load initial panorama (entrance)
 
-    window.panoramaViewer.loadPanorama('DOLFStair4th2');
+    window.panoramaViewer.loadPanorama('entrance');
 
 
 
