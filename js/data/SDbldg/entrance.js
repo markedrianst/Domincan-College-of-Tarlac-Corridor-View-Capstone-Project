@@ -3,7 +3,7 @@ const entrancePanoramas = [
     id: 'entrance',
     name: 'Main Entrance (Outside)',
     description: 'Dominican College of Tarlac - Main Entrance Outside View',
-    imageUrl: 'images/Sdbldg/MainEntrance(6).jpg',
+    imageUrl: 'images/Sdbldg/MainEntrance1.webp',
     category: ['entrance'],
     connections: ['entrance1'],
     arrowPositions: {
