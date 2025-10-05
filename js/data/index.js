@@ -20,10 +20,10 @@ const panoramaData = [
   ...sdtoolfbldg,
 
 //   // HR BUILDING
-// ...hr1stfloor,
+...hr1stfloor,
 // ...hr4thfloor,
 // ...hr3rdfloor,
-// ...hr2ndfloor,
+...hr2ndfloor,
  
 //     // SN BUILDING
 // ...snfirstfloor,
