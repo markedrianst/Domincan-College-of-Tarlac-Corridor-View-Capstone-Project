@@ -13,17 +13,17 @@ const panoramaData = [
   ...scsfourthfloor,
 ...scs1stfloor_parking,
 //  // OLF BUILDING
-//   ...olfbldg,
-//   ...olf2ndbldg,
-//   ...olf3rdbldg,
-//   ...olf4thbldg,
+  ...olfbldg,
+  ...olf2ndbldg,
+  ...olf3rdbldg,
+  ...olf4thbldg,
   ...sdtoolfbldg,
 
 //   // HR BUILDING
-// ...hr1stfloor,
+...hr1stfloor,
 // ...hr4thfloor,
 // ...hr3rdfloor,
-// ...hr2ndfloor,
+...hr2ndfloor,
  
 //     // SN BUILDING
 // ...snfirstfloor,

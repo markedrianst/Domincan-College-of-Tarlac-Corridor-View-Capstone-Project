@@ -214,7 +214,7 @@ const sdGroundFloor = [
 },
 {
     id: 'SdGroundfloor19',
-    name: 'SD 114',
+    name: 'SD 114 SSC Office',
     description: 'Sd bldg. 1st floor',
     imageUrl: 'images/Sdbldg/sscoffice.webp',
     category: ['Sd bldg.','Offices'],
@@ -222,7 +222,19 @@ const sdGroundFloor = [
     arrowPositions: {
         'SdGroundfloor18': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' },
         'SDtoOLF1': { phi: Math.PI / 2.6, theta: Math.PI * 2.53, direction:'up' }, 
-        'shortcutsdtoccs': { phi: Math.PI / 2.6, theta: Math.PI * 1.7, direction:'up' }
+        'shortcutsdtoccs': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction:'up' }
+    }
+},
+{
+    id: 'shortcutsdtoccs',
+    name: 'SD to HR Offices',
+    description: 'Sd bldg. 1st floor',
+    imageUrl: 'images/Sdbldg/1 Shorcut to CCS PART.webp',
+    category: ['Sd bldg.','Offices'],
+    connections: ['SdGroundfloor19','hrshortcut1'],
+    arrowPositions: {
+        'SdGroundfloor19': { phi: Math.PI / 2.6, theta: Math.PI * 1, direction:'up' },
+        'hrshortcut1': { phi: Math.PI / 2.6, theta: Math.PI * 1.7, direction:'up' }
     }
 }
 ];
