@@ -70,10 +70,10 @@ const sdtoolfbldg = [
     description: 'SD to OLF Hallway',
     imageUrl: 'images/SDtoOlf-Hallway/B HALLWAY 6TH PART.webp',
     category: ['hallway'],
-    connections: ['SDtoOLF5', 'olfgroundfloor1'],
+    connections: ['SDtoOLF5', 'olf_1st_floor_1'],
     arrowPositions: {
       'SDtoOLF5': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
-      'olfgroundfloor1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+      'olf_1st_floor_1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
     }
   }
 ];

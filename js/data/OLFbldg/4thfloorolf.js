@@ -1,96 +1,98 @@
 const olf4thbldg = [
-
-
-
-      { id: 'olf4thLIBRARY',
+  {
+    id: 'DOLFLibraryEnd',
+    name: 'College Library (End)',
+    description: 'OLF 4th Floor',
+    imageUrl: 'images/OLFbldg/D OLF COLLEGE LIBRARY (DULO).webp',
+    category: ['OLP bldg.'],
+    connections: ['DOLFLibrary'],
+    arrowPositions: {
+      'DOLFLibrary': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+  {
+    id: 'DOLFLibrary',
     name: 'College Library',
     description: 'OLF 4th Floor',
-    imageUrl: 'images/OLFbldg/OLF4thfloor.jpg',
+    imageUrl: 'images/OLFbldg/D OLF COLLEGE LIBRARY.webp',
     category: ['OLP bldg.'],
-    connections: ['olf4th102',],
+    connections: ['DOLFLibraryEnd','DOLF402'],
     arrowPositions: {
-
-    'olf4th102': { phi: Math.PI / 3.2, theta: Math.PI * 1.15, direction: 'up'},
-       
-    
-       }
-    },
-      { id: 'olf4th102',
-    name: 'olf4th102',
+      'DOLFLibraryEnd': { phi: Math.PI / 3.2, theta: Math.PI *2, direction: 'up' },
+      'DOLF402': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+  {
+    id: 'DOLF402',
+    name: 'OLF 402',
     description: 'OLF 4th Floor',
-    imageUrl: 'images/OLFbldg/OLF4thfloor1.jpg',
+    imageUrl: 'images/OLFbldg/D OLF 402.webp',
     category: ['OLP bldg.'],
-    connections: ['olf4thLIBRARY','olf4th103'],
+    connections: ['DOLFLibrary','DOLF403'],
     arrowPositions: {
-
-    'olf4thLIBRARY': { phi: Math.PI / 3.2, theta: Math.PI * 1.08, direction: 'up'},
-       'olf4th103': { phi: Math.PI / 3.2, theta: Math.PI * 1.93, direction: 'up'},
-       
-       
-    
-       }
-    },
-    { id: 'olf4th103',
-    name: 'olf4th103',
+      'DOLFLibrary': { phi: Math.PI / 3.2, theta: Math.PI * 2, direction: 'up' },
+      'DOLF403': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+  {
+    id: 'DOLF403',
+    name: 'OLF 403',
     description: 'OLF 4th Floor',
-    imageUrl: 'images/OLFbldg/OLF4thfloor2.jpg',
+    imageUrl: 'images/OLFbldg/D OLF 403.webp',
     category: ['OLP bldg.'],
-    connections: ['olf4th102','olf4th104','Stairsto4thfloor'],
+    connections: ['DOLF402','DOLFStair4Middle'],
     arrowPositions: {
-
-    'olf4th102': { phi: Math.PI / 3.2, theta: Math.PI * 1.85, direction: 'up'},
-     'olf4th104': { phi: Math.PI / 3.2, theta: Math.PI * 0.65, direction: 'up'},
-          'Stairsto4thfloor': { phi: Math.PI / 3.2, theta: Math.PI * 0.4, direction: 'down'},
-       
-    
-       }
-    },
-{ id: 'olf4th104',
-    name: 'olf4th104',
+      'DOLF402': { phi: Math.PI / 3.2, theta: Math.PI * 2, direction: 'up' },
+      'DOLFStair4Middle': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' },
+     
+    }
+  },
+  {
+    id: 'DOLFStair4Middle',
+    name: 'OLF Stair 4th Floor (4)',
     description: 'OLF 4th Floor',
-    imageUrl: 'images/OLFbldg/OLF4thfloor3.jpg',
+    imageUrl: 'images/OLFbldg/D OLF STAIR 4TH FLOOR (4).webp',
     category: ['OLP bldg.'],
-    connections: ['olf4th103','olf4th105'],
+    connections: ['DOLF403','DOLF404','DOLFStair4th2'],
     arrowPositions: {
-
-    'olf4th103': { phi: Math.PI / 3.2, theta: Math.PI * 2.07, direction: 'up'},
-           'olf4th105': { phi: Math.PI / 3.2, theta: Math.PI * 0.9, direction: 'up'},
-       
-    
-       }
-    },{
-         id: 'olf4th105',
-    name: 'olf4th105',
+      'DOLF403': { phi: Math.PI / 3.2, theta: Math.PI * 1.5, direction: 'up' },
+      'DOLFStair4th2 ': { phi: Math.PI / 3.2, theta: Math.PI * 2, direction: 'down' },
+       'DOLF404': { phi: Math.PI / 3.2, theta: Math.PI * 2.5, direction: 'up' }
+    }
+  },
+  {
+    id: 'DOLF404',
+    name: 'OLF 404',
     description: 'OLF 4th Floor',
-    imageUrl: 'images/OLFbldg/OLF4thfloor4.jpg',
+    imageUrl: 'images/OLFbldg/D OLF 404.webp',
     category: ['OLP bldg.'],
-    connections: ['olf4th104','olf4th106'],
+    connections: ['DOLFStair4Middle','DOLF405'],
     arrowPositions: {
-
-    'olf4th104': { phi: Math.PI / 3.2, theta: Math.PI * 2.4, direction: 'up'},
-           'olf4th106': { phi: Math.PI / 3.2, theta: Math.PI * 1.2, direction: 'up'},
-       
-    
-       }
-    },{
-         id: 'olf4th106',
-    name: 'olf4th106',
+      'DOLFStair4Middle': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' },
+      'DOLF405': { phi: Math.PI / 3.2, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
+    id: 'DOLF405',
+    name: 'OLF 405',
     description: 'OLF 4th Floor',
-    imageUrl: 'images/OLFbldg/OLF4thfloor5.jpg',
+    imageUrl: 'images/OLFbldg/D OLF 405.webp',
     category: ['OLP bldg.'],
-    connections: ['olf4th105',],
+    connections: ['DOLF404','DOLF406'],
     arrowPositions: {
-
-    'olf4th105': { phi: Math.PI / 3.2, theta: Math.PI * 2.6, direction: 'up'},
-          
-       
-    
-       }
-    },
-
-
-
-
-
-
+      'DOLF404': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' },
+      'DOLF406': { phi: Math.PI / 3.2, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
+    id: 'DOLF406',
+    name: 'OLF 406',
+    description: 'OLF 4th Floor',
+    imageUrl: 'images/OLFbldg/D OLF 406.webp',
+    category: ['OLP bldg.'],
+    connections: ['DOLF405'],
+    arrowPositions: {
+      'DOLF405': { phi: Math.PI / 3.2, theta: Math.PI *1, direction: 'up' }
+    }
+  }
 ];
