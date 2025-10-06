@@ -193,8 +193,10 @@ const hr1stfloor = [
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/7.4 GrandHallofHR.webp',
     category: ['HR bldg.'],
-    connections: ['ccjeoffice','hr101'],
+    connections: ['ccjeoffice','hr101','dachall3', 'dachall1'],
     arrowPositions: {
+       'dachall3': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'dachall1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
         'ccjeoffice': { phi: Math.PI / 3, theta: Math.PI *1.5 , direction: 'up' },
         'hr101': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' }
     }

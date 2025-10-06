@@ -300,6 +300,21 @@ main {
     animation: spin 1s linear infinite;
     margin-bottom: 15px;
 } */
+ /* Fix cancel button overlapping search bar */
+#cancelNavBtn {
+  position: absolute !important;
+  top: 20px;
+  right: 20px;
+  z-index: 1 !important; /* lower priority */
+}
+
+header,
+#search-bar,
+.search-container {
+  position: relative !important;
+  z-index: 9999 !important; /* stays on top */
+}
+
 #cancelNavBtn {
   position: absolute;
   top: 20px;

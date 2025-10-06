@@ -96,26 +96,12 @@ const snsecondfloor = [
     description: 'SN bldg. 2nd floor',
     imageUrl: 'images/SNbldg/8 SN BUILDING STAIRS 2ND FLOOR.webp',
     category: ['SN bldg.'],
-    connections: ['sn2nd9', 'sn2nddulo',,'sn1ststair'],
+    connections: ['slr2nd1', 'sn2nddulo',,'sn1ststair'],
     arrowPositions: {
-      'sn2nd9': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'slr2nd1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
       'sn2nddulo': { phi: Math.PI / 3, theta: Math.PI *1.5, direction: 'up' },
       'sn1ststair': { phi: Math.PI / 3, theta: Math.PI *1, direction: 'down' }
     }
   },
 
-
-
-  {
-    id: 'sn2nd9',
-    name: 'SN 201',
-    description: 'SN bldg. 2nd floor',
-    imageUrl: 'images/SNbldg/9 SN 201 (2).webp',
-    category: ['SN bldg.'],
-    connections: ['slr2nd1', 'sn2ndstair1'],
-    arrowPositions: {
-      'slr2nd1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
-      'sn2ndstair1': { phi: Math.PI / 3, theta: Math.PI *1.5, direction: 'up' }
-    }
-  }
 ];

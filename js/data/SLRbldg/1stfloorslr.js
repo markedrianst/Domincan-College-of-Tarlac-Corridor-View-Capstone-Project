@@ -1,104 +1,136 @@
-const slrfirstfloor =[
+const slrfirstfloor = [
   {
     id: 'slr1st1',
-    name: 'Junior Higschool Faculty',
-    description: 'SLR bldg. 1st floor',
-    imageUrl: 'images/SLRbldg/SLR1stfloor.jpg',
-    category: ['SLR bldg.','Offices'],
-    connections: ['sn1st7','slr1st2'],
+    name: 'Faculty Lounge',
+    description: 'SLR Faculty Lounge – SLR Building 1st Floor',
+    imageUrl: 'images/SLRbldg/1 SLR FACULTY LOUNGE.webp',
+    category: ['SLR bldg.', 'Offices'],
+    connections: ['slr1st2'],
     arrowPositions: {
-      'sn1st7': { phi: Math.PI / 3, theta: Math.PI * 2.32, direction: 'up'},
-      'slr1st2': { phi: Math.PI / 3, theta: Math.PI * 1.33, direction: 'up'}
-
-        
-       }
-    },
-      {
+      'slr1st2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
     id: 'slr1st2',
-    name: 'Junior Higschool Faculty',
-    description: 'SLR bldg. 1st floor',
-    imageUrl: 'images/SLRbldg/SLR1stfloor1.jpg',
-    category: ['SLR bldg.','Offices'],
-    connections: ['slr1st3','slr1st1'],
+    name: 'SLR 102',
+    description: 'SLR Room 102 – 1st Floor',
+    imageUrl: 'images/SLRbldg/2 SLR 102 (1).webp',
+    category: ['SLR bldg.', 'Classrooms'],
+    connections: ['slr1st1', 'slr1st3'],
     arrowPositions: {
-      'slr1st3': { phi: Math.PI / 3, theta: Math.PI * 2.37, direction: 'up'},
-      'slr1st1': { phi: Math.PI / 3, theta: Math.PI * 1.37, direction: 'up'}
-
-        
-       }
-    },
-       {
+      'slr1st1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'slr1st3': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
     id: 'slr1st3',
-    name: 'SLR BUILDING',
-    description: 'SLR bldg. 1st floor',
-    imageUrl: 'images/SLRbldg/SLR1stfloor2.jpg',
-    category: ['SLR bldg.'],
-    connections: ['slr1st1','slr1st4','slr1stto2nd'],
+    name: 'Faculty Room',
+    description: 'SLR Faculty Room – 1st Floor',
+    imageUrl: 'images/SLRbldg/3 SLR FACULTY ROOM.webp',
+    category: ['SLR bldg.', 'Offices'],
+    connections: ['slr1st2', 'slr1st4'],
     arrowPositions: {
-      'slr1st1': { phi: Math.PI / 3, theta: Math.PI * 2.07, direction: 'up'},
-      'slr1st4': { phi: Math.PI / 3, theta: Math.PI * 0.95, direction: 'up'},
-         'slr1stto2nd': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up'}
-
-        
-       }
-    },
-
-           {
+      'slr1st2': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'slr1st4': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
     id: 'slr1st4',
-    name: '',
-    description: 'SLR bldg. 1st floor',
-    imageUrl: 'images/SLRbldg/SLR1stfloor3.jpg',
-    category: ['SLR bldg.'],
-    connections: ['slr1st3','slr1st5'],
+    name: 'SLR Stair 1st Floor',
+    description: 'Stairs (1st Floor Entrance)',
+    imageUrl: 'images/SLRbldg/4 SLR STAIR 1ST FLOOR (1).webp',
+    category: ['SLR bldg.', 'Stairs'],
+    connections: ['slr1st3', 'slr1st5','slr1st7'],
     arrowPositions: {
-      'slr1st3': { phi: Math.PI / 3, theta: Math.PI * 2.2, direction: 'up'},
-      'slr1st5': { phi: Math.PI / 3, theta: Math.PI * 1.07, direction: 'up'}
-
-        
-       }
-    },
-             {
+      'slr1st3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'slr1st5': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
+      'slr1st7': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
     id: 'slr1st5',
-    name: 'Clinic',
-    description: 'SLR bldg. 1st floor',
-    imageUrl: 'images/SLRbldg/SLR1stfloor4.jpg',
-    category: ['SLR bldg.','Offices'],
-    connections: ['slr1st4','Coveredcourt'],
+    name: 'Stair to 2nd Floor (1)',
+    description: 'SLR Stairway to 2nd Floor (1)',
+    imageUrl: 'images/SLRbldg/5.1 SLR STAIR 1ST TO 2ND FLOOR (1).webp',
+    category: ['SLR bldg.', 'Stairs'],
+    connections: ['slr1st4', 'slr2ndStairs1'],
     arrowPositions: {
-      'Coveredcourt': { phi: Math.PI / 3, theta: Math.PI * 2.2, direction: 'up'},
-      'slr1st4': { phi: Math.PI / 3, theta: Math.PI * 2.6, direction: 'up'},
-     
-
-        
-       }
+      'slr1st4': { phi: Math.PI / 3, theta: Math.PI * 1.9, direction: 'down' },
+      'slr2ndStairs1': { phi: Math.PI / 3, theta: Math.PI * 2.1, direction: 'up' }
     },
-         {
-    id: 'slr1st6',
-    name: 'Slr1stto2nd',
-    description: 'SLR Stairs to 2nd Floor',
-    imageUrl: 'images/SLRbldg/SLR1stfloor5.jpg',
-    category: ['SLR bldg.'],
-    connections: ['slr1st3'],
+     defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 1 } // 👈 always face 2nd floor
+
+  },
+  {
+    id: 'slr1st7',
+    name: 'SLR 103',
+    description: 'SLR Room 103 – 1st Floor',
+    imageUrl: 'images/SLRbldg/6 SLR 103.webp',
+    category: ['SLR bldg.', 'Classrooms'],
+    connections: ['slr1st8', 'slr1st4'],
     arrowPositions: {
-      'slr1st3': { phi: Math.PI / 4, theta: Math.PI * 1.7, direction: 'down'},
-     
-
-        
-       }
-    },
-         {
-    id: 'slr1stto2nd',
-    name: 'Slr1stto2nd',
-    description: 'SLR Stairs to 2nd Floor',
-    imageUrl: 'images/SLRbldg/SLR1stfloor5.jpg',
-    category: ['SLR bldg.'],
-    connections: ['slr1st3','SLR2ndStairs'],
+      'slr1st4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'slr1st8': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
+    id: 'slr1st8',
+    name: 'SLR 103 (2)',
+    description: 'Alternate View of Room 103',
+    imageUrl: 'images/SLRbldg/7 SLR 103 (2).webp',
+    category: ['SLR bldg.', 'Classrooms'],
+    connections: ['slr1st7', 'slr1st9','dcourt4'],
     arrowPositions: {
-      'slr1st3': { phi: Math.PI / 4, theta: Math.PI * 1.7, direction: 'down'},
-        'SLR2ndStairs': { phi: Math.PI / 4, theta: Math.PI * 2, direction: 'up'},
-     
-
-        
-       }
-    },
-]
+      'slr1st7': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'dcourt4': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
+      'slr1st9': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
+    id: 'slr1st9',
+    name: 'Medical Clinic',
+    description: 'SLR Medical Clinic – 1st Floor',
+    imageUrl: 'images/SLRbldg/8 SLR MEDICAL CLINIC.webp',
+    category: ['SLR bldg.', 'Offices'],
+    connections: ['slr1st8', 'slr1st10'],
+    arrowPositions: {
+      'slr1st8': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'slr1st10': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
+    id: 'slr1st10',
+    name: 'Isolation Area',
+    description: 'SLR 105 Isolation Area – 1st Floor',
+    imageUrl: 'images/SLRbldg/9 SLR 105 ISOLATION AREA.webp',
+    category: ['SLR bldg.', 'Rooms'],
+    connections: ['slr1st9', 'slr1st11'],
+    arrowPositions: {
+      'slr1st9': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'slr1st11': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
+    id: 'slr1st11',
+    name: 'TLE Room',
+    description: 'SLR TLE Room – 1st Floor',
+    imageUrl: 'images/SLRbldg/10 SLR TLE ROOM.webp',
+    category: ['SLR bldg.', 'Laboratories'],
+    connections: ['slr1st10', 'slr1st12'],
+    arrowPositions: {
+      'slr1st10': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'slr1st12': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    }
+  },
+  {
+    id: 'slr1st12',
+    name: 'SLR 106',
+    description: 'SLR Room 106 – 1st Floor',
+    imageUrl: 'images/SLRbldg/11 SLR 106.webp',
+    category: ['SLR bldg.', 'Classrooms'],
+    connections: ['slr1st11'],
+    arrowPositions: {
+      'slr1st11': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  }
+];
