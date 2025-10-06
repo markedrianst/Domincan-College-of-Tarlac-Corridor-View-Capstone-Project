@@ -1,19 +1,28 @@
 const hr4thfloor = [
 
-        { 
-    id: 'Hr4thfloorLibrary',
-    name: 'Hr 4thfloorLibrary',
-    description: 'Hr bldg. 4th floor Library',
-    imageUrl: 'images/HRbldg/HR4thfloor.jpg',
+  { 
+    id: 'hr4thStair4',
+    name: 'HR Stair (4) 4th Floor',
+    description: 'HR Building 4th Floor Stairs',
+    imageUrl: 'images/HRbldg/K HR STAIR (4) 4TH FLOOR.webp',
     category: ['HR bldg.'],
-    connections: ['Hr3rd5'],
+    connections: ['hr403', 'Hr3rd13'],
     arrowPositions: {
-    'Hr3rd5':{ phi: Math.PI / 4, theta: Math.PI * 1.20, direction: 'up'}
-   
-    
-       }
-    },
-  
+      'hr403': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
+      'Hr3rd13': { phi: Math.PI / 4, theta: Math.PI * 2, direction: 'down' }
+    }
+  },
+
+  { 
+    id: 'hr403',
+    name: 'HR 403',
+    description: 'HR Building 4th Floor Room 403',
+    imageUrl: 'images/HRbldg/K HR 403.webp',
+    category: ['HR bldg.'],
+    connections: ['hr4thStair4'],
+    arrowPositions: {
+      'hr4thStair4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+
 ];
-
-

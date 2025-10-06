@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize search functionality
     window.searchManager = new SearchManager();
     
-    // Initialize transition manager
     window.transitionManager = new TransitionManager();
     
     // Initialize mobile support

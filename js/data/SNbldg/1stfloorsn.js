@@ -1,124 +1,174 @@
-const snfirstfloor =[
+const snfirstfloor = [
   {
     id: 'sn1st1',
     name: 'SN 101',
     description: 'SN bldg. 1st floor',
-    imageUrl: 'images/SNbldg/SN1stfloor.jpg',
+    imageUrl: 'images/SNbldg/1 SN 101.webp',
     category: ['SN bldg.'],
-    connections: ['Hr1rd1','sn1st2'],
+    connections: ['snscience', 'ccsofficetosn'],
     arrowPositions: {
-      'Hr1rd1': { phi: Math.PI / 3, theta: Math.PI * 1.95, direction: 'up'},
-      'sn1st2': { phi: Math.PI / 3, theta: Math.PI * 1., direction: 'up'}
+      'snscience': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'ccsofficetosn': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
 
-        
-       }
-    },
+  {
+    id: 'snscience',
+    name: 'SN Science Lab',
+    description: 'SN bldg. 1st floor',
+    imageUrl: 'images/SNbldg/1.2 SN SCIENCE LAB.webp',
+    category: ['SN bldg.'],
+    connections: ['snplayroom1', 'sn1st1','sn1st2'],
+    arrowPositions: {
+      'snplayroom1': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
+      'sn1st1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'sn1st2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
 
+    }
+  },
+
+  {
+    id: 'snplayroom1',
+    name: 'SN Playroom (1)',
+    description: 'SN bldg. 1st floor',
+    imageUrl: 'images/SNbldg/1.3 SN PLAYROOM (1).webp',
+    category: ['SN bldg.'],
+    connections: ['snplayroom2', 'snscience'],
+    arrowPositions: {
+      'snplayroom2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'snscience': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
+
+  {
+    id: 'snplayroom2',
+    name: 'SN Playroom (2)',
+    description: 'SN bldg. 1st floor',
+    imageUrl: 'images/SNbldg/1.4 SN PLAYROOM (2).webp',
+    category: ['SN bldg.'],
+    connections: ['sn1st2', 'snplayroom1'],
+    arrowPositions: {
+      'snplayroom1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
 
   {
     id: 'sn1st2',
-    name: 'SN 102',
+    name: 'SN 102 Biology Lab',
     description: 'SN bldg. 1st floor',
-    imageUrl: 'images/SNbldg/SN1stfloor1.jpg',
+    imageUrl: 'images/SNbldg/2 SN 102 BIOLOGY LAB.webp',
     category: ['SN bldg.'],
-    connections: ['sn1st3','sn1st1'],
+    connections: ['snchem', 'snscience'],
     arrowPositions: {
-      'sn1st3': { phi: Math.PI / 3, theta: Math.PI * 1.95, direction: 'up'},
-      'sn1st1': { phi: Math.PI / 3, theta: Math.PI * .97, direction: 'up'}
-
-        
-       }
+      'snchem': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'snscience': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     }
-,
-
+  },
 
   {
-    id: 'sn1st3',
-    name: 'SN 103',
+    id: 'snchem',
+    name: 'SN Chemistry Lab',
     description: 'SN bldg. 1st floor',
-    imageUrl: 'images/SNbldg/SN1stfloor2.jpg',
+    imageUrl: 'images/SNbldg/3 SN CHEMISTRY LAB.webp',
     category: ['SN bldg.'],
-    connections: ['sn1st2','sn1st4'],
+    connections: ['snforensic', 'sn1st2'],
     arrowPositions: {
-      'sn1st2': { phi: Math.PI / 3, theta: Math.PI * 1.95, direction: 'up'},
-      'sn1st4': { phi: Math.PI / 3, theta: Math.PI * .97, direction: 'up'}
-
-        
-       }
+      'snforensic': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'sn1st2': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     }
+  },
 
-,
+  {
+    id: 'snforensic',
+    name: 'SN Forensic Lab',
+    description: 'SN bldg. 1st floor',
+    imageUrl: 'images/SNbldg/4 SN FORENSIC LAB.webp',
+    category: ['SN bldg.'],
+    connections: ['snphysics', 'snchem'],
+    arrowPositions: {
+      'snphysics': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'snchem': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
 
+  {
+    id: 'snphysics',
+    name: 'SN Physics Lab',
+    description: 'SN bldg. 1st floor',
+    imageUrl: 'images/SNbldg/5 SN PHYSICS LAB.webp',
+    category: ['SN bldg.'],
+    connections: ['sn1st4', 'snforensic'],
+    arrowPositions: {
+      'sn1st4': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'snforensic': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  },
 
   {
     id: 'sn1st4',
-    name: 'SN 104',
+    name: 'SN 104 (1)',
     description: 'SN bldg. 1st floor',
-    imageUrl: 'images/SNbldg/SN1stfloor3.jpg',
+    imageUrl: 'images/SNbldg/6 SN 104 (1).webp',
     category: ['SN bldg.'],
-    connections: ['sn1st5','sn1st3'],
+    connections: ['sn1ststair', 'snphysics','sn1st7'],
     arrowPositions: {
-      'sn1st5': { phi: Math.PI / 3, theta: Math.PI * 1.77, direction: 'up'},
-      'sn1st3': { phi: Math.PI / 3, theta: Math.PI * .8, direction: 'up'}
-
-        
-       }
+      'sn1ststair': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
+      'snphysics': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'sn1st7': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
     }
-
-,
-
+  },
 
   {
-    id: 'sn1st5',
-    name: 'SN 105',
+    id: 'sn1ststair',
+    name: 'SN Stair 1st Floor',
     description: 'SN bldg. 1st floor',
-    imageUrl: 'images/SNbldg/SN1stfloor4.jpg',
+    imageUrl: 'images/SNbldg/6.1 SN STAIR 1ST FLOOR.webp',
     category: ['SN bldg.'],
-    connections: ['sn1st6','sn1st4'],
+    connections: ['sn2ndstair1', 'sn1st4'],
     arrowPositions: {
-      'sn1st6': { phi: Math.PI / 3, theta: Math.PI * 1.92, direction: 'up'},
-      'sn1st4': { phi: Math.PI / 3, theta: Math.PI * .65, direction: 'up'}
-
-        
-       }
+      'sn2ndstair1': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
+      'sn1st4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     }
-
-,
-
-
-  {
-    id: 'sn1st6',
-    name: 'SN 106',
-    description: 'SN bldg. 1st floor',
-    imageUrl: 'images/SNbldg/SN1stfloor5.jpg',
-    category: ['SN bldg.'],
-    connections: ['sn1st7','sn1st5'],
-    arrowPositions: {
-      'sn1st7': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
-      'sn1st5': { phi: Math.PI / 3, theta: Math.PI * 1.2, direction: 'up'}
-
-        
-       }
-    }
-
-,
-
+  },
 
   {
     id: 'sn1st7',
-    name: 'SN 107',
+    name: 'SN 104 (2)',
     description: 'SN bldg. 1st floor',
-    imageUrl: 'images/SNbldg/SN1stfloor6.jpg',
+    imageUrl: 'images/SNbldg/7 SN 104 (2).webp',
     category: ['SN bldg.'],
-    connections: ['slr1st1','sn1st6'],
+    connections: ['sn1st8', 'sn1st4'],
     arrowPositions: {
-      'slr1st1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up'},
-      'sn1st6': { phi: Math.PI / 3, theta: Math.PI * .5, direction: 'up'}
-
-        
-       }
+      'sn1st8': { phi: Math.PI / 3, theta: Math.PI * 2.3, direction: 'up' },
+      'sn1st4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     }
+  },
 
+  {
+    id: 'sn1st8',
+    name: 'SN 104 (3)',
+    description: 'SN bldg. 1st floor',
+    imageUrl: 'images/SNbldg/8 SN 104 (3).webp',
+    category: ['SN bldg.'],
+    connections: ['snroomsl101', 'sn1st7'],
+    arrowPositions: {
+      'snroomsl101': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
+      'sn1st7': { phi: Math.PI / 3, theta: Math.PI * 1.0, direction: 'up' }
+    },
+    defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 2.3 } // 👈 always face 2nd floor
 
+  },
 
-]
+  {
+    id: 'snroomsl101',
+    name: 'SN Room SL 101',
+    description: 'SN bldg. 1st floor',
+    imageUrl: 'images/SNbldg/9 SN(Room SL 101).webp',
+    category: ['SN bldg.'],
+    connections: ['sn1st8', 'slr1st1'],
+    arrowPositions: {
+      'slr1st1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'sn1st8': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+    }
+  }
+];
