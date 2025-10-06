@@ -197,7 +197,7 @@ const sd3rdFloor = [
     connections: ['Sd3rdfloorHRext1', 'Sd3rdfloorHRext3'],
     arrowPositions: {
         'Sd3rdfloorHRext1': { phi: Math.PI / 3, theta: -3, direction:'up' },
-        'Sd3rdfloorHRext3': { phi: Math.PI / 3, theta: 0, direction:'up' }
+        'Sd3rdfloorHRext3': { phi: Math.PI / 3, theta: -1.5, direction:'up' }
     }
 },
 
@@ -209,7 +209,7 @@ const sd3rdFloor = [
     category: 'Sd bldg.',
     connections: ['Sd3rdfloorHRext2', 'Sd3rdfloorHRext4'],
     arrowPositions: {
-        'Sd3rdfloorHRext2': { phi: Math.PI / 3, theta: -3, direction:'up' },
+        'Sd3rdfloorHRext2': { phi: Math.PI / 3, theta: 1.5, direction:'up' },
         'Sd3rdfloorHRext4': { phi: Math.PI / 3, theta: 0, direction:'up' }
     }
 },
@@ -233,10 +233,10 @@ const sd3rdFloor = [
     description: 'Extension hallway to HR',
     imageUrl: 'images/Sdbldg/15 SD Extension to HR .webp',
     category: 'Sd bldg.',
-    connections: ['Sd3rdfloorHRext4', 'Hr3rd1'],
+    connections: ['Sd3rdfloorHRext4', 'Hr3rd19'],
     arrowPositions: {
         'Sd3rdfloorHRext4': { phi: Math.PI / 3, theta: -3, direction:'up' },
-        'Hr3rd1': { phi: Math.PI / 3, theta: 0, direction:'up' }
+        'Hr3rd19': { phi: Math.PI / 3, theta: 1.5, direction:'up' }
     }
 }
 ];

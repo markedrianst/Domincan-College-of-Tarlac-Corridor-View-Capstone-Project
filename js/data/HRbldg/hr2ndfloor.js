@@ -2,13 +2,14 @@ const hr2ndfloor = [
 
   {  
     id: 'Hr2nd1',
-    name: 'HR 203 Stair (3)',
+    name: 'HR 2nd to 3rd floor Stair',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/2.1 HR 203 STAIR (3).webp',
     category: ['HR bldg.'],
-    connections: ['Hr2nd2'],
+    connections: ['Hr2nd2','Hr3rd16'],
     arrowPositions: {
-        'Hr2nd2': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' }
+        'Hr2nd2': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
+        'Hr3rd16': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     }
   },
 

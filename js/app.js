@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize search functionality
     window.searchManager = new SearchManager();
     
-    // Initialize transition manager
     window.transitionManager = new TransitionManager();
     
     // Initialize mobile support
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load initial panorama (entrance)
 
-    window.panoramaViewer.loadPanorama('entrance');
+    window.panoramaViewer.loadPanorama('Hr3rd13');
 
 
 

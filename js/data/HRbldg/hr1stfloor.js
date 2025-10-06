@@ -270,10 +270,13 @@ const hr1stfloor = [
     description: 'HR Building 2nd Floor - Speech Lab Access',
     imageUrl: 'images/HRbldg/1.3 HR 202 Side Stairs(Speech Lab)(1).webp',
     category: ['HR bldg.'],
-    connections: ['hrside12'],
+    connections: ['hrside12','Hr3rd1'],
     arrowPositions: {
-        'hrside12': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' }
-    }
+        'hrside12': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
+        'Hr3rd1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+
+    },          defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 1 } // 👈 always face 2nd floor
+
   }
 
 
