@@ -73,18 +73,32 @@ class SearchManager {
         return btn;
     }
 
-    performSearch() {
-        const searchTerm = this.searchInput.value.trim();
-        const category = this.activeCategory;
+   performSearch() {
+    const searchTerm = this.searchInput.value.trim();
+    const category = this.activeCategory;
 
-        // ✅ Show all results if searchTerm and category are empty
-        if (searchTerm === '' && !category) {
-            this.displayResults([...panoramaData]); 
-            return;
-        }
+    // ✅ CASE 1: Category = "All" and no typing → show nothing
+    if (category === "" && searchTerm === "") {
+        this.searchResults.innerHTML = "";
+        this.hideResults();
+        return;
+    }
 
-        // Start with all panoramas (ignoring searchTerm if empty)
-        let results = searchTerm === '' ? [...panoramaData] : searchPanoramas(searchTerm);
+    // ✅ CASE 2: If category is "All" and user typed → show matching results
+    // ✅ CASE 3: If specific category selected → show filtered results
+    let results = [];
+
+    if (searchTerm === "") {
+        // User didn't type, so just show by category (if not "All")
+        results = category
+            ? panoramaData.filter(p => {
+                const cats = Array.isArray(p.category) ? p.category : [p.category];
+                return cats.includes(category);
+            })
+            : [];
+    } else {
+        // User typed → perform search across all panoramas
+        results = searchPanoramas(searchTerm);
 
         // Filter by category if selected
         if (category) {
@@ -93,9 +107,10 @@ class SearchManager {
                 return cats.includes(category);
             });
         }
-
-        this.displayResults(results);
     }
+
+    this.displayResults(results);
+}
 
     displayResults(results) {
         this.searchResults.innerHTML = '';
