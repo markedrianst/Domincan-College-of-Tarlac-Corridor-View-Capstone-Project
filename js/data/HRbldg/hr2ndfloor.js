@@ -98,9 +98,10 @@ const hr2ndfloor = [
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/7 HR 207.webp',
     category: ['HR bldg.','Rooms'],
-    connections: ['Hr2nd7'],
+    connections: ['Hr2nd7','sn2ndutility'],
     arrowPositions: {
-        'Hr2nd7': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+        'Hr2nd7': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+         'sn2ndutility': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
     }
   }
 

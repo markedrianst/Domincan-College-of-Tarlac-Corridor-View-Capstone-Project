@@ -114,9 +114,11 @@ const hr1stfloor = [
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/2.3 CCS to SN Building.webp',
     category: ['HR bldg.','Offices'],
-    connections: ['ccsoffice1'],
+    connections: ['ccsoffice1','sn1st1'],
     arrowPositions: {
-        'ccsoffice1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+        'ccsoffice1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+        'sn1st1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+
     }
   },
   {  
