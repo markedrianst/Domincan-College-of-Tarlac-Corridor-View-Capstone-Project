@@ -15,7 +15,7 @@ const hr2ndfloor = [
 
   {  
     id: 'Hr2nd2',
-    name: 'HR 203 - Director of Academic Affairs',
+    name: 'HR 203 - Director of Academic Affairs VPAA Office',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/2.2 HR 203 DIRECTOR OF ACADEMIC AFFAIRS.webp',
     category: ['HR bldg.','Offices'],
@@ -68,7 +68,7 @@ const hr2ndfloor = [
 
   {  
     id: 'Hr2nd6',
-    name: 'HR 205 Multi-Purpose Hall',
+    name: 'HR 205 HRM Multi-Purpose Hall',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/5 HR 205 MULTI PURPOSE HALL.webp',
     category: ['HR bldg.','Rooms'],

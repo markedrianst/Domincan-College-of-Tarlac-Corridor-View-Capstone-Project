@@ -15,7 +15,7 @@ const hr4thfloor = [
 
   { 
     id: 'hr403',
-    name: 'HR 403',
+    name: 'HR 403 JHS - SHS Library ',
     description: 'HR Building 4th Floor Room 403',
     imageUrl: 'images/HRbldg/K HR 403.webp',
     category: ['HR bldg.'],
