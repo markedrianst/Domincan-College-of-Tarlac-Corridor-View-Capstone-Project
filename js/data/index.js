@@ -28,6 +28,7 @@ const panoramaData = [
 //     // SN BUILDING
 ...snfirstfloor,
 ...snsecondfloor,
+...achievements,
 
 //     // SLR BUILDING
 //     ...slrfirstfloor,
