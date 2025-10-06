@@ -18,6 +18,7 @@ const panoramaData = [
   ...olf3rdbldg,
   ...olf4thbldg,
   ...sdtoolfbldg,
+  
 
 //   // HR BUILDING
 ...hr1stfloor,
@@ -31,10 +32,10 @@ const panoramaData = [
 ...achievements,
 
 //     // SLR BUILDING
-//     ...slrfirstfloor,
-//     ...slrsecondfloor,
-//     ...slrthirdfloor,
-//     ...slrfourthfloor,
+    ...slrfirstfloor,
+    ...slrsecondfloor,
+    ...slr3rdfloor,
+    ...slrfourthfloor,
 
 //     ...olp4thfloor,
 //     ...olp3rdfloor,

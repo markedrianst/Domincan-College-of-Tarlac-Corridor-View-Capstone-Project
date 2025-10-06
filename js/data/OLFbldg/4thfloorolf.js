@@ -56,8 +56,8 @@ const olf4thbldg = [
     connections: ['DOLF403','DOLF404','DOLFStair4th2'],
     arrowPositions: {
       'DOLF403': { phi: Math.PI / 3.2, theta: Math.PI * 1.5, direction: 'up' },
-      'DOLFStair4th2 ': { phi: Math.PI / 3.2, theta: Math.PI * 2, direction: 'down' },
-       'DOLF404': { phi: Math.PI / 3.2, theta: Math.PI * 2.5, direction: 'up' }
+      'DOLFStair4th2': { phi: Math.PI / 3.2, theta: Math.PI * 2, direction: 'down' },
+          'DOLF404': { phi: Math.PI / 3.2, theta: Math.PI * 2.5, direction: 'up' }
     }
   },
   {

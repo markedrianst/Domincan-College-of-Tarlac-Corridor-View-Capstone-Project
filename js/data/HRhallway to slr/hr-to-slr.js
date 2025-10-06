@@ -83,23 +83,10 @@ const achievements = [
     description: 'Achievements Court Area',
     imageUrl: 'images/HR to SLR/D COURT (4).webp',
     category: ['Achievements Hall'],
-    connections: ['dcourt5', 'dcourt3'],
+    connections: ['slr1st8', 'dcourt3'],
     arrowPositions: {
-      'dcourt5': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'slr1st8': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
       'dcourt3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     }
   },
-
-  {
-    id: 'dcourt5',
-    name: 'D Court (5)',
-    description: 'Achievements Court Area',
-    imageUrl: 'images/HR to SLR/D COURT (5).webp',
-    category: ['Achievements Hall'],
-    connections: ['dcourt4'],
-    arrowPositions: {
-      'dcourt4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
-    },
-    defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 2.3 } // 👈 always face next section
-  }
 ];
