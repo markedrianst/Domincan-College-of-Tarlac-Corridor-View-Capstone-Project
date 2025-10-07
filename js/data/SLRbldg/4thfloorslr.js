@@ -115,10 +115,11 @@ const slrfourthfloor = [
     description: 'SLR Building 4th Floor Room 409',
     imageUrl: 'images/SLRbldg/11.1 SLR 409 (2).webp',
     category: ['SLR bldg.'],
-    connections: ['slr4th9', 'slr4th11'],
+    connections: ['slr4th9', 'slr4th11','olp404stair'],
     arrowPositions: {
       'slr4th9': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
-      'slr4th11': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' }
+      'slr4th11': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
+      'olp404stair': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
     }
   },
   {
