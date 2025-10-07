@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load initial panorama (entrance)
 
-    window.panoramaViewer.loadPanorama('challway2nd');
+    window.panoramaViewer.loadPanorama('entrance');
 
 
 

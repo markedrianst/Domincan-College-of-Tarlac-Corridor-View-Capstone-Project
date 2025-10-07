@@ -42,6 +42,7 @@ const panoramaData = [
     ...olp1stfloor,
    ...olp2ndfloor
 //   // add other files here
+  // add other files here
 ];
 
 /**
