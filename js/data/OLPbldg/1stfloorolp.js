@@ -1,49 +1,50 @@
-const olp1stfloor =[
+const olp1stfloor = [
   {
-    id: 'connectinghallwaytolp',
-    name: 'Connecting Hallway to OLP',
-    description: 'OLP bldg.Ground Floor',
-    imageUrl: 'images/OLPbldg/OLP1stfloor(playfield).jpg',
+    id: 'dToChapel1',
+    name: 'Path to Chapel',
+    description: 'OLP Building - Path leading to Chapel',
+    imageUrl: 'images/OLPbldg/D TO CHAPEL (1).webp',
     category: ['OLP bldg.'],
-    connections: ['Hr1rd5','Coveredcourt','1stfloorolpstairs'],
+    connections: ['dToOfficeAdmin2','dachall3'],
     arrowPositions: {
-      'Hr1rd5': { phi: Math.PI / 3, theta: Math.PI * 1.9, direction: 'up'},
-       'Coveredcourt': { phi: Math.PI / 3, theta: Math.PI * .7, direction: 'up'},
-      '1stfloorolpstairs': { phi: Math.PI / 3, theta: Math.PI * 1.2, direction: 'up'}
-
-        
-       }
+      'dToOfficeAdmin2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+            'dachall3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     },
-      {
-    id: '1stfloorolpstairs',
-    name: '1stfloorolpstairs',
-    description: 'OLP bldg. Ground Floor',
-    imageUrl: 'images/OLPbldg/OLP1stfloor(cafeteria).jpg',
+  },
+  {
+    id: 'dToOfficeAdmin2',
+    name: 'Path to Office and Admin',
+    description: 'OLP Building - Corridor to Office and Admin Area',
+    imageUrl: 'images/OLPbldg/D TO OFFICE TO ADMIN (2).webp',
     category: ['OLP bldg.'],
-    connections: ['connectinghallwaytolp','olp2nd_stairs_from1st'],
+    connections: ['dToChapel1', 'dToResurrectionChapel3'],
     arrowPositions: {
-      'connectinghallwaytolp': { phi: Math.PI / 3, theta: Math.PI * 1.65, direction: 'up'},
-      'olp2nd_stairs_from1st': { phi: Math.PI / 3, theta: Math.PI * .87, direction: 'up'}
-
-        
-       }
+      'dToChapel1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'dToResurrectionChapel3': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
     },
-
-       {
-    id: 'Coveredcourt',
-    name: 'Coveredcourt',
-    description: 'OLP bldg. Ground Floor',
-    imageUrl: 'images/OLPbldg/OLP1stfloor(court).jpg',
+  },
+  {
+    id: 'dToResurrectionChapel3',
+    name: 'Path to Resurrection Chapel',
+    description: 'OLP Building - Corridor to Resurrection Chapel',
+    imageUrl: 'images/OLPbldg/D TO RESURRECTION CHAPEL (3).webp',
     category: ['OLP bldg.'],
-    connections: ['connectinghallwaytolp','slr1st5'],
+    connections: ['dToOfficeAdmin2', 'pOLP1stFloor'],
     arrowPositions: {
-
-      'slr1st5': { phi: Math.PI / 3, theta: Math.PI * 2.1, direction: 'up'},
-      'connectinghallwaytolp': { phi: Math.PI / 3, theta: Math.PI * .7, direction: 'up'},
- 
-        
-       }
+      'dToOfficeAdmin2': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'pOLP1stFloor': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
     },
-
-
-]
+  },
+  {
+    id: 'pOLP1stFloor',
+    name: 'OLP 1st Floor',
+    description: 'Main Hall of OLP Building 1st Floor',
+    imageUrl: 'images/OLPbldg/P OLP 1ST FLOOR.webp',
+    category: ['OLP bldg.'],
+    connections: ['dToResurrectionChapel3','olp2nd_stairs_from1st'],
+    arrowPositions: {
+      'dToResurrectionChapel3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'olp2nd_stairs_from1st': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+    },
+  }
+];

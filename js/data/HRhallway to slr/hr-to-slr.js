@@ -31,10 +31,11 @@ const achievements = [
     description: 'Achievements Hall 2nd Floor',
     imageUrl: 'images/HR to SLR/D ACHIEVEMENTS HALL (3).webp',
     category: ['Achievements Hall'],
-    connections: ['dcourt1', 'grandhall'],
+    connections: ['dcourt1', 'grandhall','dToChapel1'],
     arrowPositions: {
       'dcourt1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
-      'grandhall': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+      'grandhall': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'dToChapel1': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' }
     }
   },
 
