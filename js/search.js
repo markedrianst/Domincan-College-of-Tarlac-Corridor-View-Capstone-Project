@@ -97,23 +97,30 @@ class SearchManager {
         allBtn.classList.add("active");
     }
 
-    createCategoryButton(label, value) {
-        const btn = document.createElement("button");
-        btn.className = "category-btn";
-        btn.textContent = label;
-        btn.addEventListener("click", () => {
-            console.log('Category clicked:', value);
-            document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            this.activeCategory = value;
-            
-            // Teleport to specific location
-            this.teleportToCategory(value);
-            
-            this.performSearch();
-        });
-        return btn;
-    }
+        createCategoryButton(label, value) {
+            const btn = document.createElement("button");
+            btn.className = "category-btn";
+            btn.textContent = label;
+            btn.addEventListener("click", () => {
+                console.log('Category clicked:', value);
+                
+                // Keep "All" visually active
+                document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
+                const allBtn = document.querySelector(".category-btn:first-child"); // Assuming "All" is first
+                if (allBtn) allBtn.classList.add("active");
+
+                // Do NOT set activeCategory — keep it empty so search shows all
+                this.activeCategory = "";
+
+                // Teleport to the category's destination
+                this.teleportToCategory(value);
+
+                // Perform search (will show everything since activeCategory = "")
+                this.performSearch();
+            });
+
+            return btn;
+        }
 
     /**
      * Teleport to specific location for category
