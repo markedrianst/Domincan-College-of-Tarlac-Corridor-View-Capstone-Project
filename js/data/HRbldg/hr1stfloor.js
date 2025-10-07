@@ -207,7 +207,7 @@ const hr1stfloor = [
     name: 'HR 101',
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/8 HR 101.webp',
-    category: ['HR bldg.','Rooms'],
+    category: ['HR bldg.'],
     connections: ['grandhall','hrstairs'],
     arrowPositions: {
         'grandhall': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -235,7 +235,7 @@ const hr1stfloor = [
     name: 'HR Conference Room',
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/8.4 HR Conference Room.webp',
-    category: ['HR bldg.','Rooms'],
+    category: ['HR bldg.'],
     connections: ['hr101'],
     arrowPositions: {
         'hrstairs': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },    }

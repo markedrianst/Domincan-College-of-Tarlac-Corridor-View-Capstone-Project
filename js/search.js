@@ -4,10 +4,32 @@ class SearchManager {
         this.searchResults = document.getElementById('search-results');
         this.debounceTimeout = null;
         this.debounceDelay = 300;
-        this.activeCategory = ""; // store selected category
+        this.activeCategory = "";
+
+        // Category destinations
+        this.categoryDestinations = {
+            'Sd bldg.': 'SdGroundfloor10',
+            'SCS bldg.': 'scs1st4', 
+            'OLF bldg.': 'olf_stair_1_2_1',
+            'HR bldg.': 'ccjeoffice',
+            'SN bldg.': 'sn1st1',
+            'SLR bldg.': 'slr1st4',
+            'OLP bldg.': 'pOLP1stFloor'
+        };
+
+        // PRIORITY ORDER: Define which categories show FIRST
+        this.categoryPriority = {
+            'Sd bldg.': 1,      // Highest priority - shows first
+            'SCS bldg.': 2,     // High priority
+            'OLF bldg.': 3,      // Medium priority
+            'HR bldg.': 4,      // Medium priority
+            'SN bldg.': 5,     // Lower priority
+            'SLR bldg.': 6,     // Lower priority
+            'OLP bldg.': 7      // Lowest priority - shows last
+        };
 
         this.setupEventListeners();
-        this.populateCategories(); // Auto-generate category buttons
+        this.populateCategories();
     }
 
     setupEventListeners() {
@@ -17,7 +39,7 @@ class SearchManager {
         });
 
         this.searchInput.addEventListener('focus', () => {
-            this.performSearch(); // Always perform search on focus, even if input is empty
+            this.performSearch();
         });
 
         document.addEventListener('click', (event) => {
@@ -31,31 +53,47 @@ class SearchManager {
         });
     }
 
-    /**
-     * Build category buttons dynamically from data.js
-     */
     populateCategories() {
         const categoryBar = document.getElementById('category-bar');
         if (!categoryBar) return;
 
-        // Flatten unique categories
+        // DEBUG: Log all categories found
         const categories = [...new Set(
             panoramaData.flatMap(p => Array.isArray(p.category) ? p.category : [p.category])
         )].sort();
+        
+        console.log('Found categories:', categories);
 
-        // Always add "All"
+        // Always add "All" first
         const allBtn = this.createCategoryButton("All", "");
         categoryBar.appendChild(allBtn);
 
-        categories.forEach(cat => {
+        // SORT CATEGORIES BY PRIORITY
+        const sortedCategories = categories.sort((a, b) => {
+            const priorityA = this.categoryPriority[a] || 999; // Default low priority
+            const priorityB = this.categoryPriority[b] || 999;
+            return priorityA - priorityB; // Lower number = higher priority
+        });
+
+        console.log('Categories in priority order:', sortedCategories);
+
+        // Add categories in PRIORITY ORDER
+        sortedCategories.forEach(cat => {
             const btn = this.createCategoryButton(
                 cat.charAt(0).toUpperCase() + cat.slice(1),
                 cat
             );
+            
+            // Add visual indicator for high priority categories
+            const priority = this.categoryPriority[cat];
+            if (priority <= 3) { // Priority 1-3 get special styling
+                btn.classList.add('priority-category');
+                btn.title = 'Main building';
+            }
+            
             categoryBar.appendChild(btn);
         });
 
-        // Default active = All
         allBtn.classList.add("active");
     }
 
@@ -64,32 +102,113 @@ class SearchManager {
         btn.className = "category-btn";
         btn.textContent = label;
         btn.addEventListener("click", () => {
-            // update active state
+            console.log('Category clicked:', value);
             document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             this.activeCategory = value;
+            
+            // Teleport to specific location
+            this.teleportToCategory(value);
+            
             this.performSearch();
         });
         return btn;
+    }
+
+    /**
+     * Teleport to specific location for category
+     */
+    teleportToCategory(category) {
+        if (!category) {
+            console.log('No category selected');
+            return;
+        }
+        
+        console.log('Teleporting for category:', category);
+        
+        const destinationId = this.categoryDestinations[category];
+        console.log('Destination ID from mapping:', destinationId);
+        
+        if (destinationId) {
+            const destinationPanorama = getPanoramaById(destinationId);
+            console.log('Found panorama:', destinationPanorama);
+            
+            if (destinationPanorama) {
+                // Cancel any active navigation
+                if (window.navigationPath) {
+                    cancelNavigation();
+                }
+                
+                // Teleport directly to specific location
+                if (window.panoramaViewer) {
+                    console.log('Starting teleport to:', destinationId);
+                    
+                    if (window.transitionManager) {
+                        window.transitionManager.startTransition(
+                            window.panoramaViewer.currentPanoramaId, 
+                            destinationId
+                        );
+                    } else {
+                        window.panoramaViewer.loadPanorama(destinationId);
+                    }
+                } else {
+                    console.error('panoramaViewer not found');
+                }
+            } else {
+                console.error('Panorama not found with ID:', destinationId);
+                // Try to find any panorama in this category
+                this.fallbackToFirstInCategory(category);
+            }
+        } else {
+            console.error('No destination mapped for category:', category);
+            this.fallbackToFirstInCategory(category);
+        }
+    }
+
+    /**
+     * Fallback: Use first panorama in category
+     */
+    fallbackToFirstInCategory(category) {
+        console.log('Trying fallback for category:', category);
+        const categoryPanoramas = panoramaData.filter(p => {
+            const cats = Array.isArray(p.category) ? p.category : [p.category];
+            return cats.includes(category);
+        });
+        
+        console.log('Found panoramas in category:', categoryPanoramas);
+        
+        if (categoryPanoramas.length > 0) {
+            const firstPanorama = categoryPanoramas[0];
+            console.log('Using fallback panorama:', firstPanorama.id);
+            
+            if (window.panoramaViewer) {
+                if (window.transitionManager) {
+                    window.transitionManager.startTransition(
+                        window.panoramaViewer.currentPanoramaId, 
+                        firstPanorama.id
+                    );
+                } else {
+                    window.panoramaViewer.loadPanorama(firstPanorama.id);
+                }
+            }
+        } else {
+            console.error('No panoramas found in category:', category);
+        }
     }
 
    performSearch() {
     const searchTerm = this.searchInput.value.trim();
     const category = this.activeCategory;
 
-    // ✅ CASE 1: Category = "All" and no typing → show nothing
     if (category === "" && searchTerm === "") {
         this.searchResults.innerHTML = "";
         this.hideResults();
         return;
     }
 
-    // ✅ CASE 2: If category is "All" and user typed → show matching results
-    // ✅ CASE 3: If specific category selected → show filtered results
     let results = [];
 
     if (searchTerm === "") {
-        // User didn't type, so just show by category (if not "All")
         results = category
             ? panoramaData.filter(p => {
                 const cats = Array.isArray(p.category) ? p.category : [p.category];
@@ -97,10 +216,8 @@ class SearchManager {
             })
             : [];
     } else {
-        // User typed → perform search across all panoramas
         results = searchPanoramas(searchTerm);
 
-        // Filter by category if selected
         if (category) {
             results = results.filter(p => {
                 const cats = Array.isArray(p.category) ? p.category : [p.category];
@@ -115,7 +232,6 @@ class SearchManager {
     displayResults(results) {
         this.searchResults.innerHTML = '';
 
-        // ✅ Show category header if filtering
         if (this.activeCategory) {
             const categoryHeader = document.createElement('div');
             categoryHeader.className = 'results-category-header';
@@ -146,7 +262,7 @@ class SearchManager {
 
                 resultItem.addEventListener('click', () => {
                     this.navigateToPanorama(result.id);
-                    this.searchInput.blur(); // ✅ close keyboard on mobile
+                    this.searchInput.blur();
                 });
 
                 this.searchResults.appendChild(resultItem);
@@ -161,7 +277,7 @@ class SearchManager {
 
     navigateToPanorama(panoramaId) {
         if (window.panoramaViewer) {
-        startUserNavigation(panoramaId);
+            startUserNavigation(panoramaId);
             this.hideResults();
             this.searchInput.value = '';
         }

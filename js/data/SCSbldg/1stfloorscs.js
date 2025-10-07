@@ -41,7 +41,7 @@ const scsfirstfloor = [
     name: 'SHS Faculty Room 104',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/3 Hallway(SCS Building).webp',
-    category: ['SCS bldg.', 'Hallway'],
+    category: ['SCS bldg.'],
     connections: ['scs1st2', 'scs1st4'],
     arrowPositions: {
       'scs1st2': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
@@ -53,7 +53,7 @@ const scsfirstfloor = [
     name: 'Hallway Benches and hall of SHS_1',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/4 Hallway(Benches and hall of SHS_1).webp',
-    category: ['SCS bldg.', 'Hallway'],
+    category: ['SCS bldg.'],
     connections: ['scs1st3', 'scs1st5'],
     arrowPositions: {
       'scs1st5': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -65,7 +65,7 @@ const scsfirstfloor = [
     name: 'Hallway Benches 103',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/5 Hallway(Benches and hall of SHS).webp',
-    category: ['SCS bldg.', 'Hallway'],
+    category: ['SCS bldg.'],
     connections: ['scs1st4', 'scs1st6'],
     arrowPositions: {
       'scs1st4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
@@ -77,7 +77,7 @@ const scsfirstfloor = [
     name: 'Hallway Storeroom, MIS, 1st floor Stairs',
     description: 'SCS bldg. 1st floor',
     imageUrl: 'images/Scsbldg/6 Hallway(Storeroom,MIS, 1stfloor Stairs).webp',
-    category: ['SCS bldg.', 'Hallway'],
+    category: ['SCS bldg.'],
     connections: ['scs1st5', 'scs1stMIS', 'scs1stPrincipal', 'scs1stStairsConnection'],
     arrowPositions: {
       'scs1st5': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
@@ -114,7 +114,7 @@ const scsfirstfloor = [
     name: 'SCS Stairs 1st Floor Connection',
     description: 'Connection to SCS Stairs 1st floor',
     imageUrl: 'images/Scsbldg/SCS STAIR 2ND FLOOR (1).webp',
-    category: ['SCS bldg.', 'Stairs'],
+    category: ['SCS bldg.'],
     connections: ['scs1st6', 'Scs1stto2nd'],
     arrowPositions: {
       'scs1st6': { phi: Math.PI / 3.1, theta: Math.PI * 0.1, direction: 'down' },

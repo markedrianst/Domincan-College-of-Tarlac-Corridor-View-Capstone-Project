@@ -5,7 +5,7 @@ const olfbldg = [
     name: 'OLF Side Stair (1)',
     description: 'OLF building side stair midpoint',
     imageUrl: 'images/OLFbldg/C OLF SIDE STAIR (1.2).webp',
-    category: ['OLF bldg.', 'Stairs'],
+    category: ['OLF bldg.'],
     connections: ['DOLF200', 'olf_side_stair_2',],
     arrowPositions: {
       'DOLF200': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
@@ -17,7 +17,7 @@ const olfbldg = [
     name: 'OLF Side Stair (2)',
     description: 'OLF building side stair second floor',
     imageUrl: 'images/OLFbldg/C OLF SIDE STAIR (2).webp',
-    category: ['OLF bldg.', 'Stairs'],
+    category: ['OLF bldg.'],
     connections: ['olf_side_stair_1_2', 'olf_side_stair_3'],
     arrowPositions: {
       'olf_side_stair_1_2': { phi: Math.PI / 3, theta: Math.PI * 1.9, direction: 'up' },
@@ -30,7 +30,7 @@ const olfbldg = [
     name: 'OLF Side Stair (3)',
     description: 'OLF building side stair third point',
     imageUrl: 'images/OLFbldg/C OLF SIDE STAIR (3).webp',
-    category: ['OLF bldg.', 'Stairs'],
+    category: ['OLF bldg.'],
     connections: ['olf_side_stair_2', 'olf_side_stair_4'],
     arrowPositions: {
       'olf_side_stair_2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -42,7 +42,7 @@ const olfbldg = [
     name: 'OLF Side Stair (4)',
     description: 'OLF building side stair fourth point',
     imageUrl: 'images/OLFbldg/C OLF SIDE STAIR (4).webp',
-    category: ['OLF bldg.', 'Stairs'],
+    category: ['OLF bldg.'],
     connections: ['olf_side_stair_3', 'olf_1st_floor_1'],
     arrowPositions: {
       'olf_side_stair_3': { phi: Math.PI / 3, theta: Math.PI * 1.9, direction: 'up' },
@@ -133,7 +133,7 @@ const olfbldg = [
     name: 'OLF Stair 1st to 2nd Floor (1)',
     description: 'OLF stair first to second floor, part 1',
     imageUrl: 'images/OLFbldg/G OLF STAIR 1ST TO 2ND FLOOR (1).webp',
-    category: ['OLF bldg.', 'Stairs'],
+    category: ['OLF bldg.'],
     connections: ['olf_stair_storage_room','olf_registrar_2','olf_stair_2nd_1'],
     arrowPositions: {
       'olf_stair_storage_room': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
@@ -146,7 +146,7 @@ const olfbldg = [
         name: 'OLF Stair 2nd Floor 1st Part',
     description: 'OLF stair 2nd floor, first part',
     imageUrl: 'images/OLFbldg/G OLF STAIR 2ND FLOOR 1ST PART(1).webp',
-    category: ['OLF bldg.', 'Stairs'],
+    category: ['OLF bldg.'],
     connections: ['olf_stair_1_2_1', 'olf_stair_2nd_2'],
     arrowPositions: {
       'olf_stair_1_2_1': { phi: Math.PI / 4, theta: Math.PI * 1, direction: 'down' },
@@ -159,7 +159,7 @@ const olfbldg = [
     name: 'OLF Stair 2nd Floor 2nd Part',
     description: 'OLF stair 2nd floor, second part',
     imageUrl: 'images/OLFbldg/G OLF STAIR 2ND FLOOR 2ND PART.webp',
-    category: ['OLF bldg.', 'Stairs'],
+    category: ['OLF bldg.'],
     connections: ['olf_stair_2nd_1','EOLFStair2ndTo3rd3'],
     arrowPositions: {
       'olf_stair_2nd_1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
