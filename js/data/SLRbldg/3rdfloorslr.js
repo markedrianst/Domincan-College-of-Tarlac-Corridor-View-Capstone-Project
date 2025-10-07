@@ -5,9 +5,10 @@ const slr3rdfloor = [
     description: 'SLR Building 3rd Floor',
     imageUrl: 'images/SLRbldg/0.2 SLR 301 STAIR TO 4TH FLOOR (2).webp',
     category: ['SLR bldg.'],
-    connections: ['slr301_1'],
+    connections: ['slr301_1','slr4th1'],
     arrowPositions: {
-      'slr301_1': { phi: Math.PI / 3, theta: -0.3, direction: 'down' }
+      'slr301_1': { phi: Math.PI / 3, theta: -0.3, direction: 'down' },
+        'slr4th1': { phi: Math.PI / 3, theta: 0.3, direction: 'up' }
     },
      defaultView: { phi: Math.PI / 2.6, theta: Math.PI * 1 } // 👈 always face 2nd floor
 
@@ -92,10 +93,11 @@ const slr3rdfloor = [
     description: 'SLR Building 3rd Floor',
     imageUrl: 'images/SLRbldg/6 SLR STAIR 3RD FLOOR (7).webp',
     category: ['SLR bldg.'],
-    connections: ['slr3rdstair4', 'slr306'],
+    connections: ['slr3rdstair4', 'slr306','slr4thstairs1'],
     arrowPositions: {
       'slr3rdstair4': { phi: Math.PI / 3, theta: -1.5, direction: 'up' },
-      'slr306': { phi: Math.PI / 3, theta: 1.5, direction: 'up' }
+      'slr306': { phi: Math.PI / 3, theta: 1.5, direction: 'up' },
+      'slr4thstairs1': { phi: Math.PI / 3, theta: 0, direction: 'up' }
     }
   },
   // {
@@ -164,10 +166,11 @@ const slr3rdfloor = [
     description: 'SLR Building 3rd Floor',
     imageUrl: 'images/SLRbldg/11 SLR 309 (1).webp',
     category: ['SLR bldg.'],
-    connections: ['slr308', 'slr309_2'],
+    connections: ['slr308', 'slr309_2','olp3rd_room304'],
     arrowPositions: {
       'slr308': { phi: Math.PI / 3, theta: 3.2, direction: 'up' },
-      'slr309_2': { phi: Math.PI / 3, theta: 0, direction: 'up' }
+      'slr309_2': { phi: Math.PI / 3, theta: 0, direction: 'up' },
+      'olp3rd_room304': { phi: Math.PI / 3, theta: 1.5, direction: 'up' }
     }
   },
   {
