@@ -166,10 +166,11 @@ const slr3rdfloor = [
     description: 'SLR Building 3rd Floor',
     imageUrl: 'images/SLRbldg/11 SLR 309 (1).webp',
     category: ['SLR bldg.'],
-    connections: ['slr308', 'slr309_2'],
+    connections: ['slr308', 'slr309_2','olp3rd_room304'],
     arrowPositions: {
       'slr308': { phi: Math.PI / 3, theta: 3.2, direction: 'up' },
-      'slr309_2': { phi: Math.PI / 3, theta: 0, direction: 'up' }
+      'slr309_2': { phi: Math.PI / 3, theta: 0, direction: 'up' },
+      'olp3rd_room304': { phi: Math.PI / 3, theta: 1.5, direction: 'up' }
     }
   },
   {

@@ -178,10 +178,11 @@ const slrsecondfloor = [
     description: 'SLR Building 2nd Floor – Computer Room 208',
     imageUrl: 'images/SLRbldg/11 SLR 208 COMPUTER ROOM.webp',
     category: ['SLR bldg.', 'Computer Room'],
-    connections: ['slr2nd9', 'slr2nd11'],
+    connections: ['slr2nd9', 'slr2nd11','olp2nd_room204'],
     arrowPositions: {
       'slr2nd9': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
-      'slr2nd11': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
+      'slr2nd11': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'olp2nd_room204': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' }
     }
   },
 
