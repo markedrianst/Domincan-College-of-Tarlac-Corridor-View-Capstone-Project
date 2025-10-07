@@ -4,7 +4,7 @@ const scssecondfloor = [
     name: 'SCS Stairs 1st to 2nd Floor',
     description: 'SCS bldg. 2nd floor stairs entry',
     imageUrl: 'images/Scsbldg/1 SCS 201 STAIR_1.webp',
-    category: ['SCS bldg.', 'Stairs'],
+    category: ['SCS bldg.'],
     connections: ['scs1stStairsConnection', 'scs2ndStair2'],
     arrowPositions: {
       'scs1stStairsConnection': { phi: Math.PI / 4, theta: Math.PI * 1, direction: 'down' },
@@ -16,7 +16,7 @@ const scssecondfloor = [
     name: 'SCS Stairs 2nd Floor Mid',
     description: 'SCS bldg. 2nd floor stairs mid point',
     imageUrl: 'images/Scsbldg/2 SCS 201 STAIR_2.webp',
-    category: ['SCS bldg.', 'Stairs'],
+    category: ['SCS bldg.'],
     connections: ['Scs1stto2nd', 'scs2nd1','Scs2ndto3rd'],
     arrowPositions: {
       'scs2nd1': { phi: Math.PI / 3, theta: Math.PI * 0.9, direction: 'up' },
@@ -64,7 +64,7 @@ const scssecondfloor = [
     name: 'SCS Stairs to 3rd Floor',
     description: 'SCS bldg. 2nd floor stairs going up',
     imageUrl: 'images/Scsbldg/1 SCS STAIRS 2ND TO 3RD FLOOR.webp',
-    category: ['SCS bldg.', 'Stairs'],
+    category: ['SCS bldg.'],
     connections: ['scs2ndStair2', 'scs3rd_stairs_2to1'],
     arrowPositions: {
       'scs2ndStair2': { phi: Math.PI / 3.5, theta: Math.PI * 2.1, direction: 'down' },

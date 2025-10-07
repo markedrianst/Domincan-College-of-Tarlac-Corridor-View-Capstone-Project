@@ -4,7 +4,7 @@ const olf2ndbldg = [
     name: 'OLF Side Stairs 1',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/C OLF STAIR 3RD FLOOR (1).webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['EOLF2ndFloorStairs', 'OLFSideStairs2'],
     arrowPositions: {
       'EOLF2ndFloorStairs': { phi: Math.PI / 3.6, theta: Math.PI * 1, direction: 'down' },
@@ -17,7 +17,7 @@ const olf2ndbldg = [
     name: 'OLF Side Stairs 1',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/F OLF 204 Midway Stairs.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['OLFSideStairs1', 'DOLFStair3rdMiddle'],
     arrowPositions: {
       'OLFSideStairs1': { phi: Math.PI / 3.6, theta: Math.PI * 1, direction: 'up' },
@@ -31,7 +31,7 @@ const olf2ndbldg = [
     name: 'OLF 200 Work Immersion Office',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/D OLF 200 WORK IMMERSION OFFICE.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: [ 'DOLF201', 'olf_side_stair_1_2'],
     arrowPositions: {
       'DOLF201': { phi: Math.PI / 3.1, theta: Math.PI * 1, direction: 'up' },
@@ -43,7 +43,7 @@ const olf2ndbldg = [
     name: 'OLF 201',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/D OLF 201.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF200', 'DOLF202'],
     arrowPositions: {
       'DOLF200': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -55,7 +55,7 @@ const olf2ndbldg = [
     name: 'OLF 202',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/D OLF 202.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF201', 'DOLF203'],
     arrowPositions: {
       'DOLF201': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -67,7 +67,7 @@ const olf2ndbldg = [
     name: 'OLF 203',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/D OLF 203.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF202', 'EOLF2ndFloorStairs'],
     arrowPositions: {
       'DOLF202': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -79,7 +79,7 @@ const olf2ndbldg = [
     name: 'OLF 2nd Floor Stairs',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/E OLF 2ND FLOOR STAIRS.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['OLFSideStairs1', 'DOLF203', 'EOLFStair2ndTo3rd2', 'EOLFStair2ndTo3rd3'],
     arrowPositions: {
        'OLFSideStairs1': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
@@ -92,7 +92,7 @@ const olf2ndbldg = [
     name: 'OLF Stair 2nd to 3rd Floor (3)',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/E OLF STAIR 2ND TO 3RD FLOOR (3).webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['EOLF2ndFloorStairs', 'olf_stair_2nd_2','FOLF204'],
     arrowPositions: {
       'EOLF2ndFloorStairs': { phi: Math.PI / 3, theta: Math.PI *1.5, direction: 'up' },
@@ -105,7 +105,7 @@ const olf2ndbldg = [
     name: 'OLF 204',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/F OLF 204.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['FOLF205', 'EOLFStair2ndTo3rd3'],
     arrowPositions: {
       'FOLF205': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -117,7 +117,7 @@ const olf2ndbldg = [
     name: 'OLF 205',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/F OLF 205.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['FOLF204', 'FOLF206'],
     arrowPositions: {
       'FOLF204': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
@@ -129,7 +129,7 @@ const olf2ndbldg = [
     name: 'OLF 206',
     description: 'OLF 2nd Floor',
     imageUrl: 'images/OLFbldg/F OLF 206.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['FOLF205'],
     arrowPositions: {
       'FOLF205': { phi: Math.PI / 3, theta: Math.PI * 0.95, direction: 'up' }

@@ -4,7 +4,7 @@ const olf3rdbldg = [
     name: 'OLF 300 Schoology Lab',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/D OLF 300 SCHOOLOGY LAB.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF301'],
     arrowPositions: {
       'DOLF301': { phi: Math.PI / 3.2, theta: Math.PI *1, direction: 'up' }
@@ -15,7 +15,7 @@ const olf3rdbldg = [
     name: 'OLF 301',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/D OLF 301.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF300', 'DOLF302'],
     arrowPositions: {
       'DOLF300': { phi: Math.PI / 3.2, theta: Math.PI * 2, direction: 'up' },
@@ -27,7 +27,7 @@ const olf3rdbldg = [
     name: 'OLF 302',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/D OLF 302.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF301', 'DOLF303'],
     arrowPositions: {
       'DOLF301': { phi: Math.PI / 3.2, theta: Math.PI * 2, direction: 'up' },
@@ -39,7 +39,7 @@ const olf3rdbldg = [
     name: 'OLF 303',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/D OLF 303.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF302', 'DOLFStair3rdMiddle'],
     arrowPositions: {
       'DOLF302': { phi: Math.PI / 3.2, theta: Math.PI *2, direction: 'up' },
@@ -51,7 +51,7 @@ const olf3rdbldg = [
     name: 'OLF Stair 3rd Floor Middle',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/D OLF STAIR 3RD FLOOR (4).webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF303', 'DOLFStair4th1','DOLF304','OLFSideStairs2'],
     arrowPositions: {
       'DOLF303': { phi: Math.PI / 3.2, theta: Math.PI * 1.5, direction: 'up' },
@@ -65,7 +65,7 @@ const olf3rdbldg = [
     name: 'OLF Stair 4th Floor (1)',
     description: 'OLF 4th Floor',
     imageUrl: 'images/OLFbldg/D OLF STAIR 4TH FLOOR (1).webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLFStair3rdMiddle', 'DOLFStair4th2'],
     arrowPositions: {
       'DOLFStair3rdMiddle': { phi: Math.PI / 3.5, theta: Math.PI * 1, direction: 'down' },
@@ -80,7 +80,7 @@ const olf3rdbldg = [
     name: 'OLF Stair 4th Floor (2)',
     description: 'OLF 4th Floor',
     imageUrl: 'images/OLFbldg/D OLF STAIR 4TH FLOOR (2).webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLFStair4th1','DOLFStair4Middle'],
     arrowPositions: {
       'DOLFStair4th1': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' },
@@ -94,7 +94,7 @@ const olf3rdbldg = [
     name: 'OLF 304',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/D OLF 304.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLFStair3rdMiddle', 'DOLF305'],
     arrowPositions: {
       'DOLFStair3rdMiddle': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' },
@@ -106,7 +106,7 @@ const olf3rdbldg = [
     name: 'OLF 305',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/D OLF 305.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF304', 'DOLF306'],
     arrowPositions: {
       'DOLF304': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' },
@@ -118,7 +118,7 @@ const olf3rdbldg = [
     name: 'OLF 306',
     description: 'OLF 3rd Floor',
     imageUrl: 'images/OLFbldg/D OLF 306.webp',
-    category: ['OLP bldg.'],
+    category: ['OLF bldg.'],
     connections: ['DOLF305'],
     arrowPositions: {
       'DOLF305': { phi: Math.PI / 3.2, theta: Math.PI * 1, direction: 'up' }

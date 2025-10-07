@@ -4,7 +4,7 @@ const achievements = [
     name: 'C Hallway to Achievements 2nd',
     description: 'Achievements Building 2nd Floor',
     imageUrl: 'images/HR to SLR/C HALLWAY TO ACHIEVEMENTS 2ND.webp',
-    category: ['Achievements Hall'],
+    category: ['HR bldg.'],
     connections: ['dachall1','SDtoOLF5'],
     arrowPositions: {
       'SDtoOLF5': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
@@ -17,7 +17,7 @@ const achievements = [
     name: 'D Achievements Hall (1)',
     description: 'Achievements Hall 2nd Floor',
     imageUrl: 'images/HR to SLR/D ACHIEVEMENTS HALL (1).webp',
-    category: ['Achievements Hall'],
+    category: ['HR bldg.'],
     connections: ['grandhall', 'challway2nd'],
     arrowPositions: {
       'grandhall': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -30,7 +30,7 @@ const achievements = [
     name: 'D Achievements Hall (3)',
     description: 'Achievements Hall 2nd Floor',
     imageUrl: 'images/HR to SLR/D ACHIEVEMENTS HALL (3).webp',
-    category: ['Achievements Hall'],
+    category: ['HR bldg.'],
     connections: ['dcourt1', 'grandhall','dToChapel1'],
     arrowPositions: {
       'dcourt1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -44,7 +44,7 @@ const achievements = [
     name: 'D Court (1)',
     description: 'Achievements Court Area',
     imageUrl: 'images/HR to SLR/D COURT (1).webp',
-    category: ['Achievements Hall'],
+    category: ['Court'],
     connections: ['dcourt2', 'dachall3'],
     arrowPositions: {
       'dcourt2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -57,7 +57,7 @@ const achievements = [
     name: 'D Court (2)',
     description: 'Achievements Court Area',
     imageUrl: 'images/HR to SLR/D COURT (2).webp',
-    category: ['Achievements Hall'],
+    category: ['Court'],
     connections: ['dcourt3', 'dcourt1'],
     arrowPositions: {
       'dcourt3': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -70,7 +70,7 @@ const achievements = [
     name: 'D Court (3)',
     description: 'Achievements Court Area',
     imageUrl: 'images/HR to SLR/D COURT (3).webp',
-    category: ['Achievements Hall'],
+    category: ['Court'],
     connections: ['dcourt4', 'dcourt2'],
     arrowPositions: {
       'dcourt4': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -83,7 +83,7 @@ const achievements = [
     name: 'D Court (4)',
     description: 'Achievements Court Area',
     imageUrl: 'images/HR to SLR/D COURT (4).webp',
-    category: ['Achievements Hall'],
+    category: ['Court'],
     connections: ['slr1st8', 'dcourt3'],
     arrowPositions: {
       'slr1st8': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },

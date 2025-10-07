@@ -45,10 +45,11 @@ const olp4thfloor = [
     description: 'OLP Building Room 401',
     imageUrl: 'images/OLPbldg/5 OLP 401 (1).webp',
     category: ['OLP bldg.'],
-    connections: ['olp4thstair3', 'olp401_2'],
+    connections: ['olp4thstair3', 'olp401_2','hr401gym'],
     arrowPositions: {
       'olp4thstair3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
-      'olp401_2': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' }
+      'olp401_2': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
+      'hr401gym': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' }
     }
   },
 

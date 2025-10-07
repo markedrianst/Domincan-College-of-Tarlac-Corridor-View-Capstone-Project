@@ -4,7 +4,7 @@ const scsthirdfloor = [
     name: 'SCS Stairs 3rd to 2nd Floor',
     description: 'SCS bldg. 3rd floor stairs entry from 2nd floor',
     imageUrl: 'images/Scsbldg/2 SCS STAIRS 3RD TO 2ND FLOOR.webp',
-    category: ['SCS bldg.', 'Stairs'],
+    category: ['SCS bldg.'],
     connections: ['Scs2ndto3rd', 'scs3rd_stairs_mid'],
     arrowPositions: {
       'Scs2ndto3rd': { phi: Math.PI / 3.5, theta: Math.PI * 1, direction: 'down' },
@@ -16,7 +16,7 @@ const scsthirdfloor = [
     name: 'SCS Stairs Mid',
     description: 'SCS bldg. 3rd floor stairs midpoint',
     imageUrl: 'images/Scsbldg/4 SCS STAIRS.webp',
-    category: ['SCS bldg.', 'Stairs'],
+    category: ['SCS bldg.'],
     connections: ['scs3rd_stairs_2to1', 'scs3rd_301_1', 'scs3rdto4th'],
     arrowPositions: {
       'scs3rd_stairs_2to1': { phi: Math.PI / 3, theta: Math.PI * 2.1, direction: 'up' },
@@ -89,7 +89,7 @@ const scsthirdfloor = [
     name: 'SCS Stairs to 4th Floor',
     description: 'SCS bldg. 3rd floor stairs to 4th floor',
     imageUrl: 'images/Scsbldg/1 SCS STAIRS 3RD TO 4TH FLOOR.webp',
-    category: ['SCS bldg.', 'Stairs'],
+    category: ['SCS bldg.'],
     connections: ['scs3rd_stairs_mid', 'scs4th_stairs'],
     arrowPositions: {
       'scs3rd_stairs_mid': { phi: Math.PI / 3.4, theta: Math.PI * 2.1, direction: 'down' },

@@ -44,7 +44,7 @@ const slrsecondfloor = [
     name: 'Side Stairs to 3rd Floor (1)',
     description: 'SLR Building 2nd to 3rd Floor (Side Stairs 1)',
     imageUrl: 'images/SLRbldg/2.2 SLR STAIR 2ND TO 3RD FLOOR(SIDE STAIRS)(1).webp',
-    category: ['SLR bldg.', 'Stairs'],
+    category: ['SLR bldg.'],
     connections: ['slr2nd2a', 'slr301_1'],
     arrowPositions: {
       'slr2nd2a': { phi: Math.PI / 3, theta: Math.PI * 0.8, direction: 'down' },
@@ -110,7 +110,7 @@ const slrsecondfloor = [
     name: 'SLR Stair 2nd Floor (1)',
     description: 'Main Stairs on 2nd Floor (1)',
     imageUrl: 'images/SLRbldg/7 SLR STAIR 2ND FLOOR (1).webp',
-    category: ['SLR bldg.', 'Stairs'],
+    category: ['SLR bldg.'],
     connections: ['slr2nd6', 'slr2ndStairs2','slr1st5'],
     arrowPositions: {
       'slr2nd6': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
@@ -124,7 +124,7 @@ const slrsecondfloor = [
     name: 'SLR Stair 2nd Floor (4)',
     description: 'Main Stairs on 2nd Floor (4)',
     imageUrl: 'images/SLRbldg/7.2 SLR STAIR 2ND FLOOR (4).webp',
-    category: ['SLR bldg.', 'Stairs'],
+    category: ['SLR bldg.'],
     connections: ['slr2ndStairs1', 'slr2nd7','slr3rdstair2'],
     arrowPositions: {
       'slr2nd7': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
@@ -177,7 +177,7 @@ const slrsecondfloor = [
     name: 'SLR 208 Computer Room',
     description: 'SLR Building 2nd Floor – Computer Room 208',
     imageUrl: 'images/SLRbldg/11 SLR 208 COMPUTER ROOM.webp',
-    category: ['SLR bldg.', 'Computer Room'],
+    category: ['SLR bldg.'  ],
     connections: ['slr2nd9', 'slr2nd11','olp2nd_room204'],
     arrowPositions: {
       'slr2nd9': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },

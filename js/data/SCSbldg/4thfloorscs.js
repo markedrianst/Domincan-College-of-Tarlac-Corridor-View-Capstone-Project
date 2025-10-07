@@ -4,7 +4,7 @@ const scsfourthfloor = [
     name: 'SCS Stairs 4th Floor',
     description: 'SCS bldg. 4th floor stairs entry from 3rd floor',
     imageUrl: 'images/Scsbldg/2 SCS STAIRS 4TH FLOOR.webp',
-    category: ['SCS bldg.', 'Stairs'],
+    category: ['SCS bldg.'],
     connections: ['scs3rdto4th', 'scs4th_401_1'],
     arrowPositions: {
       'scs3rdto4th': { phi: Math.PI / 3.5, theta: Math.PI * 1 , direction: 'down' },

@@ -31,7 +31,7 @@ const hr2ndfloor = [
     name: 'HR 204 HRM Lab',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/3 HR 204 HRM LAB.webp',
-    category: ['HR bldg.','Laboratories'],
+    category: ['HR bldg.'],
     connections: ['Hr2nd2','Hr2nd4'],
     arrowPositions: {
         'Hr2nd2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
@@ -44,7 +44,7 @@ const hr2ndfloor = [
     name: 'HR 204 HRM Lab (Alternate View)',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/3.1 HR 204 HRM LAB.webp',
-    category: ['HR bldg.','Laboratories'],
+    category: ['HR bldg.'],
     connections: ['Hr2nd3','Hr2nd5','Hr2nd6'],
     arrowPositions: {
         'Hr2nd3': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
@@ -58,7 +58,7 @@ const hr2ndfloor = [
     name: 'HR Midway Stairs',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/4 HR Midway Srairs.webp',
-    category: ['HR bldg.','Stairs'],
+    category: ['HR bldg.'],
     connections: ['Hr2nd4','ccjeoffice'],
     arrowPositions: {
         'Hr2nd4': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
@@ -71,7 +71,7 @@ const hr2ndfloor = [
     name: 'HR 205 HRM Multi-Purpose Hall',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/5 HR 205 MULTI PURPOSE HALL.webp',
-    category: ['HR bldg.','Rooms'],
+    category: ['HR bldg.'],
     connections: ['Hr2nd4','Hr2nd7'],
     arrowPositions: {
         'Hr2nd4': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
@@ -84,7 +84,7 @@ const hr2ndfloor = [
     name: 'HR 206 Commercial Kitchen',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/6 HR 206 COMMERCIAL KITCHEN.webp',
-    category: ['HR bldg.','Rooms'],
+    category: ['HR bldg.'],
     connections: ['Hr2nd6','Hr2nd8'],
     arrowPositions: {
         'Hr2nd6': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
@@ -97,7 +97,7 @@ const hr2ndfloor = [
     name: 'HR 207, 208',
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/7 HR 207.webp',
-    category: ['HR bldg.','Rooms'],
+    category: ['HR bldg.'],
     connections: ['Hr2nd7','sn2ndutility'],
     arrowPositions: {
         'Hr2nd7': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },

@@ -59,10 +59,11 @@ const hr3rdfloor = [
     description: 'HR 3rd floor',
     imageUrl: 'images/HRbldg/3 HR STAIR 3RD FLOOR.webp',
     category: ['HR bldg.'],
-    connections: ['Hr3rd4', 'Hr3rd8'],
+    connections: ['Hr3rd4', 'Hr3rd8','hrstair3rdfloor0_2'],
     arrowPositions: {
       'Hr3rd4': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
-      'Hr3rd8': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' }
+      'Hr3rd8': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
+      'hrstair3rdfloor0_2': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     }
   },
 
