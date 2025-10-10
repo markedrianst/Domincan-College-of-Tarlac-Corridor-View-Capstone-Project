@@ -263,7 +263,7 @@ class PanoramaViewer {
     
     safeInit() {
         try {
-            this.camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1100);
+            this.camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 1, 1100);
             this.camera.position.z = 0.01;
             
             this.scene = new THREE.Scene();
