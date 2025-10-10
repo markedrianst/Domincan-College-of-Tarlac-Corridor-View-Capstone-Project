@@ -5,7 +5,7 @@ const sd2ndfloor = [
     name: 'SD 2nd Floor Cornerstairs 1',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sdcornerstairsto2nd.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloorcorner2','SdGroundFloor1'],
     arrowPositions: {
       'Sd2ndfloorcorner2': { phi: Math.PI / 3, theta: 0.3, direction: 'up' },
@@ -19,7 +19,7 @@ const sd2ndfloor = [
     name: 'SD 2nd Floor Cornerstairs 2',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sdcornerstairsto2nd1.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloorcorner1', 'Sd2ndfloorcornerstairs','Sd3rdfloormidstairs'],
     arrowPositions: {
       'Sd2ndfloorcorner1': { phi: Math.PI * 5 / 3, theta: 2.7, direction: 'down' }, // replaced negative phi
@@ -35,7 +35,7 @@ const sd2ndfloor = [
     name: 'SD 2nd Floor Cornerstairs',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor1.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloor1', 'Sd2ndfloorcorner2'],
     arrowPositions: {
       'Sd2ndfloor1': { phi: Math.PI / 3, theta: 0, direction: 'up' },
@@ -49,7 +49,7 @@ const sd2ndfloor = [
     name: 'SD 201',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor2.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloorcornerstairs', 'Sd2ndfloor2'],
     arrowPositions: {
       'Sd2ndfloor2': { phi: Math.PI / 3, theta: 0.1, direction: 'up' },
@@ -62,7 +62,7 @@ const sd2ndfloor = [
     name: 'SD 202',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor3.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloor1', 'Sd2ndfloor3'],
     arrowPositions: {
       'Sd2ndfloor3':  { phi: Math.PI / 3, theta: 0.1, direction: 'up' },
@@ -75,7 +75,7 @@ const sd2ndfloor = [
     name: 'SD 203',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor4.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloor4', 'Sd2ndfloor2'],
     arrowPositions: {
       'Sd2ndfloor4': { phi: Math.PI / 3, theta: 0.1, direction: 'up' },
@@ -88,7 +88,7 @@ const sd2ndfloor = [
     name: 'SD 204',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor5.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloor3', 'Sd2ndfloormidstairs'],
     arrowPositions: {
       'Sd2ndfloormidstairs': { phi: Math.PI / 3, theta: 0.1, direction: 'up' },
@@ -101,7 +101,7 @@ const sd2ndfloor = [
     name: 'SD Midstairs',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor6.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloor4', 'Sd2ndfloor7','sd2ndfloorcr','Sd3rdfloormidstairs4'],
     arrowPositions: {
       'Sd2ndfloor7': { phi: Math.PI / 3, theta: 0.1, direction: 'up' },
@@ -115,7 +115,7 @@ const sd2ndfloor = [
     name: 'SD Midstairs 1st to 2nd Floor',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/stairs.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloormidstairs', 'SdGroundfloor10'],
     arrowPositions: {
       'SdGroundfloor10': { phi: Math.PI / 3.9, theta: 0, direction: 'down' },
@@ -130,7 +130,7 @@ const sd2ndfloor = [
     name: 'SD 205',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor7.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloormidstairs', 'Sd2ndfloor8'],
     arrowPositions: {
       'Sd2ndfloormidstairs':{phi: Math.PI / 3, theta: 3.2, direction: 'up' },
@@ -144,7 +144,7 @@ const sd2ndfloor = [
     name: 'SD 206',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor8.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloor7', 'Sd2ndfloor9'],
     arrowPositions: {
        'Sd2ndfloor7':{ phi: Math.PI / 3, theta: 3.2, direction: 'up' } ,
@@ -158,7 +158,7 @@ const sd2ndfloor = [
     name: 'SD 207',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor9.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloor8', 'Sd2ndfloor10'],
     arrowPositions: {
       'Sd2ndfloor10': { phi: Math.PI / 3, theta: 0.1, direction: 'up' },
@@ -172,7 +172,7 @@ const sd2ndfloor = [
     name: 'SD 208',
     description: 'SD 2nd Floor',
     imageUrl: 'images/Sdbldg/sd2ndfloor10.webp',
-    category: 'Sd bldg.',
+    category: 'SD bldg.',
     connections: ['Sd2ndfloor9'],
     arrowPositions: {
       'Sd2ndfloor9': { phi: Math.PI / 3, theta: 3.2, direction: 'up' }

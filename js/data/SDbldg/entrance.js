@@ -4,7 +4,7 @@ const entrancePanoramas = [
     name: 'Main Entrance (Outside)',
     description: 'Dominican College of Tarlac - Main Entrance Outside View',
     imageUrl: 'images/Sdbldg/MainEntrance1.webp',
-    category: ['entrance'],
+    category: ['SD bldg.','SCS bldg.'],
     connections: ['entrance1'],
     arrowPositions: {
       'entrance1': { phi: Math.PI / 3, theta: Math.PI *1.97, direction: 'up' }
@@ -18,7 +18,7 @@ const entrancePanoramas = [
     name: 'Main Entrance (Inside)',
     description: 'Dominican College of Tarlac - Main Entrance Inside View (facing the campus)',
     imageUrl: 'images/Sdbldg/MainEntrance2.webp',
-    category: ['entrance'],
+    category: ['SD bldg.','SCS bldg.'],
     connections: ['entrance2', 'entrance'],
     arrowPositions: {
       'entrance2': { phi: Math.PI / 2.6, theta: Math.PI * 1.7, direction: 'up' },
@@ -30,7 +30,7 @@ const entrancePanoramas = [
     name: 'SD Building - Ground Floor Hallway',
     description: 'SD Building Ground Floor Hallway View',
     imageUrl: 'images/Sdbldg/Mainentrance3.webp',
-    category: ['entrance'],
+    category: ['SD bldg.','SCS bldg.'],
     connections: ['SdGroundFloor1', 'entrance1'],
     arrowPositions: {
       'SdGroundFloor1': { phi: Math.PI / 2.6, theta: Math.PI * 2, direction: 'up' },

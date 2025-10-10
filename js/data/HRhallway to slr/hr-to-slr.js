@@ -1,7 +1,7 @@
 const achievements = [
   {
     id: 'challway2nd',
-    name: 'C Hallway to Achievements 2nd',
+    name: 'Hallway to Achievements 2nd',
     description: 'Achievements Building 2nd Floor',
     imageUrl: 'images/HR to SLR/C HALLWAY TO ACHIEVEMENTS 2ND.webp',
     category: ['HR bldg.'],
@@ -14,7 +14,7 @@ const achievements = [
 
   {
     id: 'dachall1',
-    name: 'D Achievements Hall (1)',
+    name: 'Achievements Hall (1)',
     description: 'Achievements Hall 2nd Floor',
     imageUrl: 'images/HR to SLR/D ACHIEVEMENTS HALL (1).webp',
     category: ['HR bldg.'],
@@ -27,7 +27,7 @@ const achievements = [
 
   {
     id: 'dachall3',
-    name: 'D Achievements Hall (3)',
+    name: 'Achievements Hall (3)',
     description: 'Achievements Hall 2nd Floor',
     imageUrl: 'images/HR to SLR/D ACHIEVEMENTS HALL (3).webp',
     category: ['HR bldg.'],
@@ -41,8 +41,8 @@ const achievements = [
 
   {
     id: 'dcourt1',
-    name: 'D Court (1)',
-    description: 'Achievements Court Area',
+    name: 'Court (1)',
+    description: ' Court Area',
     imageUrl: 'images/HR to SLR/D COURT (1).webp',
     category: ['Court'],
     connections: ['dcourt2', 'dachall3'],
@@ -54,8 +54,8 @@ const achievements = [
 
   {
     id: 'dcourt2',
-    name: 'D Court (2)',
-    description: 'Achievements Court Area',
+    name: 'Court (2)',
+    description: ' Court Area',
     imageUrl: 'images/HR to SLR/D COURT (2).webp',
     category: ['Court'],
     connections: ['dcourt3', 'dcourt1'],
@@ -67,8 +67,8 @@ const achievements = [
 
   {
     id: 'dcourt3',
-    name: 'D Court (3)',
-    description: 'Achievements Court Area',
+    name: 'Court (3)',
+    description: ' Court Area',
     imageUrl: 'images/HR to SLR/D COURT (3).webp',
     category: ['Court'],
     connections: ['dcourt4', 'dcourt2'],
@@ -81,7 +81,7 @@ const achievements = [
   {
     id: 'dcourt4',
     name: 'D Court (4)',
-    description: 'Achievements Court Area',
+    description: ' Court Area',
     imageUrl: 'images/HR to SLR/D COURT (4).webp',
     category: ['Court'],
     connections: ['slr1st8', 'dcourt3'],

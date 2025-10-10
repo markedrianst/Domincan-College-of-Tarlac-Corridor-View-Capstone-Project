@@ -8,7 +8,7 @@ class SearchManager {
 
         // Category destinations
         this.categoryDestinations = {
-            'Sd bldg.': 'SdGroundfloor10',
+            'SD bldg.': 'SdGroundfloor10',
             'SCS bldg.': 'scs1st4', 
             'OLF bldg.': 'olf_stair_1_2_1',
             'HR bldg.': 'ccjeoffice',
@@ -19,7 +19,7 @@ class SearchManager {
 
         // PRIORITY ORDER: Define which categories show FIRST
         this.categoryPriority = {
-            'Sd bldg.': 1,      // Highest priority - shows first
+            'SD bldg.': 1,      // Highest priority - shows first
             'SCS bldg.': 2,     // High priority
             'OLF bldg.': 3,      // Medium priority
             'HR bldg.': 4,      // Medium priority
