@@ -14,7 +14,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor2',
-        name: 'Guidance for College Department SD 101',
+        name: 'SD-101 – Guidance and Counseling Office',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SD101.webp',
         category: ['Sd bldg.','Offices'],
@@ -30,7 +30,7 @@ const sdGroundFloor = [
 
     {
         id: 'SdGroundfloor3',
-        name: 'Guidance for College Department SD 101',
+        name: 'SD-101 – Guidance and Counseling Office',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd102.webp',
         category: ['Sd bldg.','Offices'],
@@ -57,7 +57,7 @@ const sdGroundFloor = [
 
         {
         id: 'SdGroundfloor5',
-          name: 'Sd 102',
+          name: 'SD-102 – Testing Office',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SD102 (2).webp',
         category: ['Sd bldg.','Offices'],
@@ -69,7 +69,7 @@ const sdGroundFloor = [
     },
             {
         id: 'SdGroundfloor6',
-        name: 'SD 103',
+        name: 'SD-103 – Human Resources Management and Development Office (HRMDO)',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/SD 103.webp',
         category: ['Sd bldg.','Offices'],
@@ -81,7 +81,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor7',
-        name: 'SD 104',
+        name: 'SD-104',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd104.webp',
         category: ['Sd bldg.','Offices'],
@@ -93,7 +93,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor8',
-        name: 'SD 105',
+        name: 'SD-105 – HRM Hotel Laboratory',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd105.webp',
         category: ['Sd bldg.','Offices'],
@@ -105,7 +105,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor9',
-        name: 'SD 106',
+        name: 'SD-106 – Corporate Affairs Office',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd106.webp',
         category: ['Sd bldg.','Offices'],
@@ -130,7 +130,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor11',
-        name: 'SD 107',
+        name: 'SD-107 – Principal’s Office (PRIO)',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd108.webp',
         category: ['Sd bldg.','Offices'],
@@ -142,7 +142,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor12',
-        name: 'SD 108',
+        name: 'SD-108 – Campus Ministry (CAM) / Office of the Chaplain (OC)',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd108 (2).webp',
         category: ['Sd bldg.','Offices'],
@@ -154,7 +154,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor13',
-        name: 'SD 109',
+        name: 'SD-109 – Community Extension and Services (CES)',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd111.webp',
         category: ['Sd bldg.','Offices'],
@@ -166,7 +166,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor14',
-        name: 'SD 110',
+        name: 'SD-110 – Theology / Christian Life Education (CLE) Program',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd112.webp',
         category: ['Sd bldg.','Offices'],
@@ -178,7 +178,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor15',
-        name: 'SD 111',
+        name:'SD-111 – Emergency Response and Disaster Management Office',
         description: 'Sd bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd113.webp',
         category: ['Sd bldg.','Offices'],
@@ -190,7 +190,7 @@ const sdGroundFloor = [
     },
    {
     id: 'SdGroundfloor16',
-    name: 'SD 112',
+    name: 'SD-112 – Discipline Council',
     description: 'Sd bldg. 1st floor',
     imageUrl: 'images/Sdbldg/Sd114.webp',
     category: ['Sd bldg.','Offices'],
@@ -202,7 +202,7 @@ const sdGroundFloor = [
 },
 {
     id: 'SdGroundfloor18',
-    name: 'SD 113',
+    name: 'SD-113 – Office of Student Affairs / Student Organization Coordinator',
     description: 'Sd bldg. 1st floor',
     imageUrl: 'images/Sdbldg/SD 113.webp',
     category: ['Sd bldg.','Offices'],
@@ -214,7 +214,7 @@ const sdGroundFloor = [
 },
 {
     id: 'SdGroundfloor19',
-    name: 'SD 114 SSC Office',
+    name: 'SD-114 – Supreme Student Council',
     description: 'Sd bldg. 1st floor',
     imageUrl: 'images/Sdbldg/sscoffice.webp',
     category: ['Sd bldg.','Offices'],
