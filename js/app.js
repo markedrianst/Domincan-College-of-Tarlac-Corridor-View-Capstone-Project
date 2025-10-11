@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load initial panorama (entrance)
 
-    window.panoramaViewer.loadPanorama('cbaoffice1');
+    window.panoramaViewer.loadPanorama('entrance');
 
 
 
