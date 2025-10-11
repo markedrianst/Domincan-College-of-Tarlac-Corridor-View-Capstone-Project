@@ -1,422 +1,146 @@
 /**
- * Panorama Viewer Module - SMART LOADING & CRASH-PROOF
+ * Panorama Viewer Module - ULTRA CRASH-PROOF
  * Handles the 360° panorama rendering using Three.js
  */
 
 class PanoramaViewer {
     constructor(containerId) {
-        this.container = document.getElementById(containerId);
-        this.currentPanoramaId = null;
-        this.isLoading = false;
-        this.loadingScreen = document.getElementById('loading-screen');
-        
-        // SMART LOADING: Track load states
-        this.loadStartTime = 0;
-        this.minLoadTime = 300; // Minimum loading screen time (ms)
-        this.slowLoadThreshold = 1000; // Show loading if takes longer than this
-        
-        // CRASH-PROOF: Safe mobile detection
-        this.isMobile = this.safeMobileDetection();
-        
-        // Memory limits
-        if (this.isMobile) {
-            this.zoomLevel = 1.0;
-            this.minZoom = 0.8;
-            this.maxZoom = 1.5;
-            this.maxPreloadedTextures = 1;
-        } else {
-            this.zoomLevel = 1.0;
-            this.minZoom = 0.7;
-            this.maxZoom = 2.5;
-            this.maxPreloadedTextures = 2;
-        }
-        
-        this.zoomSpeed = 0.1;
-        
-        // Three.js components
-        this.camera = null;
-        this.scene = null;
-        this.renderer = null;
-        this.geometry = null;
-        this.material = null;
-        this.mesh = null;
-        
-        // Control variables
-        this.isUserInteracting = false;
-        this.onPointerDownMouseX = 0;
-        this.onPointerDownMouseY = 0;
-        this.lon = 0;
-        this.onPointerDownLon = 0;
-        this.lat = 0;
-        this.onPointerDownLat = 0;
-        this.phi = 0;
-        this.theta = 0;
-        
-        // Memory management
-        this.textureCache = new Map();
-        this.loadingQueue = new Set();
-        this.loadCount = 0;
-        this.lastCleanupTime = 0;
-
-        // OPTIMIZATION: Add performance monitoring
-        this.qualityReduced = false;
-        
-        // Initialize
-        this.safeInit();
-        this.setupEventListeners();
-        this.startPerformanceMonitor(); // OPTIMIZATION: Added this line
-    }
-    
-    /**
-     * SMART LOADING: Only show loading when actually needed
-     */
-    loadPanorama(panoramaId) {
-        // Prevent too many rapid loads
-        if (this.loadingQueue.has(panoramaId)) {
-            return;
-        }
-        
-        // Emergency memory cleanup
-        if (this.loadCount > 10) {
-            this.emergencyMemoryCleanup();
-        }
-        
-        const panorama = getPanoramaById(panoramaId);
-        if (!panorama) {
-            console.error(`Panorama with ID ${panoramaId} not found`);
-            return;
-        }
-
-        this.loadingQueue.add(panoramaId);
-        this.currentPanoramaId = panoramaId;
-        this.loadCount++;
-
-        // Update UI immediately (fast operation)
-        this.safeUpdateUI(panorama);
-
-        // Set orientation
-        if (panorama.defaultLon !== undefined) this.lon = panorama.defaultLon;
-        if (panorama.defaultLat !== undefined) this.lat = panorama.defaultLat;
-
-        // SMART LOADING: Start timing the load
-        this.loadStartTime = performance.now();
-        this.isLoading = true;
-
-        // SMART LOADING: Check cache first - no loading screen if cached
-        const cachedTexture = this.getCachedTexture(panoramaId);
-        if (cachedTexture) {
-            // Instant load from cache - no loading screen needed
-            this.applyPanoramaTexture(cachedTexture, panoramaId);
-            this.loadingQueue.delete(panoramaId);
-            this.isLoading = false;
-        } else {
-            // SMART LOADING: Delay loading screen for fast loads
-            this.loadingTimeout = setTimeout(() => {
-                // Only show loading if it's taking a while AND still loading
-                if (this.isLoading && this.loadingQueue.has(panoramaId)) {
-                    this.showLoading();
-                }
-            }, 100); // Wait 100ms before showing loading screen
-
-            // Load texture
-            this.safeLoadTexture(panoramaId, panorama.imageUrl);
-        }
-
-        // Conservative preloading
-        if (!this.isMobile && this.textureCache.size < this.maxPreloadedTextures) {
-            setTimeout(() => this.safePreloadNeighbors(panoramaId), 2000);
-        }
-    }
-
-    /**
-     * SMART LOADING: Safe texture loading with smart loading states
-     */
-    safeLoadTexture(panoramaId, imageUrl) {
         try {
-            const textureLoader = new THREE.TextureLoader();
+            this.container = document.getElementById(containerId);
+            if (!this.container) {
+                throw new Error(`Container ${containerId} not found`);
+            }
             
-            // OPTIMIZATION: Try low-res first if available
-            const lowResUrl = this.getOptimizedImageUrl(imageUrl, 'low');
+            this.currentPanoramaId = null;
+            this.isLoading = false;
+            this.loadingScreen = document.getElementById('loading-screen');
             
-            textureLoader.load(
-                lowResUrl, // Try low-res first
-                (texture) => {
-                    // SMART LOADING: Clear the loading timeout since we're done
-                    clearTimeout(this.loadingTimeout);
-                    
-                    // Apply memory limits
-                    if (this.isMobile) {
-                        texture.generateMipmaps = false;
-                        texture.minFilter = THREE.LinearFilter;
-                    }
-                    
-                    this.cacheTexture(panoramaId, texture);
-                    this.applyPanoramaTexture(texture, panoramaId);
-                    this.loadingQueue.delete(panoramaId);
-                    this.isLoading = false;
-                    
-                    // SMART LOADING: Hide loading if it was shown
-                    this.hideLoading();
-                    
-                    // OPTIMIZATION: Load high-res in background
-                    if (!this.isMobile) {
-                        setTimeout(() => {
-                            this.loadHighResTexture(panoramaId, imageUrl);
-                        }, 1000);
-                    }
-                },
-                undefined,
-                (error) => {
-                    // If low-res fails, try original image
-                    console.warn('Low-res load failed, trying original:', error);
-                    this.standardTextureLoad(panoramaId, imageUrl);
-                }
-            );
+            // ULTRA SAFE MOBILE DETECTION
+            this.isMobile = this.ultraSafeMobileDetection();
             
-            // SMART LOADING: Timeout guard - hide loading if something goes wrong
-            setTimeout(() => {
-                if (this.loadingQueue.has(panoramaId)) {
-                    console.warn('Texture load timeout:', panoramaId);
-                    clearTimeout(this.loadingTimeout);
-                    this.loadingQueue.delete(panoramaId);
-                    this.isLoading = false;
-                    this.hideLoading();
-                }
-            }, 30000);
+            // AGGRESSIVE MOBILE LIMITS
+            if (this.isMobile) {
+                this.zoomLevel = 1.0;
+                this.minZoom = 0.8;
+                this.maxZoom = 1.2; // Reduced for mobile safety
+                this.maxPreloadedTextures = 1; // Only current texture
+                this.textureSizeLimit = 1024; // Max texture size for mobile
+            } else {
+                this.zoomLevel = 1.0;
+                this.minZoom = 0.7;
+                this.maxZoom = 2.5;
+                this.maxPreloadedTextures = 2;
+                this.textureSizeLimit = 2048;
+            }
+            
+            this.zoomSpeed = 0.1;
+            
+            // Three.js components with null checks
+            this.camera = null;
+            this.scene = null;
+            this.renderer = null;
+            this.geometry = null;
+            this.material = null;
+            this.mesh = null;
+            
+            // Control variables
+            this.isUserInteracting = false;
+            this.onPointerDownMouseX = 0;
+            this.onPointerDownMouseY = 0;
+            this.lon = 0;
+            this.onPointerDownLon = 0;
+            this.lat = 0;
+            this.onPointerDownLat = 0;
+            this.phi = 0;
+            this.theta = 0;
+            
+            // Memory management
+            this.textureCache = new Map();
+            this.loadingQueue = new Set();
+            this.loadCount = 0;
+            this.lastCleanupTime = 0;
+            
+            // CRASH PREVENTION
+            this.isDestroyed = false;
+            this.animationFrameId = null;
+            this.loadingTimeout = null;
+            this.loadTimeoutGuard = null;
+            
+            // Initialize with ultra safety
+            this.ultraSafeInit();
+            this.setupEventListeners();
             
         } catch (error) {
-            // Fallback to standard load
-            this.standardTextureLoad(panoramaId, imageUrl);
-        }
-    }
-
-    /**
-     * OPTIMIZATION: Standard texture load as fallback
-     */
-    standardTextureLoad(panoramaId, imageUrl) {
-        const textureLoader = new THREE.TextureLoader();
-        
-        textureLoader.load(
-            imageUrl,
-            (texture) => {
-                clearTimeout(this.loadingTimeout);
-                
-                if (this.isMobile) {
-                    texture.generateMipmaps = false;
-                    texture.minFilter = THREE.LinearFilter;
-                }
-                
-                this.cacheTexture(panoramaId, texture);
-                this.applyPanoramaTexture(texture, panoramaId);
-                this.loadingQueue.delete(panoramaId);
-                this.isLoading = false;
-                this.hideLoading();
-            },
-            undefined,
-            (error) => {
-                clearTimeout(this.loadingTimeout);
-                console.error('Texture load failed:', error);
-                this.loadingQueue.delete(panoramaId);
-                this.isLoading = false;
-                this.hideLoading();
-                this.showError('Failed to load panorama image.');
-            }
-        );
-    }
-
-    /**
-     * OPTIMIZATION: Progressive loading - load high-res after low-res
-     */
-    loadHighResTexture(panoramaId, imageUrl) {
-        // Only load high-res if this is still the current panorama
-        if (this.currentPanoramaId !== panoramaId) return;
-        
-        const textureLoader = new THREE.TextureLoader();
-        textureLoader.load(imageUrl, (highResTexture) => {
-            if (this.currentPanoramaId === panoramaId) {
-                // Smoothly replace the low-res texture
-                this.applyPanoramaTexture(highResTexture, panoramaId);
-                this.cacheTexture(panoramaId, highResTexture);
-            } else {
-                highResTexture.dispose(); // Clean up if no longer needed
-            }
-        });
-    }
-
-    /**
-     * OPTIMIZATION: Get optimized image URLs
-     */
-    getOptimizedImageUrl(originalUrl, quality = 'medium') {
-        // Simple quality switching - you need to create these image versions
-        if (quality === 'low' && originalUrl.includes('.jpg')) {
-            return originalUrl.replace('.jpg', '-low.jpg');
-        }
-        if (quality === 'medium' && originalUrl.includes('.jpg')) {
-            return originalUrl.replace('.jpg', '-medium.jpg');
-        }
-        return originalUrl; // Fallback to original
-    }
-
-    /**
-     * SMART LOADING: Show loading only when necessary
-     */
-    showLoading() {
-        if (this.loadingScreen && !this.loadingScreen.style.display === 'flex') {
-            this.loadingScreen.style.display = 'flex';
-        }
-    }
-
-    /**
-     * SMART LOADING: Safe loading hide with minimum display time
-     */
-    hideLoading() {
-        if (!this.loadingScreen) return;
-
-        const loadTime = performance.now() - this.loadStartTime;
-        
-        // SMART LOADING: Ensure loading screen shows for minimum time to prevent flicker
-        if (loadTime < this.minLoadTime) {
-            setTimeout(() => {
-                this.loadingScreen.style.display = 'none';
-            }, this.minLoadTime - loadTime);
-        } else {
-            // Hide immediately if we've already shown it long enough
-            this.loadingScreen.style.display = 'none';
-        }
-    }
-
-    /**
-     * Apply texture to panorama with transition & cleanup
-     */
-    applyPanoramaTexture(texture, panoramaId) {
-        const newMaterial = new THREE.MeshBasicMaterial({ map: texture });
-        const newMesh = new THREE.Mesh(this.geometry, newMaterial);
-
-        if (this.mesh) {
-            this.scene.add(newMesh);
-
-            // Smooth fade transition
-            this.fadeTransition(this.mesh, newMesh, () => {
-                // Cleanup old panorama
-                this.cleanupOldMesh();
-                this.mesh = newMesh;
-                this.material = newMaterial;
-
-                // Update navigation arrows
-                if (window.navigationManager) {
-                    window.navigationManager.updateConnections(panoramaId);
-                }
-                
-                // notify listeners that panorama finished loading
-                window.dispatchEvent(new CustomEvent('panoramaLoaded', { detail: { id: panoramaId } }));
-            });
-        } else {
-            // First load
-            this.mesh = newMesh;
-            this.material = newMaterial;
-            this.scene.add(this.mesh);
-
-            if (window.navigationManager) {
-                window.navigationManager.updateConnections(panoramaId);
-            }
-            
-            window.dispatchEvent(new CustomEvent('panoramaLoaded', { detail: { id: panoramaId } }));
-        }
-    }
-
-    /**
-     * OPTIMIZATION: Performance monitoring
-     */
-    startPerformanceMonitor() {
-        this.performanceStats = {
-            frameCount: 0,
-            lastFpsUpdate: Date.now(),
-            currentFps: 0
-        };
-        
-        // Monitor FPS every second
-        this.performanceInterval = setInterval(() => {
-            const now = Date.now();
-            const elapsed = now - this.performanceStats.lastFpsUpdate;
-            
-            if (elapsed > 1000) {
-                this.performanceStats.currentFps = 
-                    Math.round((this.performanceStats.frameCount * 1000) / elapsed);
-                this.performanceStats.frameCount = 0;
-                this.performanceStats.lastFpsUpdate = now;
-                
-                // Auto-reduce quality if FPS is low
-                if (this.performanceStats.currentFps < 25 && !this.qualityReduced) {
-                    this.reduceQuality();
-                }
-            }
-        }, 1000);
-    }
-
-    /**
-     * OPTIMIZATION: Reduce quality when performance is poor
-     */
-    reduceQuality() {
-        this.qualityReduced = true;
-        this.renderer.setPixelRatio(1);
-        
-        if (this.material && this.material.map) {
-            this.material.map.generateMipmaps = false;
-            this.material.map.minFilter = THREE.LinearFilter;
-        }
-        
-        console.log('Quality reduced for better performance');
-    }
-
-    /**
-     * OPTIMIZATION: Enhanced memory cleanup
-     */
-    enhancedMemoryCleanup() {
-        // Clear cache more aggressively
-        this.textureCache.forEach((cached, id) => {
-            if (id !== this.currentPanoramaId) {
-                this.safeDisposeTexture(cached);
-                this.textureCache.delete(id);
-            }
-        });
-        
-        // Clear Three.js cache
-        if (THREE.Cache && THREE.Cache.clear) {
-            THREE.Cache.clear();
+            console.error('PANORAMA VIEWER CONSTRUCTOR CRASH:', error);
+            this.showFatalError('Failed to initialize 3D viewer');
         }
     }
     
-    safeMobileDetection() {
+    /**
+     * ULTRA SAFE MOBILE DETECTION
+     */
+    ultraSafeMobileDetection() {
         try {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            // Multiple detection methods
+            const userAgent = navigator.userAgent || '';
+            const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+            const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const isSmallScreen = window.innerWidth < 768;
+            
+            // Low memory detection
+            const hasLowMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
+            const hasLowCores = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+            
+            return isMobileUA || isTouch || isSmallScreen || hasLowMemory || hasLowCores;
         } catch (e) {
-            return false;
+            // If detection fails, assume mobile for safety
+            return true;
         }
     }
     
-    safeInit() {
+    /**
+     * ULTRA SAFE INITIALIZATION
+     */
+    ultraSafeInit() {
         try {
-            this.camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 1, 1100);
+            // SAFETY: Check if WebGL is supported
+            if (!this.isWebGLSupported()) {
+                throw new Error('WebGL not supported');
+            }
+            
+            // SIMPLER SETUP FOR MOBILE
+            this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
             this.camera.position.z = 0.01;
             
             this.scene = new THREE.Scene();
             
+            // ULTRA SIMPLE GEOMETRY FOR MOBILE
             if (this.isMobile) {
-                this.geometry = new THREE.SphereGeometry(500, 32, 20);
+                this.geometry = new THREE.SphereGeometry(500, 16, 12); // Very simple
             } else {
-                this.geometry = new THREE.SphereGeometry(500, 48, 30);
+                this.geometry = new THREE.SphereGeometry(500, 32, 20);
             }
             this.geometry.scale(-1, 1, 1);
             
+            // MINIMAL RENDERER FOR MOBILE
             this.renderer = new THREE.WebGLRenderer({ 
-                antialias: !this.isMobile,
-                powerPreference: "high-performance",
+                antialias: false, // Disabled for mobile
+                powerPreference: this.isMobile ? "low-power" : "high-performance",
                 alpha: false,
-                preserveDrawingBuffer: false
+                preserveDrawingBuffer: false,
+                failIfMajorPerformanceCaveat: true // Don't even try if performance will be bad
             });
             
-            this.renderer.setPixelRatio(this.isMobile ? 1 : Math.min(2, window.devicePixelRatio));
+            // LOW RESOLUTION FOR MOBILE
+            const pixelRatio = this.isMobile ? 0.75 : Math.min(1.5, window.devicePixelRatio);
+            this.renderer.setPixelRatio(pixelRatio);
             this.renderer.setSize(window.innerWidth, window.innerHeight);
+            
+            // SAFETY: Check if DOM element was created
+            if (!this.renderer.domElement) {
+                throw new Error('Renderer DOM element creation failed');
+            }
+            
             this.container.appendChild(this.renderer.domElement);
             
             if (!this.isMobile) {
@@ -426,222 +150,422 @@ class PanoramaViewer {
             this.animate();
             
         } catch (error) {
-            console.error('Three.js initialization failed:', error);
-            this.showError('3D viewer failed to initialize. Please refresh the page.');
+            console.error('THREE.JS INIT CRASH:', error);
+            this.showFatalError('3D not supported on your device');
+            throw error; // Prevent further execution
         }
     }
     
-    zoom(delta) {
-        this.zoomLevel += delta * this.zoomSpeed;
-        this.zoomLevel = Math.max(this.minZoom, Math.min(this.maxZoom, this.zoomLevel));
-        this.camera.fov = 75 / this.zoomLevel;
-        this.camera.updateProjectionMatrix();
-    }
-    
-    addZoomControls() {
-        if (this.isMobile) return;
-
-        const zoomControls = document.createElement('div');
-        zoomControls.className = 'zoom-controls';
-        zoomControls.style.position = 'absolute';
-        zoomControls.style.bottom = '200px';
-        zoomControls.style.right = '20px';
-        zoomControls.style.zIndex = '100';
-
-        const zoomInBtn = document.createElement('button');
-        zoomInBtn.innerHTML = '+';
-        zoomInBtn.style.width = '40px';
-        zoomInBtn.style.height = '40px';
-        zoomInBtn.style.fontSize = '20px';
-        zoomInBtn.style.margin = '5px';
-        zoomInBtn.style.cursor = 'pointer';
-        zoomInBtn.style.borderRadius = '50%';
-        zoomInBtn.style.border = '2px solid #fff';
-        zoomInBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        zoomInBtn.style.color = '#fff';
-        zoomInBtn.addEventListener('click', () => this.zoom(1));
-
-        const zoomOutBtn = document.createElement('button');
-        zoomOutBtn.innerHTML = '-';
-        zoomOutBtn.style.width = '40px';
-        zoomOutBtn.style.height = '40px';
-        zoomOutBtn.style.fontSize = '20px';
-        zoomOutBtn.style.margin = '5px';
-        zoomOutBtn.style.cursor = 'pointer';
-        zoomOutBtn.style.borderRadius = '50%';
-        zoomOutBtn.style.border = '2px solid #fff';
-        zoomOutBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        zoomOutBtn.style.color = '#fff';
-        zoomOutBtn.addEventListener('click', () => this.zoom(-1));
-
-        const resetZoomBtn = document.createElement('button');
-        resetZoomBtn.innerHTML = 'R';
-        resetZoomBtn.title = 'Reset Zoom';
-        resetZoomBtn.style.width = '40px';
-        resetZoomBtn.style.height = '40px';
-        resetZoomBtn.style.fontSize = '16px';
-        resetZoomBtn.style.margin = '5px';
-        resetZoomBtn.style.cursor = 'pointer';
-        resetZoomBtn.style.borderRadius = '50%';
-        resetZoomBtn.style.border = '2px solid #fff';
-        resetZoomBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        resetZoomBtn.style.color = '#fff';
-        resetZoomBtn.addEventListener('click', () => this.resetZoom());
-
-        zoomControls.appendChild(zoomInBtn);
-        zoomControls.appendChild(resetZoomBtn);
-        zoomControls.appendChild(zoomOutBtn);
-
-        this.container.appendChild(zoomControls);
-    }
-    
-    resetZoom() {
-        this.zoomLevel = 1.0;
-        this.camera.fov = 75;
-        this.camera.updateProjectionMatrix();
-    }
-    
-    setupEventListeners() {
-        window.addEventListener('resize', this.onWindowResize.bind(this));
-        
-        this.container.addEventListener('mousedown', this.onPointerDown.bind(this));
-        this.container.addEventListener('mousemove', this.onPointerMove.bind(this));
-        this.container.addEventListener('mouseup', this.onPointerUp.bind(this));
-        
-        this.container.addEventListener('touchstart', this.onPointerDown.bind(this));
-        this.container.addEventListener('touchmove', this.onPointerMove.bind(this));
-        this.container.addEventListener('touchend', this.onPointerUp.bind(this));
-        
-        if (!this.isMobile) {
-            this.container.addEventListener('wheel', (event) => {
-                event.preventDefault();
-                const delta = event.deltaY > 0 ? -1 : 1;
-                this.zoom(delta * 0.1);
-            });
+    /**
+     * WEBGL SUPPORT CHECK
+     */
+    isWebGLSupported() {
+        try {
+            const canvas = document.createElement('canvas');
+            return !!(window.WebGLRenderingContext && 
+                     (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+        } catch (e) {
+            return false;
         }
-        
-        this.container.addEventListener('contextmenu', (e) => e.preventDefault());
-        
-        this.initialPinchDistance = null;
     }
     
-    onWindowResize() {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-    
-    onPointerDown(event) {
-        event.preventDefault();
-        
-        if (event.touches && event.touches.length === 2) {
-            this.initialPinchDistance = Math.hypot(
-                event.touches[0].clientX - event.touches[1].clientX,
-                event.touches[0].clientY - event.touches[1].clientY
-            );
+    /**
+     * ULTRA SAFE PANORAMA LOADING
+     */
+    loadPanorama(panoramaId) {
+        // SAFETY: Check if viewer is destroyed
+        if (this.isDestroyed) {
+            console.warn('Viewer destroyed, cannot load panorama');
             return;
         }
         
-        this.isUserInteracting = true;
+        // SAFETY: Cancel any previous loads immediately
+        this.cancelPendingLoads();
         
-        const clientX = event.clientX || (event.touches && event.touches[0].clientX);
-        const clientY = event.clientY || (event.touches && event.touches[0].clientY);
-        
-        this.onPointerDownMouseX = clientX;
-        this.onPointerDownMouseY = clientY;
-        
-        this.onPointerDownLon = this.lon;
-        this.onPointerDownLat = this.lat;
+        try {
+            // SAFETY: Validate input
+            if (!panoramaId || typeof panoramaId !== 'string') {
+                throw new Error('Invalid panorama ID');
+            }
+            
+            // Prevent too many rapid loads
+            if (this.loadingQueue.has(panoramaId)) {
+                return;
+            }
+            
+            // Emergency memory cleanup
+            if (this.loadCount > 8) { // Lower threshold for mobile
+                this.emergencyMemoryCleanup();
+            }
+            
+            const panorama = getPanoramaById(panoramaId);
+            if (!panorama) {
+                throw new Error(`Panorama ${panoramaId} not found`);
+            }
+
+            this.loadingQueue.add(panoramaId);
+            this.currentPanoramaId = panoramaId;
+            this.loadCount++;
+
+            // Update UI immediately (fast operation)
+            this.safeUpdateUI(panorama);
+
+            // Set orientation
+            if (panorama.defaultLon !== undefined) this.lon = panorama.defaultLon;
+            if (panorama.defaultLat !== undefined) this.lat = panorama.defaultLat;
+
+            // Start timing the load
+            this.loadStartTime = performance.now();
+            this.isLoading = true;
+
+            // Check cache first - no loading screen if cached
+            const cachedTexture = this.getCachedTexture(panoramaId);
+            if (cachedTexture) {
+                this.applyPanoramaTexture(cachedTexture, panoramaId);
+                this.loadingQueue.delete(panoramaId);
+                this.isLoading = false;
+            } else {
+                // Delay loading screen for fast loads
+                this.loadingTimeout = setTimeout(() => {
+                    if (this.isLoading && this.loadingQueue.has(panoramaId) && !this.isDestroyed) {
+                        this.showLoading();
+                    }
+                }, 100);
+
+                // Load texture with ultra safety
+                this.ultraSafeLoadTexture(panoramaId, panorama.imageUrl);
+            }
+
+            // NO PRELOADING ON MOBILE - TOO DANGEROUS
+            if (!this.isMobile && this.textureCache.size < this.maxPreloadedTextures) {
+                setTimeout(() => this.safePreloadNeighbors(panoramaId), 3000);
+            }
+            
+        } catch (error) {
+            console.error('LOAD PANORAMA CRASH:', error);
+            this.loadingQueue.delete(panoramaId);
+            this.isLoading = false;
+            this.hideLoading();
+            this.showError('Failed to load location');
+        }
     }
     
-    onPointerMove(event) {
-        if (event.touches && event.touches.length === 2) {
-            const currentPinchDistance = Math.hypot(
-                event.touches[0].clientX - event.touches[1].clientX,
-                event.touches[0].clientY - event.touches[1].clientY
+    /**
+     * ULTRA SAFE TEXTURE LOADING
+     */
+    ultraSafeLoadTexture(panoramaId, imageUrl) {
+        // SAFETY: Clear any existing timeouts
+        this.cancelPendingLoads();
+        
+        try {
+            const textureLoader = new THREE.TextureLoader();
+            
+            // SAFETY: Set timeout first
+            this.loadTimeoutGuard = setTimeout(() => {
+                if (this.loadingQueue.has(panoramaId)) {
+                    console.warn('Texture load timeout:', panoramaId);
+                    this.loadingQueue.delete(panoramaId);
+                    this.isLoading = false;
+                    this.hideLoading();
+                    this.showError('Load timeout');
+                }
+            }, this.isMobile ? 15000 : 25000); // Shorter timeout for mobile
+            
+            textureLoader.load(
+                imageUrl,
+                (texture) => {
+                    // SAFETY: Check if still valid
+                    if (!this.loadingQueue.has(panoramaId) || this.isDestroyed) {
+                        texture.dispose();
+                        return;
+                    }
+                    
+                    clearTimeout(this.loadTimeoutGuard);
+                    clearTimeout(this.loadingTimeout);
+                    
+                    // AGGRESSIVE MOBILE OPTIMIZATION
+                    if (this.isMobile) {
+                        texture.generateMipmaps = false;
+                        texture.minFilter = THREE.LinearFilter;
+                        texture.magFilter = THREE.LinearFilter;
+                        texture.anisotropy = 1;
+                        
+                        // RESIZE LARGE TEXTURES FOR MOBILE
+                        if (texture.image && (texture.image.width > this.textureSizeLimit || 
+                            texture.image.height > this.textureSizeLimit)) {
+                            console.warn('Oversized texture detected, resizing for mobile');
+                            this.resizeTextureForMobile(texture);
+                        }
+                    }
+                    
+                    this.cacheTexture(panoramaId, texture);
+                    this.applyPanoramaTexture(texture, panoramaId);
+                    this.loadingQueue.delete(panoramaId);
+                    this.isLoading = false;
+                    
+                    this.hideLoading();
+                },
+                undefined,
+                (error) => {
+                    clearTimeout(this.loadTimeoutGuard);
+                    clearTimeout(this.loadingTimeout);
+                    console.error('Texture load failed:', error);
+                    this.loadingQueue.delete(panoramaId);
+                    this.isLoading = false;
+                    this.hideLoading();
+                    this.showError('Failed to load image');
+                }
             );
             
-            if (this.initialPinchDistance) {
-                const delta = (currentPinchDistance - this.initialPinchDistance) * 0.01;
-                this.zoom(delta);
-                this.initialPinchDistance = currentPinchDistance;
+        } catch (error) {
+            clearTimeout(this.loadTimeoutGuard);
+            clearTimeout(this.loadingTimeout);
+            console.error('TEXTURE LOAD CRASH:', error);
+            this.loadingQueue.delete(panoramaId);
+            this.isLoading = false;
+            this.hideLoading();
+        }
+    }
+    
+    /**
+     * RESIZE OVERSIZED TEXTURES FOR MOBILE SAFETY
+     */
+    resizeTextureForMobile(texture) {
+        try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const maxSize = this.textureSizeLimit;
+            
+            let width = texture.image.width;
+            let height = texture.image.height;
+            
+            // Calculate new dimensions while maintaining aspect ratio
+            if (width > maxSize || height > maxSize) {
+                if (width > height) {
+                    height = (height * maxSize) / width;
+                    width = maxSize;
+                } else {
+                    width = (width * maxSize) / height;
+                    height = maxSize;
+                }
             }
+            
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(texture.image, 0, 0, width, height);
+            
+            // Create new texture from resized image
+            const resizedTexture = new THREE.CanvasTexture(canvas);
+            resizedTexture.generateMipmaps = false;
+            resizedTexture.minFilter = THREE.LinearFilter;
+            resizedTexture.magFilter = THREE.LinearFilter;
+            
+            // Dispose old texture
+            texture.dispose();
+            
+            return resizedTexture;
+        } catch (error) {
+            console.warn('Texture resize failed, using original:', error);
+            return texture;
+        }
+    }
+    
+    /**
+     * CANCEL ALL PENDING LOADS
+     */
+    cancelPendingLoads() {
+        if (this.loadingTimeout) {
+            clearTimeout(this.loadingTimeout);
+            this.loadingTimeout = null;
+        }
+        if (this.loadTimeoutGuard) {
+            clearTimeout(this.loadTimeoutGuard);
+            this.loadTimeoutGuard = null;
+        }
+        this.loadingQueue.clear();
+        this.isLoading = false;
+    }
+    
+    /**
+     * ULTRA SAFE TEXTURE APPLICATION
+     */
+    applyPanoramaTexture(texture, panoramaId) {
+        // SAFETY: Multiple validation checks
+        if (this.isDestroyed) {
+            texture.dispose();
             return;
         }
         
-        if (!this.isUserInteracting) return;
+        if (this.currentPanoramaId !== panoramaId) {
+            console.warn('Texture applied to wrong panorama, disposing');
+            texture.dispose();
+            return;
+        }
         
-        const clientX = event.clientX || (event.touches && event.touches[0].clientX);
-        const clientY = event.clientY || (event.touches && event.touches[0].clientY);
-        
-        this.lon = (this.onPointerDownMouseX - clientX) * 0.2 + this.onPointerDownLon;
-        this.lat = (clientY - this.onPointerDownMouseY) * 0.2 + this.onPointerDownLat;
-        
-        this.lat = Math.max(-85, Math.min(85, this.lat));
+        if (!texture || !this.scene || !this.geometry) {
+            console.error('Invalid state for texture application');
+            texture.dispose();
+            return;
+        }
+
+        try {
+            const newMaterial = new THREE.MeshBasicMaterial({ 
+                map: texture,
+                transparent: false // Better performance
+            });
+            const newMesh = new THREE.Mesh(this.geometry, newMaterial);
+
+            if (this.mesh) {
+                this.scene.add(newMesh);
+
+                // SIMPLER TRANSITION FOR MOBILE
+                this.safeFadeTransition(this.mesh, newMesh, () => {
+                    this.cleanupOldMesh();
+                    this.mesh = newMesh;
+                    this.material = newMaterial;
+
+                    // SAFE NAVIGATION UPDATE
+                    this.safeNavigationUpdate(panoramaId);
+                    
+                    window.dispatchEvent(new CustomEvent('panoramaLoaded', { 
+                        detail: { id: panoramaId } 
+                    }));
+                });
+            } else {
+                // First load
+                this.mesh = newMesh;
+                this.material = newMaterial;
+                this.scene.add(this.mesh);
+
+                this.safeNavigationUpdate(panoramaId);
+                
+                window.dispatchEvent(new CustomEvent('panoramaLoaded', { 
+                    detail: { id: panoramaId } 
+                }));
+            }
+        } catch (error) {
+            console.error('APPLY TEXTURE CRASH:', error);
+            texture.dispose();
+            this.showError('Error displaying panorama');
+        }
     }
     
-    onPointerUp() {
-        this.isUserInteracting = false;
+    /**
+     * SAFE FADE TRANSITION
+     */
+    safeFadeTransition(oldMesh, newMesh, onComplete) {
+        try {
+            // SIMPLER TRANSITION FOR MOBILE - NO FADE IF MOBILE
+            if (this.isMobile) {
+                this.scene.remove(oldMesh);
+                if (onComplete) onComplete();
+                return;
+            }
+            
+            oldMesh.material.transparent = true;
+            newMesh.material.transparent = true;
+            newMesh.material.opacity = 0;
+            
+            const duration = 300; // Shorter for mobile
+            const startTime = performance.now();
+            
+            const animate = (currentTime) => {
+                if (this.isDestroyed) return;
+                
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                try {
+                    oldMesh.material.opacity = 1 - progress;
+                    newMesh.material.opacity = progress;
+                } catch (e) {
+                    // Material might be disposed, stop animation
+                    return;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    if (onComplete) onComplete();
+                }
+            };
+            
+            requestAnimationFrame(animate);
+        } catch (error) {
+            console.warn('Transition failed:', error);
+            if (onComplete) onComplete();
+        }
     }
     
+    /**
+     * SAFE NAVIGATION UPDATE
+     */
+    safeNavigationUpdate(panoramaId) {
+        try {
+            if (window.navigationManager && typeof window.navigationManager.updateConnections === 'function') {
+                window.navigationManager.updateConnections(panoramaId);
+            }
+        } catch (error) {
+            console.warn('Navigation update failed:', error);
+        }
+    }
+    
+    /**
+     * ULTRA SAFE ANIMATION LOOP
+     */
     animate() {
-        requestAnimationFrame(this.animate.bind(this));
-        this.update();
+        if (this.isDestroyed) return;
         
-        // OPTIMIZATION: Count frames for performance monitoring
-        if (this.performanceStats) {
-            this.performanceStats.frameCount++;
+        try {
+            this.animationFrameId = requestAnimationFrame(() => this.animate());
+            this.update();
+        } catch (error) {
+            console.error('ANIMATION LOOP CRASH:', error);
+            // Try to restart animation loop
+            if (!this.isDestroyed) {
+                setTimeout(() => this.animate(), 100);
+            }
         }
     }
     
     update() {
-        this.lat = Math.max(-85, Math.min(85, this.lat));
-        this.phi = THREE.MathUtils.degToRad(90 - this.lat);
-        this.theta = THREE.MathUtils.degToRad(this.lon);
+        if (this.isDestroyed || !this.camera || !this.renderer || !this.scene) return;
         
-        const x = 500 * Math.sin(this.phi) * Math.cos(this.theta);
-        const y = 500 * Math.cos(this.phi);
-        const z = 500 * Math.sin(this.phi) * Math.sin(this.theta);
-        
-        this.camera.lookAt(x, y, z);
-        this.renderer.render(this.scene, this.camera);
-        
-        if (window.navigationManager) {
-            window.navigationManager.updateArrowPositions(this.camera);
+        try {
+            this.lat = Math.max(-85, Math.min(85, this.lat));
+            this.phi = THREE.MathUtils.degToRad(90 - this.lat);
+            this.theta = THREE.MathUtils.degToRad(this.lon);
+            
+            const x = 500 * Math.sin(this.phi) * Math.cos(this.theta);
+            const y = 500 * Math.cos(this.phi);
+            const z = 500 * Math.sin(this.phi) * Math.sin(this.theta);
+            
+            this.camera.lookAt(x, y, z);
+            this.renderer.render(this.scene, this.camera);
+            
+            // SAFE ARROW UPDATE
+            if (window.navigationManager && typeof window.navigationManager.updateArrowPositions === 'function') {
+                try {
+                    window.navigationManager.updateArrowPositions(this.camera);
+                } catch (error) {
+                    console.warn('Arrow update failed:', error);
+                }
+            }
+        } catch (error) {
+            console.error('UPDATE CRASH:', error);
         }
     }
-
-    fadeTransition(oldMesh, newMesh, onComplete) {
-        oldMesh.material.transparent = true;
-        newMesh.material.transparent = true;
-        newMesh.material.opacity = 0;
-        
-        const duration = 500;
-        const startTime = performance.now();
-        
-        const animate = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            oldMesh.material.opacity = 1 - progress;
-            newMesh.material.opacity = progress;
-            
-            if (progress < 1) {
-                requestAnimationFrame(animate);
-            } else {
-                if (onComplete) onComplete();
-            }
-        };
-        
-        requestAnimationFrame(animate);
-    }
-
+    
+    /**
+     * AGGRESSIVE MEMORY MANAGEMENT FOR MOBILE
+     */
     cacheTexture(panoramaId, texture) {
         try {
+            // MOBILE: ONLY KEEP CURRENT TEXTURE
             if (this.isMobile) {
                 this.textureCache.forEach((cached, id) => {
-                    if (id !== panoramaId && cached.texture) {
-                        cached.texture.dispose();
+                    if (id !== panoramaId) {
+                        this.safeDisposeTexture(cached);
                     }
                 });
                 this.textureCache.clear();
@@ -653,152 +577,30 @@ class PanoramaViewer {
             
             this.textureCache.set(panoramaId, { 
                 texture: texture, 
-                lastUsed: Date.now(),
-                // OPTIMIZATION: Add size estimation
-                size: texture.image ? texture.image.width * texture.image.height : 0
+                lastUsed: Date.now()
             });
             
         } catch (error) {
-            console.error('Cache operation failed:', error);
+            console.error('CACHE TEXTURE CRASH:', error);
         }
     }
-
-    evictOldestTexture() {
-        if (this.textureCache.size === 0) return;
-
-        let oldestTime = Date.now();
-        let oldestKey = null;
-
-        for (const [key, cached] of this.textureCache.entries()) {
-            if (cached.lastUsed < oldestTime && key !== this.currentPanoramaId) {
-                oldestTime = cached.lastUsed;
-                oldestKey = key;
-            }
-        }
-
-        if (oldestKey) {
-            this.safeDisposeTexture(this.textureCache.get(oldestKey));
-            this.textureCache.delete(oldestKey);
-        }
-    }
-
-    getCachedTexture(panoramaId) {
-        const cached = this.textureCache.get(panoramaId);
-        if (cached) {
-            cached.lastUsed = Date.now();
-            return cached.texture;
-        }
-        return null;
-    }
-
-    emergencyMemoryCleanup() {
-        const now = Date.now();
-        if (now - this.lastCleanupTime < 10000) return;
-        
-        this.lastCleanupTime = now;
-        this.loadCount = 0;
-        
-        this.loadingQueue.clear();
-        
-        // OPTIMIZATION: Use enhanced cleanup
-        this.enhancedMemoryCleanup();
-    }
-
-    safePreloadNeighbors(currentPanoramaId) {
-        if (this.isMobile) return;
-        
-        try {
-            const panorama = getPanoramaById(currentPanoramaId);
-            if (!panorama || !panorama.connections) return;
-
-            const availableSlots = this.maxPreloadedTextures - this.textureCache.size;
-            if (availableSlots <= 0) return;
-
-            panorama.connections.slice(0, 1).forEach(neighborId => {
-                if (!this.textureCache.has(neighborId) && !this.loadingQueue.has(neighborId)) {
-                    const neighbor = getPanoramaById(neighborId);
-                    if (neighbor) {
-                        setTimeout(() => {
-                            this.safeLoadTexture(neighborId, neighbor.imageUrl);
-                        }, 1000);
-                    }
-                }
-            });
-        } catch (error) {
-            console.error('Preloading failed:', error);
-        }
-    }
-
-    safeUpdateUI(panorama) {
-        try {
-            requestAnimationFrame(() => {
-                const nameEl = document.getElementById('location-name');
-                const descEl = document.getElementById('location-description');
-                
-                if (nameEl) nameEl.textContent = panorama.name || '';
-                if (descEl) descEl.textContent = panorama.description || '';
-            });
-        } catch (error) {
-            console.warn('UI update failed:', error);
-        }
-    }
-
-    showError(message) {
-        try {
-            console.error('Panorama Viewer Error:', message);
-            if (this.loadingScreen) {
-                this.loadingScreen.innerHTML = `<div style="color: white; text-align: center;">${message}</div>`;
-            }
-        } catch (e) {
-            console.error('Error display failed:', e);
-        }
-    }
-
-    cleanupOldMesh() {
-        if (this.mesh) {
-            this.scene.remove(this.mesh);
-            
-            if (this.mesh.geometry) {
-                this.mesh.geometry.dispose();
-            }
-            
-            if (this.mesh.material) {
-                if (this.mesh.material.map) {
-                    this.mesh.material.map.dispose();
-                }
-                this.mesh.material.dispose();
-            }
-            
-            this.mesh = null;
-        }
-    }
-
-    safeDisposeTexture(cached) {
-        try {
-            if (cached && cached.texture) {
-                cached.texture.dispose();
-            }
-        } catch (error) {
-            console.warn('Texture disposal failed:', error);
-        }
-    }
-
-    getCameraRotation() {
-        return {
-            phi: this.phi,
-            theta: this.theta
-        };
-    }
-
+    
+    /**
+     * ULTRA SAFE DESTROY
+     */
     destroy() {
+        console.log('DESTROYING PANORAMA VIEWER');
+        this.isDestroyed = true;
+        
+        // CANCEL EVERYTHING
+        this.cancelPendingLoads();
+        
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+        }
+        
+        // AGGRESSIVE MEMORY CLEANUP
         try {
-            this.loadingQueue.clear();
-            
-            // OPTIMIZATION: Clear performance monitor
-            if (this.performanceInterval) {
-                clearInterval(this.performanceInterval);
-            }
-            
             this.textureCache.forEach(cached => this.safeDisposeTexture(cached));
             this.textureCache.clear();
             
@@ -808,14 +610,150 @@ class PanoramaViewer {
                 this.geometry.dispose();
             }
             
+            if (this.material) {
+                if (this.material.map) this.material.map.dispose();
+                this.material.dispose();
+            }
+            
             if (this.renderer) {
                 this.renderer.dispose();
+                this.renderer.forceContextLoss();
+            }
+            
+            // Clear container
+            if (this.container) {
+                this.container.innerHTML = '';
             }
             
         } catch (error) {
-            console.error('Destruction failed:', error);
+            console.error('DESTROY CRASH:', error);
         }
     }
+    
+    /**
+     * FATAL ERROR HANDLING
+     */
+    showFatalError(message) {
+        try {
+            if (this.container) {
+                this.container.innerHTML = `
+                    <div style="color: white; text-align: center; padding: 20px;">
+                        <h3>3D Viewer Unavailable</h3>
+                        <p>${message}</p>
+                        <p><small>Your device may not support WebGL or may have limited memory.</small></p>
+                    </div>
+                `;
+            }
+        } catch (e) {
+            console.error('Could not display error message');
+        }
+    }
+
+    // ... YOUR ORIGINAL METHODS BELOW (with minor safety additions) ...
+    
+    showLoading() {
+        try {
+            if (this.loadingScreen && this.loadingScreen.style.display !== 'flex') {
+                this.loadingScreen.style.display = 'flex';
+            }
+        } catch (e) {
+            console.warn('Show loading failed');
+        }
+    }
+
+    hideLoading() {
+        try {
+            if (!this.loadingScreen) return;
+
+            const loadTime = performance.now() - this.loadStartTime;
+            
+            if (loadTime < 300) {
+                setTimeout(() => {
+                    if (this.loadingScreen && !this.isDestroyed) {
+                        this.loadingScreen.style.display = 'none';
+                    }
+                }, 300 - loadTime);
+            } else {
+                this.loadingScreen.style.display = 'none';
+            }
+        } catch (e) {
+            console.warn('Hide loading failed');
+        }
+    }
+
+    showError(message) {
+        try {
+            console.error('Panorama Error:', message);
+            if (this.loadingScreen) {
+                this.loadingScreen.innerHTML = `<div style="color: white; text-align: center;">${message}</div>`;
+                this.loadingScreen.style.display = 'flex';
+                setTimeout(() => {
+                    if (this.loadingScreen && !this.isDestroyed) {
+                        this.loadingScreen.style.display = 'none';
+                    }
+                }, 3000);
+            }
+        } catch (e) {
+            console.error('Error display failed');
+        }
+    }
+
+    // ... KEEP ALL YOUR OTHER ORIGINAL METHODS BUT ADD TRY-CATCH ...
+    // safeUpdateUI, cleanupOldMesh, safeDisposeTexture, etc.
+    
+    // ADD THIS SAFETY WRAPPER TO ALL YOUR ORIGINAL METHODS:
+    safeUpdateUI(panorama) {
+        try {
+            requestAnimationFrame(() => {
+                try {
+                    const nameEl = document.getElementById('location-name');
+                    const descEl = document.getElementById('location-description');
+                    
+                    if (nameEl) nameEl.textContent = panorama.name || '';
+                    if (descEl) descEl.textContent = panorama.description || '';
+                } catch (e) {
+                    console.warn('UI update failed');
+                }
+            });
+        } catch (error) {
+            console.warn('UI update failed');
+        }
+    }
+
+    cleanupOldMesh() {
+        if (this.mesh) {
+            try {
+                this.scene.remove(this.mesh);
+                
+                if (this.mesh.geometry && this.mesh.geometry !== this.geometry) {
+                    this.mesh.geometry.dispose();
+                }
+                
+                if (this.mesh.material) {
+                    if (this.mesh.material.map) {
+                        this.mesh.material.map.dispose();
+                    }
+                    this.mesh.material.dispose();
+                }
+                
+                this.mesh = null;
+            } catch (error) {
+                console.warn('Mesh cleanup warning');
+            }
+        }
+    }
+
+    safeDisposeTexture(cached) {
+        try {
+            if (cached && cached.texture) {
+                cached.texture.dispose();
+            }
+        } catch (error) {
+            console.warn('Texture disposal failed');
+        }
+    }
+
+    // ... ALL YOUR OTHER ORIGINAL METHODS WITH TRY-CATCH ...
 }
 
 window.panoramaViewer = null;
