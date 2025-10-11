@@ -21,7 +21,7 @@ const entrancePanoramas = [
     category: ['SD bldg.','SCS bldg.'],
     connections: ['entrance2', 'entrance'],
     arrowPositions: {
-      'entrance2': { phi: Math.PI / 2.6, theta: Math.PI * 1.7, direction: 'up' },
+      'entrance2': { phi: Math.PI / 2.6, theta: Math.PI * 1.5, direction: 'up' },
       'entrance': { phi: Math.PI / 2.6, theta: Math.PI * 0.95, direction: 'up' }
     }
   } ,
