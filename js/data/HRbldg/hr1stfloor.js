@@ -2,7 +2,7 @@ const hr1stfloor = [
 
   {  
     id: 'hrshortcut1',
-    name: 'Shortcut to CCS',
+    name: 'To HR CCS office ',
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/1.1 Shortcut to CCS.webp',
     category: ['HR bldg.'],
@@ -15,7 +15,7 @@ const hr1stfloor = [
 
   {  
     id: 'hrshortcut2',
-    name: 'Shortcut to CCS',
+    name: 'To CCS office ',
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/1.2 Shortcut to CCS.webp',
     category: ['HR bldg.'],
@@ -28,7 +28,7 @@ const hr1stfloor = [
 
   {  
     id: 'hrshortcut3',
-    name: 'Shortcut to CCS',
+    name: 'To CCS office ',
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/1.3 Shortcut to CCS.webp',
     category: ['HR bldg.'],
@@ -43,7 +43,7 @@ const hr1stfloor = [
 
   {  
     id: 'hrshortcutCJ',
-    name: 'Shortcut to CCS (Campus Journalism)',
+    name: 'To CCS (Campus Journalism)',
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/1.2 Shortcut to CCS(Campus Journalism).webp',
     category: ['HR bldg.'],
@@ -55,7 +55,7 @@ const hr1stfloor = [
 
   {  
     id: 'hrshortcut4',
-    name: 'Shortcut to CCS',
+    name: 'To CCS office ',
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/1.4 Shortcut to CCS.webp',
     category: ['HR bldg.'],
@@ -68,7 +68,7 @@ const hr1stfloor = [
 
   {  
     id: 'hrshortcut5',
-    name: 'Shortcut to CCS',
+    name: 'To CCS office ',
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/1.5 Shortcut to CCS.webp',
     category: ['HR bldg.'],
@@ -166,10 +166,26 @@ const hr1stfloor = [
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/6 CBA Office.webp',
     category: ['HR bldg.','Offices'],
-    connections: ['chmoffice','ccjeoffice'],
+    connections: ['chmoffice','ccjeoffice','cbaoffice1'],
     arrowPositions: {
         'chmoffice': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
-        'ccjeoffice': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+        'ccjeoffice': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }, 
+        'cbaoffice1': { phi: Math.PI / 3, theta: Math.PI * 2.7, direction: 'up' }
+    }
+  },
+
+    {  
+    id: 'cbaoffice1',
+    name: 'HR 1st to 2nd  floor',
+    description: 'HR Building 1st Floor',
+    imageUrl: 'images/HRbldg/J HR STAIR 1ST FLOOR (3).webp',
+    category: ['HR bldg.','Offices'],
+    connections: ['cbaoffice','ccjeoffice', 'Hr2nd5'],
+    arrowPositions: {
+        'cbaoffice': { phi: Math.PI / 3, theta: Math.PI * 1.7, direction: 'up' },
+        'Hr2nd5': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+        'ccjeoffice': { phi: Math.PI / 3, theta: Math.PI * 1.15, direction: 'up' },
+
     }
   },
 
@@ -179,10 +195,10 @@ const hr1stfloor = [
     description: 'HR Building 1st Floor',
     imageUrl: 'images/HRbldg/7 CCJE Office.webp',
     category: ['HR bldg.','Offices'],
-    connections: ['cbaoffice','grandhall','Hr2nd5'],
+    connections: ['cbaoffice','grandhall','cbaoffice1'],
     arrowPositions: {
         'cbaoffice': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
-        'Hr2nd5': { phi: Math.PI / 3, theta: Math.PI * 2.15, direction: 'up' },
+        'cbaoffice1': { phi: Math.PI / 3, theta: Math.PI * 2.15, direction: 'up' },
         'grandhall': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     }
   },

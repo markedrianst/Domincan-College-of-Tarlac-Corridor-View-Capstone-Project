@@ -59,10 +59,10 @@ const hr2ndfloor = [
     description: 'HR bldg. 2nd floor',
     imageUrl: 'images/HRbldg/4 HR Midway Srairs.webp',
     category: ['HR bldg.'],
-    connections: ['Hr2nd4','ccjeoffice'],
+    connections: ['Hr2nd4','cbaoffice1'],
     arrowPositions: {
         'Hr2nd4': { phi: Math.PI / 3, theta: Math.PI * 1.5, direction: 'up' },
-        'ccjeoffice': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'down' }
+        'cbaoffice1': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'down' }
     }
   },
 
