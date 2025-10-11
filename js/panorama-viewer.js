@@ -57,10 +57,14 @@ class PanoramaViewer {
         this.loadingQueue = new Set();
         this.loadCount = 0;
         this.lastCleanupTime = 0;
+
+        // OPTIMIZATION: Add performance monitoring
+        this.qualityReduced = false;
         
         // Initialize
         this.safeInit();
         this.setupEventListeners();
+        this.startPerformanceMonitor(); // OPTIMIZATION: Added this line
     }
     
     /**
@@ -131,8 +135,11 @@ class PanoramaViewer {
         try {
             const textureLoader = new THREE.TextureLoader();
             
+            // OPTIMIZATION: Try low-res first if available
+            const lowResUrl = this.getOptimizedImageUrl(imageUrl, 'low');
+            
             textureLoader.load(
-                imageUrl,
+                lowResUrl, // Try low-res first
                 (texture) => {
                     // SMART LOADING: Clear the loading timeout since we're done
                     clearTimeout(this.loadingTimeout);
@@ -150,16 +157,19 @@ class PanoramaViewer {
                     
                     // SMART LOADING: Hide loading if it was shown
                     this.hideLoading();
+                    
+                    // OPTIMIZATION: Load high-res in background
+                    if (!this.isMobile) {
+                        setTimeout(() => {
+                            this.loadHighResTexture(panoramaId, imageUrl);
+                        }, 1000);
+                    }
                 },
                 undefined,
                 (error) => {
-                    // SMART LOADING: Clear timeout and hide loading on error
-                    clearTimeout(this.loadingTimeout);
-                    console.error('Texture load failed:', error);
-                    this.loadingQueue.delete(panoramaId);
-                    this.isLoading = false;
-                    this.hideLoading();
-                    this.showError('Failed to load panorama image.');
+                    // If low-res fails, try original image
+                    console.warn('Low-res load failed, trying original:', error);
+                    this.standardTextureLoad(panoramaId, imageUrl);
                 }
             );
             
@@ -175,12 +185,76 @@ class PanoramaViewer {
             }, 30000);
             
         } catch (error) {
-            clearTimeout(this.loadingTimeout);
-            console.error('Texture loading crashed:', error);
-            this.loadingQueue.delete(panoramaId);
-            this.isLoading = false;
-            this.hideLoading();
+            // Fallback to standard load
+            this.standardTextureLoad(panoramaId, imageUrl);
         }
+    }
+
+    /**
+     * OPTIMIZATION: Standard texture load as fallback
+     */
+    standardTextureLoad(panoramaId, imageUrl) {
+        const textureLoader = new THREE.TextureLoader();
+        
+        textureLoader.load(
+            imageUrl,
+            (texture) => {
+                clearTimeout(this.loadingTimeout);
+                
+                if (this.isMobile) {
+                    texture.generateMipmaps = false;
+                    texture.minFilter = THREE.LinearFilter;
+                }
+                
+                this.cacheTexture(panoramaId, texture);
+                this.applyPanoramaTexture(texture, panoramaId);
+                this.loadingQueue.delete(panoramaId);
+                this.isLoading = false;
+                this.hideLoading();
+            },
+            undefined,
+            (error) => {
+                clearTimeout(this.loadingTimeout);
+                console.error('Texture load failed:', error);
+                this.loadingQueue.delete(panoramaId);
+                this.isLoading = false;
+                this.hideLoading();
+                this.showError('Failed to load panorama image.');
+            }
+        );
+    }
+
+    /**
+     * OPTIMIZATION: Progressive loading - load high-res after low-res
+     */
+    loadHighResTexture(panoramaId, imageUrl) {
+        // Only load high-res if this is still the current panorama
+        if (this.currentPanoramaId !== panoramaId) return;
+        
+        const textureLoader = new THREE.TextureLoader();
+        textureLoader.load(imageUrl, (highResTexture) => {
+            if (this.currentPanoramaId === panoramaId) {
+                // Smoothly replace the low-res texture
+                this.applyPanoramaTexture(highResTexture, panoramaId);
+                this.cacheTexture(panoramaId, highResTexture);
+            } else {
+                highResTexture.dispose(); // Clean up if no longer needed
+            }
+        });
+    }
+
+    /**
+     * OPTIMIZATION: Get optimized image URLs
+     */
+    getOptimizedImageUrl(originalUrl, quality = 'medium') {
+        // Simple quality switching - you need to create these image versions
+        if (quality === 'low' && originalUrl.includes('.jpg')) {
+            return originalUrl.replace('.jpg', '-low.jpg');
+        }
+        if (quality === 'medium' && originalUrl.includes('.jpg')) {
+            return originalUrl.replace('.jpg', '-medium.jpg');
+        }
+        return originalUrl; // Fallback to original
     }
 
     /**
@@ -250,8 +324,67 @@ class PanoramaViewer {
         }
     }
 
-    // ... ALL YOUR ORIGINAL METHODS REMAIN EXACTLY THE SAME ...
-    // Only the loading-related methods are modified above
+    /**
+     * OPTIMIZATION: Performance monitoring
+     */
+    startPerformanceMonitor() {
+        this.performanceStats = {
+            frameCount: 0,
+            lastFpsUpdate: Date.now(),
+            currentFps: 0
+        };
+        
+        // Monitor FPS every second
+        this.performanceInterval = setInterval(() => {
+            const now = Date.now();
+            const elapsed = now - this.performanceStats.lastFpsUpdate;
+            
+            if (elapsed > 1000) {
+                this.performanceStats.currentFps = 
+                    Math.round((this.performanceStats.frameCount * 1000) / elapsed);
+                this.performanceStats.frameCount = 0;
+                this.performanceStats.lastFpsUpdate = now;
+                
+                // Auto-reduce quality if FPS is low
+                if (this.performanceStats.currentFps < 25 && !this.qualityReduced) {
+                    this.reduceQuality();
+                }
+            }
+        }, 1000);
+    }
+
+    /**
+     * OPTIMIZATION: Reduce quality when performance is poor
+     */
+    reduceQuality() {
+        this.qualityReduced = true;
+        this.renderer.setPixelRatio(1);
+        
+        if (this.material && this.material.map) {
+            this.material.map.generateMipmaps = false;
+            this.material.map.minFilter = THREE.LinearFilter;
+        }
+        
+        console.log('Quality reduced for better performance');
+    }
+
+    /**
+     * OPTIMIZATION: Enhanced memory cleanup
+     */
+    enhancedMemoryCleanup() {
+        // Clear cache more aggressively
+        this.textureCache.forEach((cached, id) => {
+            if (id !== this.currentPanoramaId) {
+                this.safeDisposeTexture(cached);
+                this.textureCache.delete(id);
+            }
+        });
+        
+        // Clear Three.js cache
+        if (THREE.Cache && THREE.Cache.clear) {
+            THREE.Cache.clear();
+        }
+    }
     
     safeMobileDetection() {
         try {
@@ -454,6 +587,11 @@ class PanoramaViewer {
     animate() {
         requestAnimationFrame(this.animate.bind(this));
         this.update();
+        
+        // OPTIMIZATION: Count frames for performance monitoring
+        if (this.performanceStats) {
+            this.performanceStats.frameCount++;
+        }
     }
     
     update() {
@@ -515,7 +653,9 @@ class PanoramaViewer {
             
             this.textureCache.set(panoramaId, { 
                 texture: texture, 
-                lastUsed: Date.now()
+                lastUsed: Date.now(),
+                // OPTIMIZATION: Add size estimation
+                size: texture.image ? texture.image.width * texture.image.height : 0
             });
             
         } catch (error) {
@@ -560,12 +700,8 @@ class PanoramaViewer {
         
         this.loadingQueue.clear();
         
-        this.textureCache.forEach((cached, id) => {
-            if (id !== this.currentPanoramaId) {
-                this.safeDisposeTexture(cached);
-                this.textureCache.delete(id);
-            }
-        });
+        // OPTIMIZATION: Use enhanced cleanup
+        this.enhancedMemoryCleanup();
     }
 
     safePreloadNeighbors(currentPanoramaId) {
@@ -657,6 +793,11 @@ class PanoramaViewer {
     destroy() {
         try {
             this.loadingQueue.clear();
+            
+            // OPTIMIZATION: Clear performance monitor
+            if (this.performanceInterval) {
+                clearInterval(this.performanceInterval);
+            }
             
             this.textureCache.forEach(cached => this.safeDisposeTexture(cached));
             this.textureCache.clear();
