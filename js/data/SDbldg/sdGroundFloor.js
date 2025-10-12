@@ -81,7 +81,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor7',
-        name: 'SD-104',
+        name: 'SD-104– HRM Hotel Laboratory',
         description: 'SD bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd104.webp',
         category: ['SD bldg.','Offices'],
@@ -93,7 +93,7 @@ const sdGroundFloor = [
     },
     {
         id: 'SdGroundfloor8',
-        name: 'SD-105 – HRM Hotel Laboratory',
+        name: 'SD-105 ',
         description: 'SD bldg. 1st floor',
         imageUrl: 'images/Sdbldg/Sd105.webp',
         category: ['SD bldg.','Offices'],

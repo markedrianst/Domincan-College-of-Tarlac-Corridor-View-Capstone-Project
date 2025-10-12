@@ -11,7 +11,7 @@ class SearchManager {
             'SD bldg.': 'SdGroundfloor10',
             'SCS bldg.': 'scs1st4', 
             'OLF bldg.': 'olf_stair_1_2_1',
-            'HR bldg.': 'ccjeoffice',
+            'HR bldg.': 'cbaoffice1',
             'SN bldg.': 'sn1st1',
             'SLR bldg.': 'slr1st4',
             'OLP bldg.': 'pOLP1stFloor'
