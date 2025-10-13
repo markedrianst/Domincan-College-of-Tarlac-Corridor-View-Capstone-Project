@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize mobile support
     window.mobileSupport = new MobileSupport();
     
-    // Load initial panorama (entrance)
+    // Load initial panorama (entrance)first preload
 
     window.panoramaViewer.loadPanorama('entrance');
 
