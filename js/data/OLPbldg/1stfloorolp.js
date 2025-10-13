@@ -50,8 +50,8 @@ const olp1stfloor = [
   },
   {
   id: 'Canteen1',
-  name: 'Canteen Entrance',
-  description: 'Main entrance area of the Canteen.',
+  name: 'Canteen Area',
+  description: 'Canteen Area',
   imageUrl: 'images/OLPbldg/CANTEEN 1.webp',
   category: ['OLP bldg.'],
   connections: ['Canteen2','pOLP1stFloor'],
@@ -63,7 +63,7 @@ const olp1stfloor = [
 {
   id: 'Canteen2',
   name: 'Canteen Hallway',
-  description: 'Leads further inside the canteen area.',
+  description: 'Canteen Area',
   imageUrl: 'images/OLPbldg/CANTEEN 2.webp',
   category: ['OLP bldg.'],
   connections: ['Canteen1', 'Canteen3'],
@@ -74,8 +74,8 @@ const olp1stfloor = [
 },
 {
   id: 'Canteen3',
-  name: 'Canteen Dining Area',
-  description: 'Main dining area for students and staff.',
+  name: 'Canteen Area',
+  description: 'Canteen Area',
   imageUrl: 'images/OLPbldg/CANTEEN 3.webp',
   category: ['OLP bldg.'],
   connections: ['Canteen2', 'Canteen4'],
@@ -87,7 +87,7 @@ const olp1stfloor = [
 {
   id: 'Canteen4',
   name: 'Canteen Counter Area',
-  description: 'Food counter and serving section.',
+  description: 'Canteen Area',
   imageUrl: 'images/OLPbldg/CANTEEN 4.webp',
   category: ['OLP bldg.'],
   connections: ['Canteen3', 'Canteen5','CanteenD2'],
@@ -100,7 +100,7 @@ const olp1stfloor = [
 {
   id: 'Canteen5',
   name: 'To Saint Nicholas Church',
-  description: 'Exit point of the canteen area. Going to Saint Nicholas Church',
+  description: 'Going to Saint Nicholas Church',
   imageUrl: 'images/OLPbldg/CANTEEN 5.webp',
   category: ['OLP bldg.'],
   connections: ['Canteen4','Canteen6'],
@@ -111,7 +111,7 @@ const olp1stfloor = [
 },{
   id: 'Canteen6',
   name: 'To SLR ',
-  description: 'Exit point of the canteen area. Going to Saint Nicholas Church',
+  description: 'Going to Saint Nicholas Church',
   imageUrl: 'images/OLPbldg/D CANTEEN (11).webp',
   category: ['OLP bldg.'],
   connections: ['Canteen5','slr1st12'],
@@ -122,8 +122,8 @@ const olp1stfloor = [
 },
 {
   id: 'CanteenD1',
-  name: 'D Canteen Area 1',
-  description: 'Extended canteen section near the outdoor tables.',
+  name: 'Canteen Area',
+  description: 'Canteen Area.',
   imageUrl: 'images/OLPbldg/D CANTEEN (1).webp',
   category: ['OLP bldg.'],
   connections: ['dcourt4', 'CanteenD2'],
@@ -135,8 +135,8 @@ const olp1stfloor = [
 
 {
   id: 'CanteenD2',
-  name: 'D Canteen Area 2',
-  description: 'Far end of the extended canteen area.',
+  name: 'Canteen Area',
+  description: 'Canteen Area',
   imageUrl: 'images/OLPbldg/D CANTEEN (2).webp',
   category: ['OLP bldg.'],
   connections: ['CanteenD1','Canteen4'],
