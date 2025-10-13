@@ -128,9 +128,10 @@ const slrfirstfloor = [
     description: 'SLR Room 106 – 1st Floor',
     imageUrl: 'images/SLRbldg/11 SLR 106.webp',
     category: ['SLR bldg.'],
-    connections: ['slr1st11'],
+    connections: ['slr1st11','Canteen6'],
     arrowPositions: {
-      'slr1st11': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+      'slr1st11': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'Canteen6': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
     }
   }
 ];

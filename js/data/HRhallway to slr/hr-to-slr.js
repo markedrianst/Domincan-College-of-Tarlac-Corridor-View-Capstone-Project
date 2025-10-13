@@ -84,10 +84,11 @@ const achievements = [
     description: ' Court Area',
     imageUrl: 'images/HR to SLR/D COURT (4).webp',
     category: ['Court'],
-    connections: ['slr1st8', 'dcourt3'],
+    connections: ['slr1st8', 'dcourt3','CanteenD1'],
     arrowPositions: {
       'slr1st8': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
-      'dcourt3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+      'dcourt3': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' },
+      'CanteenD1': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' }
     }
   },
 ];
