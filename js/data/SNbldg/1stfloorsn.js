@@ -167,7 +167,7 @@ const snfirstfloor = [
     category: ['SN bldg.'],
     connections: ['sn1st8', 'slr1st1'],
     arrowPositions: {
-      'slr1st1': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },
+      'slr1st1': { phi: Math.PI / 3, theta: Math.PI * 2.5, direction: 'up' },
       'sn1st8': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
     }
   }

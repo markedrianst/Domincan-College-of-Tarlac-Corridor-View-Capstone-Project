@@ -5,10 +5,11 @@ const slrfirstfloor = [
     description: 'SLR Faculty Lounge – SLR Building 1st Floor',
     imageUrl: 'images/SLRbldg/1 SLR FACULTY LOUNGE.webp',
     category: ['SLR bldg.', 'Offices'],
-    connections: ['slr1st2'],
+    connections: ['slr1st2','snroomsl101'],
     arrowPositions: {
-      'slr1st2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' }
-    }
+      'slr1st2': { phi: Math.PI / 3, theta: Math.PI * 2, direction: 'up' },      
+      'snroomsl101': { phi: Math.PI / 3, theta: Math.PI * 1, direction: 'up' }
+ }
   },
   {
     id: 'slr1st2',
